@@ -57,7 +57,7 @@ router.get('/stories/new', csrfProtection, (req, res) => {
 });
   
 
-router.post('/stories/new', csrfProtection, storyValidator, asyncHandler((req,res) => {
+router.post('/stories/new', csrfProtection, storyValidator, asyncHandler( async(req,res) => {
     const {
         title,
         content,
