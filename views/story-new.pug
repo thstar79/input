@@ -1,0 +1,15 @@
+extends layout.pug 
+include utils.pug 
+
+block content
+  h1= title
+  +validationErrorSummary(errors)
+  form(action='/stories/new' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    +field('Title', 'title', story.title)
+    +field('Content', 'content', story.content)
+    +field('Topic', 'topicType', story.topicType)
+    +field('Game', 'game', story.gameId)
+    div(class='py-4')
+      button(type='submit' class='btn btn-primary') Write Story
+      a(href='/' class='btn btn-warning ml-2') Cancel

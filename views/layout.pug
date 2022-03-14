@@ -4,5 +4,20 @@ html
       block head
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/layout.css')
+        link(rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous")
   body
+    div(class="pure-menu custom-restricted-width")
+      span.pure-menu-heading LOGO
+      ul.pure-menu-list
+          li.pure-menu-item
+              a(href="#" class="pure-menu-link") Link 1
+          li.pure-menu-item
+              a(href="#" class="pure-menu-link") Link 2
+          li.pure-menu-item
+              a(href="#" class="pure-menu-link") Link 3
+          li.pure-menu-item
+              a(href="#" class="pure-menu-link") Link 4
+          li.pure-menu-item
+              a(href="#" class="pure-menu-link") Link 5
     block content
