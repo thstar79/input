@@ -1,6 +1,8 @@
-const {
+let {
   db: { username, password, database, host },
 } = require('./index');
+
+console.log(password);
 
 module.exports = {
   development: {

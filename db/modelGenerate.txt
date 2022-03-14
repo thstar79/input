@@ -1,0 +1,9 @@
+npx sequelize model:generate --name User --attributes firstName:string,lastName:string,userName:string,email:string,password:string
+npx sequelize model:generate --name Game --attributes title:string,description:text,genre:string,releaseDate:dateOnly
+npx sequelize model:generate --name Story --attributes title:string,content:text,topicType:string,userId:integer,gameId:integer
+npx sequelize model:generate --name Comment --attributes comment:text,storyId:integer
+npx sequelize model:generate --name StoryCoin --attributes count:integer,storyId:integer,userId:integer
+npx sequelize model:generate --name CommentCoin --attributes count:integer,userId:integer,commentId:integer
+npx sequelize model:generate --name Follow --attributes followee:integer,follower:integer
+
+
