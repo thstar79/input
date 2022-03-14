@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     releaseDate: DataTypes.DATEONLY
   },{});
   Game.associate = function(models) {
-    Game.hasMany(models.Story, {foreignKey: 'gameId'});
+    Game.hasMany(models.Story, {foreignKey: "gameId"});
   }
-  
+
   return Game;
 };

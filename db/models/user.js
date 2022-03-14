@@ -16,17 +16,19 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'commentId',
       foreignKey: 'userId',
     });
- 
+
     User.belongsToMany(models.User,{
       through: 'Follow',
       otherKey: 'followee',
-      foreignKey: 'follower'
+      foreignKey: 'follower',
+      as: 'followings'
     });
 
     User.belongsToMany(models.User,{
       through: 'Follow',
       otherKey: 'follower',
-      foreignKey: 'followee'
+      foreignKey: 'followee',
+      as: 'followers'
     });
 
     User.hasMany(models.CommentCoin,{foreignKey: 'userId'});
@@ -34,6 +36,6 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Story,{foreignKey: 'userId'});
 
   }
-  
+
   return User;
 };

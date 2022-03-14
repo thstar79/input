@@ -22,12 +22,12 @@ module.exports = {
       },
       userId: {
         allowNull: false,
-        references: {model: 'Users'},
+        references: {model: "Users"},
         type: Sequelize.INTEGER
       },
       gameId: {
         allowNull: false,
-        references: {model: 'Games'},
+        references: {model: "Games"},
         type: Sequelize.INTEGER
       },
       createdAt: {

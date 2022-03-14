@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
   },{});
 
   Story.associate = function (models){
-    Story.hasMany(models.Comment,{foreignKey: 'storyId'});
-    Story.hasMany(models.StoryCoin,{foreignKey: 'storyId'});
-    Story.belongsTo(models.Game,{foreignKey: 'gameId'});
-    Story.belongsTo(models.User,{foreignKey: 'userId'});
+    Story.hasMany(models.Comment, {foreignKey: "storyId"});
+    Story.hasMany(models.StoryCoin, {foreignKey: "storyId"});
+    Story.belongsTo(models.Game, {foreignKey: "gameId"});
+    Story.belongsTo(models.User, {foreignKey: "userId"});
   }
-  
+
   return Story;
 };
