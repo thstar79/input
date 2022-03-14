@@ -14,21 +14,8 @@ router.get('/stories/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) =
 
 
 router.get('/stories/new', csrfProtection, asyncHandler((req,res) => {
-    const {
-        title,
-        content,
-        topicType,
-        gameId,
-    } = req.body;
-
-    let story = db.Story.build({
-        title,
-        content,
-        topicType,
-        gameId: 1,       // This needs to be dynamic
-        userId: 1        // this needs to be dynamic
-    })
-    res.render('story-new', { title: 'Write a Story'}, story)
+    let story = db.Story.build()
+    res.render('story-new', { title: 'Write a Story', story})
 }));
 
 const storyValidator = [
@@ -47,14 +34,14 @@ const storyValidator = [
       .withMessage('Topic Type must not be more than 50 characters long'),
   ];
 
-router.get('/stories/new', csrfProtection, (req, res) => {
+router.get('/stories/new', csrfProtection, asyncHandler(async(req, res) => {
     const story = db.Story.build();
     res.render('story-new', {
       title: 'Write a new Story',
       story,
       csrfToken: req.csrfToken(),
     });
-});
+}));
   
 
 router.post('/stories/new', csrfProtection, storyValidator, asyncHandler( async(req,res) => {
