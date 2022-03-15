@@ -59,7 +59,7 @@ router.post(
         const validatorErrors = validationResult(req);
         if (validatorErrors.isEmpty()) {
             await comment1.save();
-            res.redirect("/comments");
+            res.redirect(`/stories/${storyId}`);
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             res.render("comment-form", {
