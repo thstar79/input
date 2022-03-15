@@ -7,7 +7,7 @@ const { csrfProtection, asyncHandler } = require("./utils");
 
 /* GET users listing. */
 router.get(
-    "/:id(\\d+)",
+    "users/:id(\\d+)",
     csrfProtection,
     asyncHandler(async(req, res, next) => {
         const user = await db.User.findByPk(req.params.id);
@@ -40,7 +40,7 @@ const userValidators = [
     .isEmail()
     .withMessage("Email Address is not a valid email")
     .custom((value) => {
-        return db.User.findOne({ where: { emailAddress: value } }).then(
+        return db.User.findOne({ where: { email: value } }).then(
             (user) => {
                 if (user) {
                     return Promise.reject(
@@ -75,7 +75,7 @@ const userValidators = [
 ];
 
 router.get(
-    "/register",
+    "/users/register",
     csrfProtection,
     asyncHandler(async(req, res) => {
         const user = db.User.build();
@@ -88,7 +88,7 @@ router.get(
 );
 
 router.post(
-    "/register",
+    "/users/register",
     csrfProtection,
     userValidators,
     asyncHandler(async(req, res) => {
