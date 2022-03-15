@@ -1,0 +1,5 @@
+{firstName: "Michelle", lastName: "Evans", userName: "Warwatch", email: "cleora1997@deezmail.com", password: "$&621U6@ElHd"},
+{firstName: "Bernard", lastName: "McLaughlin", userName: "Dreadphobia", email: "z89pa@roidirt.com", password: "2mS!1u9aUjEZ"},
+{firstName: "Michael", lastName: "Garcia", userName: "IHasEars", email: "MichaelJGarcia@armyspy.com", password: "9rz!@BRv&M0k"},
+{firstName: "Eliane", lastName: "Koelpin", userName: "Ultralord", email: "papoto9356@shopxda.com", password: "GH2x1293!ZJ$"},
+{firstName: "Fernando", lastName: "Vega", userName: "FernandoasaurusRex", email: "fvega@deezmail.com", password: "!@3*^eYI@x7I"}
