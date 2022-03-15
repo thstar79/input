@@ -9,7 +9,7 @@ router.get(
     csrfProtection,
     asyncHandler(async (req, res) => {
         const storyId = parseInt(req.params.id, 10);
-        const story = await db.Story.findByPk(storyId, { include: ["Games"] });
+        const story = await db.Story.findByPk(storyId, { include: [db.User, db.Game] });
         res.render("story-detail", { title: "Detailed Story", story });
     })
 );
