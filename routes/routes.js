@@ -42,7 +42,7 @@ router.get('/stories/new', csrfProtection, asyncHandler(async(req, res) => {
       csrfToken: req.csrfToken(),
     });
 }));
-  
+
 
 router.post('/stories/new', csrfProtection, storyValidator, asyncHandler( async(req,res) => {
     const {
@@ -56,8 +56,8 @@ router.post('/stories/new', csrfProtection, storyValidator, asyncHandler( async(
         title,
         content,
         topicType,
-        gameId: 1,       // This needs to be dynamic
-        userId: 1        // this needs to be dynamic
+        gameId: 27,       // This needs to be dynamic
+        userId: 2        // this needs to be dynamic
     })
 
     const validatorErrors = validationResult(req);
