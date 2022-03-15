@@ -7,3 +7,8 @@ h1 {
     /* Or set the width explicitly: */
     /* width: 10em; */
 }
+
+.bodyWrapper {
+    display: flex;
+    flex-direction: column;
+}
