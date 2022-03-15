@@ -1,5 +1,5 @@
-extends layout.pug 
-include utils.pug 
+extends layout.pug
+include utils.pug
 
 block content
   h1= title
@@ -14,4 +14,4 @@ block content
     +field('Confirm Password', 'confirmPassword','','password')
     div(class='py-4')
       button(type='submit' id='submit-button') Create User
-      a(href='/' class='') Already have an account?
+      a(href='/users/login' class='') Already have an account?
