@@ -9,7 +9,7 @@ const { csrfProtection, asyncHandler } = require("./utils");
 router.get(
     "/:id(\\d+)",
     csrfProtection,
-    asyncHandler(async (req, res, next) => {
+    asyncHandler(async(req, res, next) => {
         const user = await db.User.findByPk(req.params.id);
         res.render("user-detail", { user });
     })
@@ -18,37 +18,21 @@ router.get(
 const userValidators = [
     // TODO Define the user validators.
     check("firstName")
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a value for First Name")
-        .isLength({ max: 50 })
-        .withMessage("First Name must not be more than 50 characters long"),
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for First Name")
+    .isLength({ max: 50 })
+    .withMessage("First Name must not be more than 50 characters long"),
     check("lastName")
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a value for Last Name")
-        .isLength({ max: 50 })
-        .withMessage("Last Name must not be more than 50 characters long"),
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Last Name")
+    .isLength({ max: 50 })
+    .withMessage("Last Name must not be more than 50 characters long"),
     check("userName")
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a value for Username")
-        .isLength({ max: 50 })
-        .withMessage("Last Name must not be more than 50 characters long"),
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Username")
+    .isLength({ max: 50 })
+    .withMessage("Last Name must not be more than 50 characters long"),
     check("email")
-<<<<<<< HEAD
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a value for Email Address")
-        .isLength({ max: 255 })
-        .withMessage("Email Address must not be more than 255 characters long")
-        .isEmail()
-        .withMessage("Email Address is not a valid email")
-        .custom((value) => {
-            return db.User.findOne({ where: { emailAddress: value } }).then(
-                (user) => {
-                    if (user) {
-                        return Promise.reject(
-                            "The provided Email Address is already in use by another account"
-                        );
-                    }
-=======
     .exists({ checkFalsy: true })
     .withMessage("Please provide a value for Email Address")
     .isLength({ max: 255 })
@@ -56,44 +40,44 @@ const userValidators = [
     .isEmail()
     .withMessage("Email Address is not a valid email")
     .custom((value) => {
-        return db.User.findOne({ where: { email: value } }).then(
+        return db.User.findOne({ where: { emailAddress: value } }).then(
             (user) => {
                 if (user) {
                     return Promise.reject(
                         "The provided Email Address is already in use by another account"
                     );
->>>>>>> origin
                 }
-            );
-        }),
-    check("password")
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a value for Password")
-        .isLength({ max: 50 })
-        .withMessage("Password must not be more than 50 characters long")
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, "g")
-        .withMessage(
-            'Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'
-        ),
-    check("confirmPassword")
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a value for Confirm Password")
-        .isLength({ max: 50 })
-        .withMessage(
-            "Confirm Password must not be more than 50 characters long"
-        )
-        .custom((value, { req }) => {
-            if (value !== req.body.password) {
-                throw new Error("Confirm Password does not match Password");
             }
-            return true;
-        }),
+        );
+    }),
+    check("password")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Password")
+    .isLength({ max: 50 })
+    .withMessage("Password must not be more than 50 characters long")
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, "g")
+    .withMessage(
+        'Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'
+    ),
+    check("confirmPassword")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Confirm Password")
+    .isLength({ max: 50 })
+    .withMessage(
+        "Confirm Password must not be more than 50 characters long"
+    )
+    .custom((value, { req }) => {
+        if (value !== req.body.password) {
+            throw new Error("Confirm Password does not match Password");
+        }
+        return true;
+    }),
 ];
 
 router.get(
     "/register",
     csrfProtection,
-    asyncHandler(async (req, res) => {
+    asyncHandler(async(req, res) => {
         const user = db.User.build();
         res.render("user-register", {
             title: "User Register",
@@ -107,7 +91,7 @@ router.post(
     "/register",
     csrfProtection,
     userValidators,
-    asyncHandler(async (req, res) => {
+    asyncHandler(async(req, res) => {
         const { firstName, lastName, userName, email, password } = req.body;
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -151,18 +135,18 @@ router.get("/users/login", csrfProtection, (req, res) => {
 
 const loginValidators = [
     check("email")
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a value for Email Address"),
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Email Address"),
     check("password")
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a value for Password"),
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Password"),
 ];
 
 router.post(
     "/users/login",
     csrfProtection,
     loginValidators,
-    asyncHandler(async (req, res) => {
+    asyncHandler(async(req, res) => {
         const { email, password } = req.body;
         let errors = [];
 
