@@ -11,19 +11,24 @@ body {
 }
 
 #submit-button {
-    background-color: #3ca5f5;
+    background-color: rgb(61,255,54);
     font-size: 20px;
-    color: white;
-    border-radius: 5px;
+    color: rgb(59,58,64);
+    border-radius: 50%;
+    font-weight: bolder;
     padding: 4px 6px 4px 6px;
+    margin: 0px 5px 0px 5px;
+    box-shadow: 2px 2px 1px rgb(46, 45, 45);
 }
 
 #cancel-button {
-    background-color: #cf3642;
+    background-color: rgb(233,79,67);
     font-size: 20px;
-    color: white;
-    border-radius: 5px;
+    font-weight: bolder;
+    color: rgb(59,58,64);
+    border-radius: 50%;
     padding: 4px 6px 4px 6px;
+    box-shadow: 2px 2px 1px rgb(46, 45, 45);
 }
 label {
 }
