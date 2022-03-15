@@ -21,7 +21,8 @@ block content
         each story in stories
           tr
             td= story.title
-            td= story.content
+            td 
+              a(href=`/stories/${story.id}`) #{story.content.slice(0,50)+'...'}
             td= story.topicType
             td= `${story.User.firstName} ${story.User.lastName}`
             td= story.Game.title

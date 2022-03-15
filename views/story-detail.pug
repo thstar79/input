@@ -3,10 +3,13 @@ include utils.pug
 block content
   h1= title
   div
-    p=story.title
-    p=story.content
-    p=story.topicType
-    p=story.userId
-    p=story.gameId
+    h2=story.title
+    div 
+      p=story.content
+      img(src='/img/storycontent.webp' width="300px")
+    div 
+      img(src='/img/usericon.png' width='100px')
+      a(href='#') #{story.topicType}
+
     a(href='') Edit 
     a(href='') Delete
