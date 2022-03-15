@@ -50,6 +50,7 @@ router.post(
     commentValidator,
     csrfProtection,
     asyncHandler(async (req, res) => {
+        const { userId } = req.session.auth;
         const { comment, storyId } = req.body;
         const comment1 = db.Comment.build({
             comment,
@@ -59,6 +60,29 @@ router.post(
         const validatorErrors = validationResult(req);
         if (validatorErrors.isEmpty()) {
             await comment1.save();
+            const inserted_comment = await db.Comment.findOne({
+                where: {
+                    comment,
+                    storyId,
+                },
+                order: [['id','desc'],],
+            })
+            
+            let commentId;
+            if(inserted_comment){
+                commentId = inserted_comment.id;
+            }
+            else{
+                commentId = -1;
+            }
+    
+            const coin = db.CommentCoin.build({
+                count: 0,
+                userId: userId,
+                commentId: commentId,
+            });
+    
+            await coin.save();
             res.redirect(`/stories/${storyId}`);
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
