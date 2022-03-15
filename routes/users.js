@@ -5,6 +5,8 @@ const { check, validationResult } = require("express-validator");
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
+const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
+
 /* GET users listing. */
 router.get(
     "users/:id(\\d+)",
@@ -40,15 +42,13 @@ const userValidators = [
     .isEmail()
     .withMessage("Email Address is not a valid email")
     .custom((value) => {
-        return db.User.findOne({ where: { email: value } }).then(
-            (user) => {
-                if (user) {
-                    return Promise.reject(
-                        "The provided Email Address is already in use by another account"
-                    );
-                }
+        return db.User.findOne({ where: { email: value } }).then((user) => {
+            if (user) {
+                return Promise.reject(
+                    "The provided Email Address is already in use by another account"
+                );
             }
-        );
+        });
     }),
     check("password")
     .exists({ checkFalsy: true })
@@ -109,13 +109,12 @@ router.post(
         if (validationErrors.isEmpty()) {
             const hashedPassword = await bcrypt.hash(password, 10);
             user.hashedPassword = hashedPassword;
-            await user.save();
 
+            await user.save();
+            loginUser(req, res, user);
             res.redirect("/");
         } else {
-            const errors = validationErrors
-                .array()
-                .map((error) => error.msg);
+            const errors = validationErrors.array().map((error) => error.msg);
             res.render("user-register", {
                 title: "User Register",
                 user,
@@ -162,6 +161,7 @@ router.post(
                     user.hashedPassword.toString()
                 );
                 if (passwordMatch) {
+                    loginUser(req, res, user);
                     res.redirect("/");
                 }
             }
@@ -179,5 +179,11 @@ router.post(
         });
     })
 );
+
+router.post("/users/logout", (req, res) => {
+    logoutUser(req, res);
+
+    res.redirect("/users/login");
+});
 
 module.exports = router;
