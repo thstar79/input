@@ -1,3 +1,5 @@
-window.addEventListener("load", (event) => {
-    console.log("hello from javascript!");
+$( "body" ).click(function() {
+    $( "#loadinggifdiv" ).fadeOut( "slow", function() {
+    });
+
 });
