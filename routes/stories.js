@@ -21,11 +21,11 @@ router.get(
             include: [db.User, db.Game],
         },
       });
-      res.render("story-detail", { 
-        title: "Detailed Story", 
+      res.render("story-detail", {
+        title: "Detailed Story",
         story,
         user,
-        comments, 
+        comments,
         csrfToken: req.csrfToken()
       });
     })
@@ -66,7 +66,7 @@ router.post(
     csrfProtection,
     storyValidator,
     asyncHandler(async (req, res) => {
-        const { title, content, topicType, gameId } = req.body;
+        const { title, content, topicType, userId, gameId } = req.body;
 
         let story = db.Story.build({
             title,
@@ -99,5 +99,40 @@ router.post(
         }
     })
 );
+
+router.get('/stories/edit/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+    const storyId = parseInt(req.params.id, 10);
+    const story = await db.Story.findByPk(storyId);
+    res.render('story-edit', {
+        title: 'Edit Story',
+        story,
+        csrfToken: req.csrfToken()
+    })
+}))
+
+router.post('/stories/edit/:id(\\d+)', csrfProtection, storyValidator, asyncHandler(async(req, res) => {
+    const storyId = parseInt(req.params.id, 10);
+    const storyToUpdate = await db.Story.findByPk(storyId);
+
+    const { title, content, topicType, userId, gameId } = req.body;
+    const story = { title, content, topicType, userId, gameId }
+
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+        await storyToUpdate.update(story)
+        res.redirect(`/stories/${storyId}`)
+    } else {
+        const errors = validatorErrors.array().map((error) => error.msg);
+        res.render('story-edit', {
+            title: 'Edit Story',
+            story: { ...story, id: storyId },
+            errors,
+            csrfToken: req.csrfToken()
+        })
+    }
+}))
+
+
 
 module.exports = router;
