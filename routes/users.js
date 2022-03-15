@@ -9,7 +9,7 @@ const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
 
 /* GET users listing. */
 router.get(
-    "users/:id(\\d+)",
+    "/users/:id(\\d+)",
     csrfProtection,
     asyncHandler(async(req, res, next) => {
         const user = await db.User.findByPk(req.params.id);
