@@ -146,7 +146,8 @@ a {
 
 .containerBoxWrapper {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .containerBox {
@@ -159,6 +160,10 @@ a {
     width: 100%
 }
 
+.commentBox {
+    padding: 15px 200px 15px 200px;
+}
+
 .storyContentBox {
     padding-top: 25px;
 }
@@ -167,6 +172,34 @@ a {
     display: flex;
     justify-content: flex-end;
 }
+
+.commentBoxWrapper {
+    width: 100%;
+    padding: 100px 0 0 0;
+}
+
+.commentList {
+    display: flex;
+    justify-content: center;
+}
+.profile {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    color: darkgrey;
+}
+.commentBoxContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(241, 240, 240);
+    padding: 15px 5px 15px 5px;
+}
+
+.commentBoxBubble {
+    margin-right: 50px;
+}
+
 @media (min-width: 40em) {
 }
 
