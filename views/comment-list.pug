@@ -2,6 +2,7 @@ extends layout
 
 append head
   //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
@@ -17,11 +18,13 @@ block content
           th(scope='col') Topic Type
           th(scope='col') User Name
           th(scope='col') Game Title
+          th(scope='col') Comments
       tbody
-        each story in stories
+        each comment in comments
           tr
-            td= story.title
-            td= story.content
-            td= story.topicType
-            td= `${story.User.firstName} ${story.User.lastName}`
-            td= story.Game.title
+            td= comment.Story.title
+            td= comment.Story.content
+            td= comment.Story.topicType
+            td= `${comment.Story.User.firstName} ${comment.Story.User.lastName}`
+            td= comment.Story.Game.title
+            td= comment.comment
