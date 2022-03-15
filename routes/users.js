@@ -107,13 +107,15 @@ router.post(
         const validationErrors = validationResult(req);
 
         if (validationErrors.isEmpty()) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            user.hashedPassword = hashedPassword;
             await user.save();
 
             res.redirect("/");
         } else {
             const errors = validationErrors
                 .array()
-                .map((error) => error.message);
+                .map((error) => error.msg);
             res.render("user-register", {
                 title: "User Register",
                 user,
