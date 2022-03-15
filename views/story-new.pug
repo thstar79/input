@@ -9,7 +9,9 @@ block content
     +field('Title', 'title', story.title)
     +field('Content', 'content', story.content, "textarea")
     +field('Topic', 'topicType', story.topicType)
-    +field('Game', 'game', story.gameId)
+    select(name="gameId")
+      each game in games 
+        option(value=`${game.id}`) #{game.title}
     div(class='py-4')
       button(type='submit' id='submit-button') Write Story
       a(href='/' class='btn btn-warning ml-2') Cancel
