@@ -10,16 +10,19 @@ block content
   h1= title
   p Welcome to your Project Skeleton
   div 
-    div.storyBoxWrapper
-      div.storyBox
-        h2 title 1
-        p this is where the content will go test
-      div.storyBox
-        h2 title 2
-        p this is where the content will go test
-      div.storyBox
-        h2 title 3
-        p this is where the content will go test
-      div.storyBox
-        h2 title 4
-        p this is where the content will go test
+  table(class='table table-striped table-hover')
+      thead(class='thead-dark')
+        tr
+          th(scope='col') Story Title
+          th(scope='col') Story Contents
+          th(scope='col') Topic Type
+          th(scope='col') userId
+          th(scope='col') gameId
+      tbody
+        each story in stories
+          tr
+            td= story.title
+            td= story.content
+            td= sotry.topicType
+            td= story.userId
+            td: story.gameId
