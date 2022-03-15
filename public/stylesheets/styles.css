@@ -143,6 +143,30 @@ a {
     }
 }
 
+
+.containerBoxWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.containerBox {
+    margin-top: 50px;
+    width : 70%;
+    height : 100%;
+}
+
+.headerBox {
+    width: 100%
+}
+
+.storyContentBox {
+    padding-top: 25px;
+}
+
+.editDelButtonBox {
+    display: flex;
+    justify-content: flex-end;
+}
 @media (min-width: 40em) {
 }
 
