@@ -8,8 +8,10 @@ router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
     asyncHandler(async (req, res) => {
+      const { userId } = req.session.auth;
       const storyId = parseInt(req.params.id, 10);
       const story = await db.Story.findByPk(storyId, { include: [db.User, db.Game] });
+      const user = await db.User.findByPk(userId);
       const comments = await db.Comment.findAll({
         where: {
           storyId: storyId,
@@ -21,25 +23,14 @@ router.get(
       });
       res.render("story-detail", { 
         title: "Detailed Story", 
-        story, 
+        story,
+        user,
         comments, 
         csrfToken: req.csrfToken()
       });
     })
 );
 
-router.get(
-    "/stories/new",
-    csrfProtection,
-    asyncHandler((req, res) => {
-        let story = db.Story.build();
-        res.render("story-new", {
-            title: "Write a Story",
-            story,
-            csrfToken: req.csrfToken(),
-        });
-    })
-);
 
 const storyValidator = [
     check("title")
