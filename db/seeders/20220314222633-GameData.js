@@ -28,8 +28,10 @@ module.exports = {
       {title: "Mortal Kombat", description: "Mortal Kombat is an arcade fighting game developed and published by Midway in 1992.", genre: "Fighting", releaseDate: "1992/09/08", createdAt: new Date(), updatedAt: new Date() },
       {title: "Doom", description: "Doom is a 1993 first-person shooter (FPS) game developed by id Software for MS-DOS.", genre: "FPS", releaseDate: "1993/01/01", createdAt: new Date(), updatedAt: new Date() },
       {title: "DOOM", description: "Doom is a 2016 first-person shooter game REMAKE developed by id Software and published by Bethesda Softworks.", genre: "FPS", releaseDate: "2016/05/13", createdAt: new Date(), updatedAt: new Date() },
-      {title: "Elden Ring", description: "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.", genre: "Action, RPG", releaseDate: "2022/02/24", createdAt: new Date(), updatedAt: new Date() }], {});
-  },
+      {title: "Elden Ring", description: "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.", genre: "Action, RPG", releaseDate: "2022/02/24", createdAt: new Date(), updatedAt: new Date() },
+      {title: "Pokemon Emerald", description: "Pokémon Emerald Version is a 2004 role-playing video game developed by Game Freak.", genre: "RPG", releaseDate: "2002/09/16", createdAt: new Date(), updatedAt: new Date() }
+    ], {});
+    },
 
   async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('Games', null, {});
