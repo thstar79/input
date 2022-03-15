@@ -13,6 +13,7 @@ router.get(
         });
         res.render("index", { title: "Stories List", stories });
     })
+
 );
 
 module.exports = router;
