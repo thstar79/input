@@ -31,18 +31,6 @@ router.get(
     })
 );
 
-router.get(
-    "/stories/new",
-    csrfProtection,
-    asyncHandler((req, res) => {
-        let story = db.Story.build();
-        res.render("story-new", {
-            title: "Write a Story",
-            story,
-            csrfToken: req.csrfToken(),
-        });
-    })
-);
 
 const storyValidator = [
     check("title")

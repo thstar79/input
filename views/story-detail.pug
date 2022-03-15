@@ -24,23 +24,19 @@ block content
             a(href='') Delete
     .commentBoxWrapper
       .commentList
-        div 
-        table(class='table table-striped table-hover')
-            thead(class='thead-dark')
-              tr
-                th(scope='col') User Name
-                th(scope='col') Game Title
-                th(scope='col') Comments
-            tbody
-              each comment in comments
-                tr
-                  td= `${comment.Story.User.firstName} ${comment.Story.User.lastName}`
-                  td= comment.Story.Game.title
-                  td= comment.comment
-      .commentBox
-        form(action='/comments/new' method='post')
-          input(type='hidden' name='_csrf' value=csrfToken)
-          input(type='hidden' name='storyId' value=story.id)
-          +field('Comment', 'comment')
-          div(class='py-4')
-          button(type='submit' class='btn btn-primary') Write Comment
+        .commentFormBox
+          form(action='/comments/new' method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            input(type='hidden' name='storyId' value=story.id)
+            +field('', 'comment', '', 'textarea')
+            div(class='py-4')
+            button(type='submit' class='submit-button') Write Comment
+      each comment in comments     
+        .commentBox 
+          .commentBoxContent 
+            .profile 
+              img(src='/img/usericon.png' width='50px')
+              p=`${comment.Story.User.firstName} ${comment.Story.User.lastName}`
+            .commentBoxBubble 
+              p=comment.comment
+      
