@@ -8,9 +8,23 @@ router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
     asyncHandler(async (req, res) => {
-        const storyId = parseInt(req.params.id, 10);
-        const story = await db.Story.findByPk(storyId, { include: [db.User, db.Game] });
-        res.render("story-detail", { title: "Detailed Story", story });
+      const storyId = parseInt(req.params.id, 10);
+      const story = await db.Story.findByPk(storyId, { include: [db.User, db.Game] });
+      const comments = await db.Comment.findAll({
+        where: {
+          storyId: storyId,
+        },
+        include: {
+            model: db.Story,
+            include: [db.User, db.Game],
+        },
+      });
+      res.render("story-detail", { 
+        title: "Detailed Story", 
+        story, 
+        comments, 
+        csrfToken: req.csrfToken()
+      });
     })
 );
 
