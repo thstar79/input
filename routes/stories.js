@@ -53,9 +53,12 @@ router.get(
     csrfProtection,
     asyncHandler(async (req, res) => {
         const story = db.Story.build();
+        const games = await db.Game.findAll()
+        console.log(games)
         res.render("story-new", {
             title: "Write a new Story",
             story,
+            games,
             csrfToken: req.csrfToken(),
         });
     })
@@ -72,7 +75,7 @@ router.post(
             title,
             content,
             topicType,
-            gameId: 27, // This needs to be dynamic
+            gameId, 
             userId: 2, // this needs to be dynamic
         });
 

@@ -86,7 +86,7 @@ a {
     display: flex;
     flex-direction: column;
 }
-#menu-icon {
+#menu-icon1, #menu-icon2, #menu-icon3, #menu-icon4, #menu-icon5 {
     width: 25px;
 }
 #menu-link {
