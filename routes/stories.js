@@ -64,6 +64,13 @@ router.post('/stories/new', csrfProtection, storyValidator, asyncHandler( async(
 
     if (validatorErrors.isEmpty()) {
         await story.save();
+      //   let story =  await db.Story.findOne({
+      //     //sort by the lastest created limit 1
+      // })
+      // // query for story we just created -> pull id from it
+      // // build StoryCoin.build({
+      //   story:id
+      // })
         res.redirect('/');
       } else {
         const errors = validatorErrors.array().map((error) => error.msg);
