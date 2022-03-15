@@ -2,22 +2,33 @@ doctype html
 html
   head
       block head
-        title="Express Starter App"
+        title="Input"
         link(rel='stylesheet' href='/stylesheets/reset.css')
-        link(rel='stylesheet' href='/stylesheets/layout.css')
-        link(rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous")
+        link(rel='stylesheet' href='/stylesheets/index.css')
+        link(rel='stylesheet' href='/stylesheets/styles.css')
   body
-    div(class="pure-menu custom-restricted-width")
-      span.pure-menu-heading LOGO
-      ul.pure-menu-list
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 1
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 2
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 3
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 4
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 5
-    block content
+    #layout
+        #nav
+            #menu-box
+                #icon-box
+                    img(id="nav-bar-icon" src='/img/icon.png')
+                #menu-link-box
+                    a(href="/" id="menu-link"): img(id="menu-icon" src='/img/home-selected.png')
+                    a(href="#" id="menu-link"): img(id="menu-icon" src='/img/bell.png')
+                    a(href="#" id="menu-link"): img(id="menu-icon" src='/img/bookmark.png')
+                    a(href="#" id="menu-link"): img(id="menu-icon" src='/img/stories.png')
+                    a(href="/stories/new"  id="menu-link"): img(id="menu-icon" src='/img/write.png')
+                #login-status-box 
+                    a(href="/" id="menu-link"): img(id="menu-icon" src='/img/home.png')
+        #main
+            #content-box
+                block content
+        #mainside
+            #side-content-box
+                p bunch of other stuff 
+                button#cancel-button Cancel
+                button#submit-button Submit
+                button button1
+                p some more stuff 
+                a some links as well!
+                a some links as well!
