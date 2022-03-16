@@ -4,6 +4,10 @@ const router = express.Router();
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
+const { requireAuth } = require("../auth");
+
+
+
 router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
@@ -53,7 +57,8 @@ const storyValidator = [
 router.get(
     "/stories/new",
     csrfProtection,
-    asyncHandler(async(req, res) => {
+    requireAuth,
+    asyncHandler(async (req, res) => {
         const story = db.Story.build();
         const games = await db.Game.findAll();
         //console.log(games);
@@ -69,6 +74,7 @@ router.get(
 router.post(
     "/stories/new",
     csrfProtection,
+    requireAuth,
     storyValidator,
     asyncHandler(async(req, res) => {
         const { title, content, topicType, gameId, gameTitle } = req.body;
@@ -110,29 +116,25 @@ router.post(
     })
 );
 
-router.get(
-    "/stories/edit/:id(\\d+)",
-    csrfProtection,
-    asyncHandler(async(req, res) => {
-        const storyId = parseInt(req.params.id, 10);
-        const story = await db.Story.findByPk(storyId);
+router.get('/stories/edit/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+    const storyId = parseInt(req.params.id, 10);
+    const story = await db.Story.findByPk(storyId);
+    if (story.userId === res.locals.user.id) {
         const games = await db.Game.findAll();
-        res.render("story-edit", {
-            title: "Edit Story",
+        res.render('story-edit', {
+            title: 'Edit Story',
             story,
             games,
-            csrfToken: req.csrfToken(),
-        });
-    })
-);
+            csrfToken: req.csrfToken()
+        })
+    } else {
+        res.send("this story does not belong to you, you do not have permission to edit.")
+    }
+}))
 
-router.post(
-    "/stories/edit/:id(\\d+)",
-    csrfProtection,
-    storyValidator,
-    asyncHandler(async(req, res) => {
-        const storyId = parseInt(req.params.id, 10);
-        const storyToUpdate = await db.Story.findByPk(storyId);
+router.post('/stories/edit/:id(\\d+)', csrfProtection, requireAuth, storyValidator, asyncHandler(async(req, res) => {
+    const storyId = parseInt(req.params.id, 10);
+    const storyToUpdate = await db.Story.findByPk(storyId);
 
         const { title, content, topicType, userId, gameId } = req.body;
         const story = { title, content, topicType, userId, gameId };
