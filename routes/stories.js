@@ -21,12 +21,7 @@ router.get(
         model: db.User,
       }],
     });
-    console.log(coins.length,"!!!!!!!!!!!!!!");
-    //console.log(coins[0].Comment.Story.id, "!!!!!!!!!!!!!!!");
-    if(coins.length === 0){
-      const coin = db.CommentCoin.build();
-      coins.push(coin);
-    }
+
     res.render("story-detail", {
       title: "Detailed Story",
       story,
