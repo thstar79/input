@@ -1,27 +1,27 @@
-extends layout.pug 
-include utils.pug 
+extends layout.pug
+include utils.pug
 block content
   h1= title
   .containerBoxWrapper
     .containerBox
-      .headerBox 
+      .headerBox
         img(src='/img/usericon.png' width='100px')
         a(href='#') #{story.topicType}
       .storyContentBox
         h2=story.title
         p=story.content
         img(src='/img/storycontent.webp' width="300px")
-      .editDelButtonBox 
+      .editDelButtonBox
         button.pushable
           span.shadow
           span.edge
-          span.front 
-            a(href=`/stories/edit/${story.id}`) Edit 
+          span.front
+            a(href=`/stories/edit/${story.id}`) Edit
         button.pushable
           span.shadow
           span.edge
-          span.front 
-            a(href='') Delete
+          span.front
+            a(href=`/stories/delete/${story.id}`) Delete
       .commentBoxWrapper
         .commentList
           .commentFormBox
@@ -32,29 +32,29 @@ block content
               div(class='py-4')
               button(id='comment-button' type='submit' class='submit-button refresh-button') Write Comment
         .commentList1(id='comment-list')
-          each coin in coins     
-            .commentBox 
-              .commentBoxContent 
-                .profile 
+          each coin in coins
+            .commentBox
+              .commentBoxContent
+                .profile
                   img(src='/img/usericon.png' width='50px')
                   p=`${coin.User.firstName} ${coin.User.lastName}`
-                .commentBoxBubble 
+                .commentBoxBubble
                   p=coin.Comment.comment
-            .editDelButtonBox(class='refresh-button') 
+            .editDelButtonBox(class='refresh-button')
               form(action='/comments/edit' method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 input(type='hidden' name='commentId' value=`${coin.Comment.id}`)
                 button.pushable(id=`editId${coin.Comment.id}`)
                   span.shadow
                   span.edge
-                  span.front 
-                    a(href='') Edit 
+                  span.front
+                    a(href='') Edit
               form(action=`/comments/delete/${coin.Comment.id}` method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 input(type='hidden' name='commentId' value=`${coin.Comment.id}`)
                 button.pushable(id=`deleteId${coin.Comment.id}`)
                   span.shadow
                   span.edge
-                  span.front 
+                  span.front
                     a(href='') Delete
   script(src='/javascripts/story.js')
