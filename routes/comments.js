@@ -21,6 +21,19 @@ router.get(
 );
 
 router.get(
+    "/comments/last",
+    asyncHandler(async (req, res) => {
+        const comment = await db.Comment.findOne({
+            where: {
+                order: ['id','desc'],
+            },
+        });
+        console.log(comment.id);
+        res.json({id: comment.id});
+    })
+);
+
+router.get(
     "/comments/:id(\\d+)",
     csrfProtection,
     asyncHandler(async (req, res) => {})
@@ -125,13 +138,24 @@ router.post(
 router.delete('/comments/:id(\\d+)', async(req, res) => {
     console.log('you have arrived at the route handler');
     const id = parseInt(req.params.id,10);
-    const comment = await db.Comment.findByPk(id);
-    if(comment){
-        await comment.destroy();
-        res.json({message: "Success"});
-    }
-    else{
-        res.json({message: "comment Failure"})
+    const coin = await db.CommentCoin.findOne({
+        where: {
+            commentId: id
+        }
+    });
+    if (coin) {
+        await coin.destroy();
+        const comment = await db.Comment.findByPk(id);
+        if(comment){
+            await comment.destroy();
+            res.json({message: "Success"});
+        }
+        else{
+            errors.push('Comment is not in Database');
+            res.json({message: "comment Failure"})
+        }
+    } else {
+        res.json({message: "coin Failure"})
     }
 })
 
