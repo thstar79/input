@@ -21,6 +21,19 @@ router.get(
 );
 
 router.get(
+    "/comments/last",
+    asyncHandler(async (req, res) => {
+        const comment = await db.Comment.findOne({
+            where: {
+                order: ['id','desc'],
+            },
+        });
+        console.log(comment.id);
+        res.json({id: comment.id});
+    })
+);
+
+router.get(
     "/comments/:id(\\d+)",
     csrfProtection,
     asyncHandler(async (req, res) => {})

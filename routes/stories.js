@@ -59,7 +59,6 @@ router.get(
     asyncHandler(async(req, res) => {
         const story = db.Story.build();
         const games = await db.Game.findAll();
-        //console.log(games);
         res.render("story-new", {
             title: "Write a new Story",
             story,
@@ -84,11 +83,6 @@ router.post(
             userId: res.locals.user.id,
         });
 
-        let game = db.Game.build({
-            id: gameId,
-            title: gameTitle,
-        });
-
         const validatorErrors = validationResult(req);
 
         if (validatorErrors.isEmpty()) {
@@ -103,9 +97,10 @@ router.post(
             res.redirect("/");
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
+            const games = await db.Game.findAll();
             res.render("story-new", {
                 title: "Write a Story",
-                games: [game],
+                games,
                 story,
                 errors,
                 csrfToken: req.csrfToken(),
