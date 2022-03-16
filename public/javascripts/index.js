@@ -12,9 +12,11 @@ window.addEventListener("DOMContentLoaded", event => {
     })
 
     const stories = document.getElementsByClassName('storyBoxWrapper');
-    for(let i=1;i<=stories.length;++i){
-        document.getElementById(`storyId${i}`).addEventListener('click', (e) => {
-            document.location.href = `http://localhost:8080/stories/${i}`;
+    for(let i=0;i<stories.length;++i){
+        stories[i].addEventListener('click', (e) => {
+        //document.getElementById(`storyId${i}`).addEventListener('click', (e) => {
+            const id = stories[i].id.split('storyId')[1];
+            document.location.href = `http://localhost:8080/stories/${id}`;
         });
     }
 });
