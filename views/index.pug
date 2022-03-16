@@ -1,4 +1,4 @@
-extends layout
+extends layout.pug
 
 append head
   //- add page specific styles by appending to the head
@@ -6,23 +6,19 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  p Welcome to your Project Skeleton
-  div 
-  table(class='table table-striped table-hover')
-      thead(class='thead-dark')
-        tr
-          th(scope='col') Story Title
-          th(scope='col') Story Contents
-          th(scope='col') Topic Type
-          th(scope='col') User Name
-          th(scope='col') Game Title
-      tbody
-        each story in stories
-          tr
-            td= story.title
-            td 
-              a(href=`/stories/${story.id}`) #{story.content.slice(0,50)+'...'}
-            td= story.topicType
-            td= `${story.User.firstName} ${story.User.lastName}`
-            td= story.Game.title
+    h1= title
+    each story in stories
+      div(class="storyBoxWrapper" id=`storyId${story.id}`) 
+        .storyBox 
+          .storyBoxHeader
+            img(src='/img/usericon.png' height='20px')
+            p=`${story.User.firstName} ${story.User.lastName}` 
+          .storyBoxContent 
+            .storyBoxContentTextBox
+              h2=story.title
+              p(id='storyContentText') #{story.content.slice(0,100)+'...'}
+            .storyBoxContentImgBox
+          .storyBoxFooter 
+            a(id='topic-link' href="#")=story.topicType  
+            a(id='game-link' href="#")=story.Game.title
+    
