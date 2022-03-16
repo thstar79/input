@@ -75,7 +75,7 @@ router.post(
             title,
             content,
             topicType,
-            gameId, 
+            gameId,
             userId: 2, // this needs to be dynamic
         });
 

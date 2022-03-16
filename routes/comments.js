@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
+const { requireAuth } = require("../auth");
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
@@ -47,6 +48,7 @@ const commentValidator = [
 
 router.post(
     "/comments/new",
+    requireAuth,
     commentValidator,
     csrfProtection,
     asyncHandler(async (req, res) => {
@@ -67,7 +69,7 @@ router.post(
                 },
                 order: [['id','desc'],],
             })
-            
+
             let commentId;
             if(inserted_comment){
                 commentId = inserted_comment.id;
@@ -75,13 +77,13 @@ router.post(
             else{
                 commentId = -1;
             }
-    
+
             const coin = db.CommentCoin.build({
                 count: 0,
                 userId: userId,
                 commentId: commentId,
             });
-    
+
             await coin.save();
             res.redirect(`/stories/${storyId}`);
         } else {
