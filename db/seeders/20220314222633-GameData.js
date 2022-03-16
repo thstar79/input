@@ -248,6 +248,24 @@ module.exports = {
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
+                {
+                    title: "Minecraft",
+                    description:
+                        "Minecraft is a sandbox video game developed by the Swedish video game developer Mojang Studios.",
+                    genre: "Sandbox, Survival",
+                    releaseDate: "2011/11/18",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    title: "Minesweeper",
+                    description:
+                        "Minesweeper is a single-player puzzle video game. The objective of the game is to clear a rectangular board containing hidden mines or bombs without detonating any of them, with help from clues about the number of neighbouring mines in each field.",
+                    genre: "Puzzle",
+                    releaseDate: "1989/01/01",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
             ],
             {}
         );
