@@ -41,20 +41,18 @@ block content
                 .commentBoxBubble 
                   p=coin.Comment.comment
             .editDelButtonBox(class='refresh-button') 
-              form(action='/comments/edit' method='post')
+              form(action=`/comments/edit` method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 input(type='hidden' name='commentId' value=`${coin.Comment.id}`)
                 button.pushable(id=`editId${coin.Comment.id}`)
                   span.shadow
                   span.edge
-                  span.front 
-                    a(href='') Edit 
+                  span.front Edit 
               form(action=`/comments/delete/${coin.Comment.id}` method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 input(type='hidden' name='commentId' value=`${coin.Comment.id}`)
                 button.pushable(id=`deleteId${coin.Comment.id}`)
                   span.shadow
                   span.edge
-                  span.front 
-                    a(href='') Delete
+                  span.front Delete
   script(src='/javascripts/story.js')
