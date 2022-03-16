@@ -6,8 +6,6 @@ const { csrfProtection, asyncHandler } = require("./utils");
 
 const { requireAuth } = require("../auth");
 
-
-
 router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
@@ -58,7 +56,7 @@ router.get(
     "/stories/new",
     csrfProtection,
     requireAuth,
-    asyncHandler(async (req, res) => {
+    asyncHandler(async(req, res) => {
         const story = db.Story.build();
         const games = await db.Game.findAll();
         //console.log(games);
@@ -116,25 +114,37 @@ router.post(
     })
 );
 
-router.get('/stories/edit/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
-    const storyId = parseInt(req.params.id, 10);
-    const story = await db.Story.findByPk(storyId);
-    if (story.userId === res.locals.user.id) {
-        const games = await db.Game.findAll();
-        res.render('story-edit', {
-            title: 'Edit Story',
-            story,
-            games,
-            csrfToken: req.csrfToken()
-        })
-    } else {
-        res.send("this story does not belong to you, you do not have permission to edit.")
-    }
-}))
+router.get(
+    "/stories/edit/:id(\\d+)",
+    csrfProtection,
+    requireAuth,
+    asyncHandler(async(req, res) => {
+        const storyId = parseInt(req.params.id, 10);
+        const story = await db.Story.findByPk(storyId);
+        if (story.userId === res.locals.user.id) {
+            const games = await db.Game.findAll();
+            res.render("story-edit", {
+                title: "Edit Story",
+                story,
+                games,
+                csrfToken: req.csrfToken(),
+            });
+        } else {
+            res.send(
+                "this story does not belong to you, you do not have permission to edit."
+            );
+        }
+    })
+);
 
-router.post('/stories/edit/:id(\\d+)', csrfProtection, requireAuth, storyValidator, asyncHandler(async(req, res) => {
-    const storyId = parseInt(req.params.id, 10);
-    const storyToUpdate = await db.Story.findByPk(storyId);
+router.post(
+    "/stories/edit/:id(\\d+)",
+    csrfProtection,
+    requireAuth,
+    storyValidator,
+    asyncHandler(async(req, res) => {
+        const storyId = parseInt(req.params.id, 10);
+        const storyToUpdate = await db.Story.findByPk(storyId);
 
         const { title, content, topicType, userId, gameId } = req.body;
         const story = { title, content, topicType, userId, gameId };
@@ -163,6 +173,7 @@ router.get(
         const id = parseInt(req.params.id, 10);
 
         const story = await db.Story.findByPk(id);
+        console.log(story.dataValues.id, req.session.auth.userId);
         res.render("story-delete", {
             title: "Delete this Story???",
             story,
@@ -173,14 +184,18 @@ router.get(
 
 router.post(
     "/stories/delete/:id(\\d+)",
+    requireAuth,
     asyncHandler(async(req, res) => {
-        // const id = parseInt(req.params.id, 10);
+        const id = parseInt(req.params.id, 10);
+        const story = await db.Story.findByPk(id);
+        //current story id !== authed user id
+        if (story.dataValues.id !== req.session.auth.userId) {
+            res.send("You do not have permissions to delete this story");
+        } else {
+            await story.destroy();
 
-        // const story = await db.Story.findByPk(id);
-
-        await story.destroy();
-
-        res.redirect("/");
+            res.redirect("/");
+        }
     })
 );
 
