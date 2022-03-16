@@ -246,8 +246,10 @@ a {
         margin-left: 0px;
     }
     .storyBoxWrapper {
-       
         border-bottom:  lightgrey 0.5px solid;
+    }
+    #mainside {
+        visibility: hidden;
     }
     
 }

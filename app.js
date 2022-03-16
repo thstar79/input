@@ -13,7 +13,7 @@ const commentRouter = require("./routes/comments");
 const followRouter = require("./routes/follows");
 const storyCoinsRouter = require("./routes/coins");
 const { restoreUser } = require("./auth");
-
+const { superSecret } = require('./config')
 const app = express();
 
 // view engine setup
@@ -23,7 +23,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser(superSecret));
 app.use(express.static(path.join(__dirname, "public")));
 
 // set up session middleware
@@ -31,7 +31,7 @@ const store = new SequelizeStore({ db: sequelize });
 
 app.use(
     session({
-        secret: "superSecret",
+        secret: superSecret,
         store,
         saveUninitialized: false,
         resave: false,
