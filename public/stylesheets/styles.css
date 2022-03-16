@@ -8,6 +8,8 @@ html {
 body {
     color: #333;
     height: 100%;
+    font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+    
 }
 
 #loadinggifdiv {
@@ -22,13 +24,13 @@ body {
 }
 #submit-button {
     background-color: rgb(61,255,54);
-    font-size: 20px;
+    font-size: 10px;
     color: rgb(59,58,64);
-    border-radius: 50%;
+    border-radius: 5px;
     font-weight: bolder;
     padding: 4px 6px 4px 6px;
     margin: 0px 5px 0px 5px;
-    box-shadow: 2px 2px 1px rgb(46, 45, 45);
+    box-shadow: 2px 2px 3px rgb(46, 45, 45);
 }
 
 #cancel-button {
@@ -200,7 +202,15 @@ a {
     margin-right: 50px;
 }
 
-@media (min-width: 40em) {
+@media (max-width: 900px) {
+    #nav {
+        margin-left: 0px;
+    }
+    .storyBoxWrapper {
+       
+        border-bottom:  lightgrey 0.5px solid;
+    }
+    
 }
 
 @media (min-width: 60em) {

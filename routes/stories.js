@@ -5,30 +5,30 @@ const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
 router.get(
-    "/stories/:id(\\d+)",
-    csrfProtection,
-    asyncHandler(async (req, res) => {
-      const { userId } = req.session.auth;
-      const storyId = parseInt(req.params.id, 10);
-      const story = await db.Story.findByPk(storyId, { include: [db.User, db.Game] });
-      const user = await db.User.findByPk(userId);
-      const comments = await db.Comment.findAll({
+  "/stories/:id(\\d+)",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const storyId = parseInt(req.params.id, 10);
+    const story = await db.Story.findByPk(storyId, { include: [db.User, db.Game] });
+    const coins = await db.CommentCoin.findAll({
+      include: [{
+        model: db.Comment,
         where: {
           storyId: storyId,
         },
-        include: {
-            model: db.Story,
-            include: [db.User, db.Game],
-        },
-      });
-      res.render("story-detail", {
-        title: "Detailed Story",
-        story,
-        user,
-        comments,
-        csrfToken: req.csrfToken()
-      });
-    })
+      },
+      {
+        model: db.User,
+      }],
+    });
+
+    res.render("story-detail", {
+      title: "Detailed Story",
+      story,
+      coins,
+      csrfToken: req.csrfToken()
+    });
+  })
 );
 
 
@@ -69,14 +69,13 @@ router.post(
     csrfProtection,
     storyValidator,
     asyncHandler(async (req, res) => {
-        const { title, content, topicType, userId, gameId } = req.body;
-
+        const { title, content, topicType, gameId } = req.body;        
         let story = db.Story.build({
             title,
             content,
             topicType,
-            gameId, 
-            userId: 2, // this needs to be dynamic
+            gameId,
+            userId: res.locals.user.id, 
         });
 
         const validatorErrors = validationResult(req);
@@ -106,14 +105,16 @@ router.post(
 router.get('/stories/edit/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const storyId = parseInt(req.params.id, 10);
     const story = await db.Story.findByPk(storyId);
+    const games = await db.Game.findAll();
     res.render('story-edit', {
         title: 'Edit Story',
         story,
+        games,
         csrfToken: req.csrfToken()
     })
 }))
 
-router.put('/stories/edit/:id(\\d+)', csrfProtection, storyValidator, asyncHandler(async(req, res) => {
+router.post('/stories/edit/:id(\\d+)', csrfProtection, storyValidator, asyncHandler(async(req, res) => {
     const storyId = parseInt(req.params.id, 10);
     const storyToUpdate = await db.Story.findByPk(storyId);
 
