@@ -6,16 +6,45 @@ h1 {
 
 h2 {
     font-size: 25px;
-    font-weight: bolder;
+    font-weight: bolder;  
 }
+
+p {
+    margin-left: 15px;
+}
+
+#storyContentText {
+    color: #afafaf;
+}
+
 .custom-restricted-width {
     /* To limit the menu width to the content of the menu: */
     display: inline-block;
     /* Or set the width explicitly: */
     /* width: 10em; */
 }
+.storyBoxWrapper {
+    border-top: lightgrey 0.5px solid;
+    border-bottom:  lightgrey 0.5px solid;
+}
 
 .bodyWrapper {
     display: flex;
     flex-direction: column;
+}
+
+.storyBoxHeader  {
+ display:flex;
+ align-items: center;
+ padding-top: 20px;
+}
+
+.storyBoxContentTextBox {
+    width: 500px;
+}
+
+.storyBoxFooter  {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
 }
