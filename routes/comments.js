@@ -46,6 +46,14 @@ const commentValidator = [
         .withMessage("Comment must not be more than 100 characters long"),
 ];
 
+router.get('/comments/edit/:id(\\d+)',csrfProtection, asyncHandler(async (req,res)=>{
+    const commentId = parseInt(req.params.id, 10);
+    const comment = await db.Comment.findByPk(commentId);
+    // res.render('comment-edit',{
+        
+    // })
+}));
+
 router.post(
     "/comments/new",
     requireAuth,
@@ -85,7 +93,7 @@ router.post(
             });
 
             await coin.save();
-            res.redirect(`/stories/${storyId}`);
+            //res.redirect(`/stories/${storyId}`);
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             res.render("comment-form", {
@@ -97,5 +105,29 @@ router.post(
         }
     })
 );
+
+router.post('/comments/delete/:id(\\d+)',asyncHandler(async(req,res)=>{
+    const id = parseInt(req.params.id,10);
+    const coin = await db.CommentCoin.findOne({
+        where: {
+            commentId: id
+        }
+    });
+    
+    const errors = [];
+    if(coin){
+        await coin.destroy();
+        const comment = await db.Comment.findByPk(id);
+        if(comment){
+            await comment.destroy();
+        }
+        else{
+            errors.push('Comment is not in Database');    
+        }
+    }
+    else{
+        errors.push('Comment Coin is not in Database');
+    }
+}));
 
 module.exports = router;

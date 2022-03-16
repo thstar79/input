@@ -30,23 +30,31 @@ block content
               input(type='hidden' name='storyId' value=story.id)
               +field('', 'comment', '', 'textarea')
               div(class='py-4')
-              button(type='submit' class='submit-button') Write Comment
-        each coin in coins     
-          .commentBox 
-            .commentBoxContent 
-              .profile 
-                img(src='/img/usericon.png' width='50px')
-                p=`${coin.User.firstName} ${coin.User.lastName}`
-              .commentBoxBubble 
-                p=coin.Comment.comment
-          .editDelButtonBox 
-            button.pushable
-              span.shadow
-              span.edge
-              span.front 
-                a(href='') Edit 
-            button.pushable
-              span.shadow
-              span.edge
-              span.front 
-                a(href='') Delete
+              button(id='comment-button' type='submit' class='submit-button refresh-button') Write Comment
+        .commentList1(id='comment-list')
+          each coin in coins     
+            .commentBox 
+              .commentBoxContent 
+                .profile 
+                  img(src='/img/usericon.png' width='50px')
+                  p=`${coin.User.firstName} ${coin.User.lastName}`
+                .commentBoxBubble 
+                  p=coin.Comment.comment
+            .editDelButtonBox(class='refresh-button') 
+              form(action='/comments/edit' method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(type='hidden' name='commentId' value=`${coin.Comment.id}`)
+                button.pushable(id=`editId${coin.Comment.id}`)
+                  span.shadow
+                  span.edge
+                  span.front 
+                    a(href='') Edit 
+              form(action=`/comments/delete/${coin.Comment.id}` method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(type='hidden' name='commentId' value=`${coin.Comment.id}`)
+                button.pushable(id=`deleteId${coin.Comment.id}`)
+                  span.shadow
+                  span.edge
+                  span.front 
+                    a(href='') Delete
+  script(src='/javascripts/story.js')
