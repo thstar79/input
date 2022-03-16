@@ -106,28 +106,64 @@ router.post(
     })
 );
 
-router.post('/comments/delete/:id(\\d+)',asyncHandler(async(req,res)=>{
+// router.post('/comments/delete/:id(\\d+)',asyncHandler(async(req,res)=>{
+//     const id = parseInt(req.params.id,10);
+//     const coin = await db.CommentCoin.findOne({
+//         where: {
+//             commentId: id
+//         }
+//     });
+    
+//     const errors = [];
+//     if(coin){
+//         await coin.destroy();
+//         const comment = await db.Comment.findByPk(id);
+//         if(comment){
+//             await comment.destroy();
+//         }
+//         else{
+//             errors.push('Comment is not in Database');    
+//         }
+//     }
+//     else{
+//         errors.push('Comment Coin is not in Database');
+//     }
+// }));
+
+router.delete('/comments/:id(\\d+)', async(req, res) => {
+    console.log('you have arrived at the route handler');
     const id = parseInt(req.params.id,10);
     const coin = await db.CommentCoin.findOne({
         where: {
             commentId: id
         }
     });
-    
-    const errors = [];
-    if(coin){
+    if (coin) {
         await coin.destroy();
         const comment = await db.Comment.findByPk(id);
         if(comment){
             await comment.destroy();
+            res.json({message: "Success"});
         }
         else{
-            errors.push('Comment is not in Database');    
+            errors.push('Comment is not in Database');
+            res.json({message: "comment Failure"})
         }
+    } else {
+        res.json({message: "coin Failure"})
     }
-    else{
-        errors.push('Comment Coin is not in Database');
+})
+
+router.patch('/comments/:id(\\d+)', async(req, res) => {
+    const comment = await db.Comment.findByPk(req.params.id)
+
+    if (comment) {
+        comment.comment = req.body.comment;
+        await comment.save();
+        res.json({message: "Success", comment})
+    } else {
+        res.json({message: "Could not find post please try again"})
     }
-}));
+})
 
 module.exports = router;
