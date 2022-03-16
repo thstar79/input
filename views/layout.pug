@@ -2,22 +2,108 @@ doctype html
 html
   head
       block head
-        title="Express Starter App"
+        title="Input"
         link(rel='stylesheet' href='/stylesheets/reset.css')
-        link(rel='stylesheet' href='/stylesheets/layout.css')
-        link(rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous")
+        link(rel='stylesheet' href='/stylesheets/index.css')
+        link(rel='stylesheet' href='/stylesheets/styles.css')
+        link(rel='stylesheet' href='/stylesheets/button.css')
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
+        script(src='/javascripts/index.js')
+        script(src="/javascripts/create_comment.js" type="module") 
+        script(src="/javascripts/edit_comment.js" type="module") 
+        script(src="/javascripts/delete_comment.js" type="module") 
   body
-    div(class="pure-menu custom-restricted-width")
-      span.pure-menu-heading LOGO
-      ul.pure-menu-list
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 1
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 2
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 3
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 4
-          li.pure-menu-item
-              a(href="#" class="pure-menu-link") Link 5
-    block content
+
+    #layout
+        #nav
+            #menu-box
+                #icon-box
+                    img(id="nav-bar-icon" src='/img/icon.png')
+                #menu-link-box
+                    a(href="/" id="menu-link"): img(id="menu-icon1" src='/img/home.png')
+                    a(href="#" id="menu-link"): img(id="menu-icon2" src='/img/bell.png')
+                    a(href="#" id="menu-link"): img(id="menu-icon3" src='/img/bookmark.png')
+                    a(href="#" id="menu-link"): img(id="menu-icon4" src='/img/stories.png')
+                    a(href="/stories/new"  id="menu-link"): img(id="menu-icon4" src='/img/write.png')
+                #login-status-box
+                    a(href="/users/register" id="menu-link"): img(id="menu-icon5" src='/img/loginicon.gif')
+        #main
+            #content-box
+                block content
+        #mainside
+            #side-content-box
+              if locals.authenticated
+                  p Welcome #{user.userName} !
+                  form(action='/users/logout' method='post')
+                    button.pushable
+                      span.shadow
+                      span.edge
+                      span.front Logout
+              else
+                  p Not Logged In ?
+                  a(href='/users/login')
+                    button#submit-button Login
+                  a(href='/users/login/demo')
+                    button.pushable
+                      span.shadow
+                      span.edge
+                      span.front Demo User
+              div
+                button#cancel-button B
+                button#submit-button A
+                button button1
+                p some more stuff
+                a some links as well!
+                a some links as well!
+                button.pushable
+                    span.shadow
+                    span.edge
+                    span.front B 
+              #topicBox 
+              #userProfileBox
+                #userProfileBoxWrapper 
+                  #userProfileDetailBox
+                    #userProfileMain 
+                      #userProfieImageBox
+                        img(src='/img/usericon.png' width='75px')
+                      #userProfileContentBox
+                        p this person is a great person! You should totally hire him!
+                    #userProfileFooter
+                      #userProfileLinkBox
+                        a(href="#") Follow
+                        a(href="#") Link2 
+                        a(href="#") Link3
+                  #userProfileDetailBox
+                    #userProfileMain 
+                      #userProfieImageBox
+                        img(src='/img/usericon.png' width='75px')
+                      #userProfileContentBox
+                        p this person is a great person! You should totally hire him!
+                    #userProfileFooter
+                      #userProfileLinkBox
+                        a(href="#") Follow
+                        a(href="#") Link2 
+                        a(href="#") Link3
+                  #userProfileDetailBox
+                    #userProfileMain 
+                      #userProfieImageBox
+                        img(src='/img/usericon.png' width='75px')
+                      #userProfileContentBox
+                        p this person is a great person! You should totally hire him!
+                    #userProfileFooter
+                      #userProfileLinkBox
+                        a(href="#") Follow
+                        a(href="#") Link2 
+                        a(href="#") Link3
+                  #userProfileDetailBox
+                    #userProfileMain 
+                      #userProfieImageBox
+                        img(src='/img/usericon.png' width='75px')
+                      #userProfileContentBox
+                        p this person is a great person! You should totally hire him!
+                    #userProfileFooter
+                      #userProfileLinkBox
+                        a(href="#") Follow
+                        a(href="#") Link2 
+                        a(href="#") Link3
+                  

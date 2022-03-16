@@ -1,0 +1,258 @@
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+html {
+    height: 100%;
+}
+body {
+    color: #333;
+    height: 100%;
+    font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+    
+}
+
+#loadinggifdiv {
+    position: absolute;
+    width:100%;
+    height:100%;
+    background-color: rgb(239, 213, 103);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#submit-button {
+    background-color: rgb(61,255,54);
+    font-size: 10px;
+    color: rgb(59,58,64);
+    border-radius: 5px;
+    font-weight: bolder;
+    padding: 4px 6px 4px 6px;
+    margin: 0px 5px 0px 5px;
+    box-shadow: 2px 2px 3px rgb(46, 45, 45);
+}
+
+#cancel-button {
+    background-color: rgb(233,79,67);
+    font-size: 20px;
+    font-weight: bolder;
+    color: rgb(59,58,64);
+    border-radius: 50%;
+    padding: 4px 6px 4px 6px;
+    box-shadow: 2px 2px 1px rgb(46, 45, 45);
+}
+label {
+}
+
+input {
+    margin: 10px 5px 10px 5px;
+}
+
+a {
+    text-decoration: none;
+    color: #1b98f8;
+}
+
+#layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#nav {
+    position: sticky;
+    height: 100%;
+    width: 80px;
+    border-right: 0.5px solid lightgrey;
+    margin-left: 100px;
+}
+
+#menu-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nav-bar-icon {
+    width: 25px;
+    animation: shake 2.3s;
+    animation-iteration-count: infinite;
+}
+
+#icon-box {
+    padding: 40px 0 40px 0;
+    margin-bottom: 200px;
+}
+
+#menu-link-box {
+    display: flex;
+    flex-direction: column;
+}
+#menu-icon1, #menu-icon2, #menu-icon3, #menu-icon4, #menu-icon5 {
+    width: 25px;
+}
+#menu-link {
+    padding: 15px 0 15px 0;
+}
+
+#login-status-box {
+    margin-top: 200px;
+}
+
+#main {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    border-right: 0.5px solid lightgrey;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 2px) rotate(10deg);
+    }
+    10% {
+        transform: translate(-1px, -2px) rotate(-15deg);
+    }
+    20% {
+        transform: translate(-3px, 0px) rotate(15deg);
+    }
+    30% {
+        transform: translate(3px, 2px) rotate(15deg);
+    }
+    40% {
+        transform: translate(1px, -1px) rotate(-15deg);
+    }
+    50% {
+        transform: translate(-1px, 2px) rotate(-15deg);
+    }
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+        transform: translate(3px, 1px) rotate(7deg);
+    }
+    80% {
+        transform: translate(-1px, -1px) rotate(19deg);
+    }
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+        transform: translate(1px, -2px) rotate(10deg);
+    }
+}
+
+
+.containerBoxWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.containerBox {
+    margin-top: 50px;
+    width : 70%;
+    height : 100%;
+}
+
+.headerBox {
+    width: 100%
+}
+
+.commentBox {
+    padding: 15px 200px 15px 200px;
+}
+
+.storyContentBox {
+    padding-top: 25px;
+}
+
+.editDelButtonBox {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.commentBoxWrapper {
+    width: 100%;
+    padding: 100px 0 0 0;
+}
+
+.commentList {
+    display: flex;
+    justify-content: center;
+}
+.profile {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    color: darkgrey;
+}
+.commentBoxContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(241, 240, 240);
+    padding: 15px 5px 15px 5px;
+}
+
+.commentBoxBubble {
+    margin-right: 50px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+#userProfileBox {
+    box-sizing: border-box;
+    width: 350px;
+}
+#side-content-box {
+    margin-left: 15px;
+}
+
+#userProfileBoxWrapper {
+    padding: 10px 0px 10px 0;
+}
+#userProfileDetailBox {
+    background-color: rgb(236, 235, 235);
+    border-radius: 10px;
+    margin: 10px 0px 10px 0;
+    box-shadow: 5px 5px 5px rgb(216, 216, 216);
+}
+
+#userProfileMain {
+    display: flex;
+}
+#userProfileFooter {
+    display: flex;
+    justify-content: flex-end;
+}
+#userProfieImageBox {
+    margin-left: 25px;
+}
+#userProfileContentBox {
+    width: 220px;
+    font-size: 12px;
+}
+
+@media (max-width: 900px) {
+    #nav {
+        margin-left: 0px;
+    }
+    .storyBoxWrapper {
+        border-bottom:  lightgrey 0.5px solid;
+    }
+    #mainside {
+        visibility: hidden;
+    }
+    
+}
+
+@media (min-width: 60em) {
+}

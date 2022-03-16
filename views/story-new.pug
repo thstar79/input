@@ -7,9 +7,11 @@ block content
   form(action='/stories/new' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     +field('Title', 'title', story.title)
-    +field('Content', 'content', story.content)
+    +field('Content', 'content', story.content, "textarea")
     +field('Topic', 'topicType', story.topicType)
-    +field('Game', 'game', story.gameId)
+    select(name="gameId")
+      each game in games 
+        option(value=`${game.id}`) #{game.title}
     div(class='py-4')
-      button(type='submit' class='btn btn-primary') Write Story
+      button(type='submit' id='submit-button') Write Story
       a(href='/' class='btn btn-warning ml-2') Cancel

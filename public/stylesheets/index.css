@@ -1,9 +1,65 @@
+
+
 h1 {
     color: #555555;
+    padding-left: 30px;
+    
 }
+
+h2 {
+    font-size: 22px;
+    font-weight: bolder;  
+}
+
+p {
+    margin-left: 15px;
+}
+
+#storyContentText {
+    color: #afafaf;
+}
+
 .custom-restricted-width {
     /* To limit the menu width to the content of the menu: */
     display: inline-block;
     /* Or set the width explicitly: */
     /* width: 10em; */
+}
+.storyBox {
+    margin-left: 50px;
+}
+.storyBoxWrapper {
+    width: 80%;
+    border-bottom:  lightgrey 0.5px solid;
+    overflow: hidden;
+}
+
+.bodyWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.storyBoxHeader  {
+ display:flex;
+ align-items: center;
+ padding-top: 20px;
+
+}
+
+.storyBoxContent {
+    display: flex;
+}
+
+.storyBoxContentTextBox {
+
+}
+
+.storyBoxFooter  {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+
+#userNameText {
+    font-size: 17px;
 }

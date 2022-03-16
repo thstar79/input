@@ -1,0 +1,30 @@
+extends layout
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/index.css")
+  //- add page specific js
+  script(src="/javascripts/index.js" type="module" defer)
+
+block content
+  h1= title
+  p Welcome to your Project Skeleton
+  div 
+  table(class='table table-striped table-hover')
+      thead(class='thead-dark')
+        tr
+          th(scope='col') Story Title
+          th(scope='col') Story Contents
+          th(scope='col') Topic Type
+          th(scope='col') User Name
+          th(scope='col') Game Title
+          th(scope='col') Comments
+      tbody
+        each comment in comments
+          tr
+            td= comment.Story.title
+            td= comment.Story.content
+            td= comment.Story.topicType
+            td= `${comment.Story.User.firstName} ${comment.Story.User.lastName}`
+            td= comment.Story.Game.title
+            td= comment.comment
