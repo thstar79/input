@@ -69,13 +69,18 @@ router.post(
     csrfProtection,
     storyValidator,
     asyncHandler(async (req, res) => {
-        const { title, content, topicType, gameId } = req.body;        
+        const { title, content, topicType, gameId, gameTitle } = req.body;        
         let story = db.Story.build({
             title,
             content,
             topicType,
             gameId,
             userId: res.locals.user.id, 
+        });
+
+        let game = db.Game.build({
+          id: gameId,
+          title:gameTitle,
         });
 
         const validatorErrors = validationResult(req);
@@ -94,6 +99,7 @@ router.post(
             const errors = validatorErrors.array().map((error) => error.msg);
             res.render("story-new", {
                 title: "Write a Story",
+                games: [game],
                 story,
                 errors,
                 csrfToken: req.csrfToken(),
