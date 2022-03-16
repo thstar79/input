@@ -41,6 +41,7 @@ block content
                 .commentBoxBubble 
                   p(id=`comment-content-${coin.Comment.id}`)=coin.Comment.comment
             .editDelButtonBox(class='refresh-button') 
+
               button.pushable(class='comment-edit-btn' id=`editId${coin.Comment.id}`) Edit 
               form(class='hidden' id=`edit-form-${coin.Comment.id}`) 
                 input(type='hidden' name='_csrf' value=csrfToken)

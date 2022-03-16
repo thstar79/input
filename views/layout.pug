@@ -25,7 +25,7 @@ html
                     a(href="#" id="menu-link"): img(id="menu-icon4" src='/img/stories.png')
                     a(href="/stories/new"  id="menu-link"): img(id="menu-icon4" src='/img/write.png')
                 #login-status-box
-                    a(href="/users/register" id="menu-link"): img(id="menu-icon5" src='/img/home.png')
+                    a(href="/users/register" id="menu-link"): img(id="menu-icon5" src='/img/loginicon.gif')
         #main
             #content-box
                 block content
@@ -42,6 +42,11 @@ html
                 p Not Logged In ?
                 a(href='/users/login')
                   button#submit-button Login
+                a(href='/users/login/demo')
+                  button.pushable
+                    span.shadow
+                    span.edge
+                    span.front Demo User
             div
                 button#cancel-button B
                 button#submit-button A
