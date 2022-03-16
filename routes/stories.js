@@ -69,14 +69,13 @@ router.post(
     csrfProtection,
     storyValidator,
     asyncHandler(async (req, res) => {
-        const { title, content, topicType, userId, gameId } = req.body;
-
+        const { title, content, topicType, gameId } = req.body;        
         let story = db.Story.build({
             title,
             content,
             topicType,
             gameId,
-            userId: 2, // this needs to be dynamic
+            userId: res.locals.user.id, 
         });
 
         const validatorErrors = validationResult(req);
