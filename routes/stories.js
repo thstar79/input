@@ -106,14 +106,16 @@ router.post(
 router.get('/stories/edit/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const storyId = parseInt(req.params.id, 10);
     const story = await db.Story.findByPk(storyId);
+    const games = await db.Game.findAll();
     res.render('story-edit', {
         title: 'Edit Story',
         story,
+        games,
         csrfToken: req.csrfToken()
     })
 }))
 
-router.put('/stories/edit/:id(\\d+)', csrfProtection, storyValidator, asyncHandler(async(req, res) => {
+router.post('/stories/edit/:id(\\d+)', csrfProtection, storyValidator, asyncHandler(async(req, res) => {
     const storyId = parseInt(req.params.id, 10);
     const storyToUpdate = await db.Story.findByPk(storyId);
 

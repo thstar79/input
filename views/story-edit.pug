@@ -1,0 +1,17 @@
+extends layout.pug 
+include utils.pug 
+
+block content
+  h1= title
+  +validationErrorSummary(errors)
+  form(action=`/stories/edit/${story.id}` method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    +field('Title', 'title', story.title)
+    +field('Content', 'content', story.content, "textarea")
+    +field('Topic', 'topicType', story.topicType)
+    select(name="gameId")
+      each game in games 
+        option(value=`${game.id}`) #{game.title}
+    div(class='py-4')
+      button(type='submit' id='submit-button') Edit Story
+      a(href='/' class='btn btn-warning ml-2') Cancel
