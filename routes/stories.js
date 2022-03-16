@@ -3,7 +3,9 @@ const { check, validationResult } = require("express-validator");
 const router = express.Router();
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
-const { requireAuth } = require('../auth');
+
+const { requireAuth } = require("../auth");
+
 
 router.get(
   "/stories/:id(\\d+)",
@@ -51,6 +53,7 @@ const storyValidator = [
 
 router.get(
     "/stories/new",
+    requireAuth,
     csrfProtection,
     requireAuth,
     asyncHandler(async (req, res) => {
@@ -72,7 +75,7 @@ router.post(
     requireAuth,
     storyValidator,
     asyncHandler(async (req, res) => {
-        const { title, content, topicType, gameId } = req.body;        
+        const { title, content, topicType, gameId, gameTitle } = req.body;        
         let story = db.Story.build({
             title,
             content,
@@ -80,6 +83,8 @@ router.post(
             gameId,
             userId: res.locals.user.id, 
         });
+
+        const games = await db.Game.findAll();
 
         const validatorErrors = validationResult(req);
 
@@ -97,6 +102,7 @@ router.post(
             const errors = validatorErrors.array().map((error) => error.msg);
             res.render("story-new", {
                 title: "Write a Story",
+                games,
                 story,
                 errors,
                 csrfToken: req.csrfToken(),
