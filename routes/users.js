@@ -181,7 +181,10 @@ router.post(
 );
 
 router.get("/users/login/demo", async(req, res) => {
-    let user = await db.User.findByPk(1)
+    //let user = await db.User.findByPk(1)
+    let user = {
+        id : 2
+    }
     loginUser(req, res, user);
     res.redirect("/");
 })
