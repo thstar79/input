@@ -26,17 +26,17 @@ router.get(
     asyncHandler(async (req, res) => {})
 );
 
-router.get(
-    "/comments/new",
-    csrfProtection,
-    asyncHandler(async (req, res) => {
-        const comment = db.Comment.build();
-        res.render("comment-form", {
-            comment,
-            csrfToken: req.csrfToken(),
-        });
-    })
-);
+// router.get(
+//     "/comments/new",
+//     csrfProtection,
+//     asyncHandler(async (req, res) => {
+//         const comment = db.Comment.build();
+//         res.render("comment-form", {
+//             comment,
+//             csrfToken: req.csrfToken(),
+//         });
+//     })
+// );
 
 const commentValidator = [
     check("comment")
@@ -46,19 +46,11 @@ const commentValidator = [
         .withMessage("Comment must not be more than 100 characters long"),
 ];
 
-router.get('/comments/edit/:id(\\d+)',csrfProtection, asyncHandler(async (req,res)=>{
-    const commentId = parseInt(req.params.id, 10);
-    const comment = await db.Comment.findByPk(commentId);
-    // res.render('comment-edit',{
-        
-    // })
-}));
-
 router.post(
-    "/comments/new",
-    requireAuth,
+    "/comments",
+//    requireAuth,
     commentValidator,
-    csrfProtection,
+//    csrfProtection,
     asyncHandler(async (req, res) => {
         const { userId } = req.session.auth;
         const { comment, storyId } = req.body;
@@ -66,7 +58,7 @@ router.post(
             comment,
             storyId,
         });
-
+        
         const validatorErrors = validationResult(req);
         if (validatorErrors.isEmpty()) {
             await comment1.save();
@@ -93,7 +85,7 @@ router.post(
             });
 
             await coin.save();
-            //res.redirect(`/stories/${storyId}`);
+            res.json({message: "Success", comment});
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             res.render("comment-form", {
