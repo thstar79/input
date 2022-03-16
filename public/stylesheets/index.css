@@ -1,3 +1,5 @@
+
+
 h1 {
     color: #555555;
     padding-left: 30px;
@@ -5,7 +7,7 @@ h1 {
 }
 
 h2 {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bolder;  
 }
 
@@ -23,9 +25,13 @@ p {
     /* Or set the width explicitly: */
     /* width: 10em; */
 }
+.storyBox {
+    margin-left: 50px;
+}
 .storyBoxWrapper {
-    border-top: lightgrey 0.5px solid;
+    width: 80%;
     border-bottom:  lightgrey 0.5px solid;
+    overflow: hidden;
 }
 
 .bodyWrapper {
@@ -37,14 +43,23 @@ p {
  display:flex;
  align-items: center;
  padding-top: 20px;
+
+}
+
+.storyBoxContent {
+    display: flex;
 }
 
 .storyBoxContentTextBox {
-    width: 500px;
+
 }
 
 .storyBoxFooter  {
     display: flex;
     justify-content: space-around;
     padding-bottom: 20px;
+}
+
+#userNameText {
+    font-size: 17px;
 }
