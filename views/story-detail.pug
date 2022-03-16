@@ -22,21 +22,31 @@ block content
           span.edge
           span.front 
             a(href='') Delete
-    .commentBoxWrapper
-      .commentList
-        .commentFormBox
-          form(action='/comments/new' method='post')
-            input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' name='storyId' value=story.id)
-            +field('', 'comment', '', 'textarea')
-            div(class='py-4')
-            button(type='submit' class='submit-button') Write Comment
-      each comment in comments     
-        .commentBox 
-          .commentBoxContent 
-            .profile 
-              img(src='/img/usericon.png' width='50px')
-              p=`${comment.Story.User.firstName} ${comment.Story.User.lastName}`
-            .commentBoxBubble 
-              p=comment.comment
-      
+      .commentBoxWrapper
+        .commentList
+          .commentFormBox
+            form(action='/comments/new' method='post')
+              input(type='hidden' name='_csrf' value=csrfToken)
+              input(type='hidden' name='storyId' value=story.id)
+              +field('', 'comment', '', 'textarea')
+              div(class='py-4')
+              button(type='submit' class='submit-button') Write Comment
+        each coin in coins     
+          .commentBox 
+            .commentBoxContent 
+              .profile 
+                img(src='/img/usericon.png' width='50px')
+                p=`${coin.User.firstName} ${coin.User.lastName}`
+              .commentBoxBubble 
+                p=coin.Comment.comment
+          .editDelButtonBox 
+            button.pushable
+              span.shadow
+              span.edge
+              span.front 
+                a(href='') Edit 
+            button.pushable
+              span.shadow
+              span.edge
+              span.front 
+                a(href='') Delete

@@ -5,30 +5,35 @@ const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
 router.get(
-    "/stories/:id(\\d+)",
-    csrfProtection,
-    asyncHandler(async (req, res) => {
-      const { userId } = req.session.auth;
-      const storyId = parseInt(req.params.id, 10);
-      const story = await db.Story.findByPk(storyId, { include: [db.User, db.Game] });
-      const user = await db.User.findByPk(userId);
-      const comments = await db.Comment.findAll({
+  "/stories/:id(\\d+)",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const storyId = parseInt(req.params.id, 10);
+    const story = await db.Story.findByPk(storyId, { include: [db.User, db.Game] });
+    const coins = await db.CommentCoin.findAll({
+      include: [{
+        model: db.Comment,
         where: {
           storyId: storyId,
         },
-        include: {
-            model: db.Story,
-            include: [db.User, db.Game],
-        },
-      });
-      res.render("story-detail", {
-        title: "Detailed Story",
-        story,
-        user,
-        comments,
-        csrfToken: req.csrfToken()
-      });
-    })
+      },
+      {
+        model: db.User,
+      }],
+    });
+    console.log(coins.length,"!!!!!!!!!!!!!!");
+    //console.log(coins[0].Comment.Story.id, "!!!!!!!!!!!!!!!");
+    if(coins.length === 0){
+      const coin = db.CommentCoin.build();
+      coins.push(coin);
+    }
+    res.render("story-detail", {
+      title: "Detailed Story",
+      story,
+      coins,
+      csrfToken: req.csrfToken()
+    });
+  })
 );
 
 
