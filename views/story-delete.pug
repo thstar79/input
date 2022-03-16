@@ -1,0 +1,10 @@
+extends layout.pug
+include utils.pug
+
+block content
+    h1= title
+    form(action=`/stories/delete/${story.id}` method="post")
+        input(type='hidden' name='_csrf' value=csrfToken)
+        button Delete
+        button
+            a(href=`/stories/${story.id}`) Return

@@ -6,6 +6,16 @@ module.exports = {
             "Users",
             [
                 {
+                    firstName: "D",
+                    lastName: "Mo",
+                    userName: "DemoUser",
+                    email: "demo@demo.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
                     firstName: "Taehoon",
                     lastName: "Kim",
                     userName: "TaehoonK",
