@@ -1,5 +1,9 @@
 extends layout.pug
 include utils.pug
+
+append head
+  link(rel="stylesheet" href="/stylesheets/storyDetail.css")
+
 block content
   h1= title
   .containerBoxWrapper
@@ -31,7 +35,10 @@ block content
               input(id='storyCId' type='hidden' name='storyId' value=story.id)
               +field('', 'comment', '', 'textarea')
               div(class='py-4')
-                button(id='comment-button' type='submit' class='comment-create-btn') Write Comment
+              button(id='comment-button' type='submit' class='comment-create-btn').pushable
+                span.shadow
+                span.edge
+                span.front Comment
         .commentList1(id='comment-list')
           each coin in coins
             .commentBox(id=`comment-box-${coin.Comment.id}`)
@@ -39,14 +46,14 @@ block content
                 .profile
                   img(src='/img/usericon.png' width='50px')
                   p=`${coin.User.firstName} ${coin.User.lastName}`
-                .commentBoxBubble 
+                .commentBoxBubble
                   p(id=`comment-content-${coin.Comment.id}`)=coin.Comment.comment
-              .editDelButtonBox(class='refresh-button') 
-                button.pushable(class='comment-edit-btn' id=`editId${coin.Comment.id}`) Edit 
-                form(class='hidden' id=`edit-form-${coin.Comment.id}`) 
+              .editDelButtonBox(class='refresh-button')
+                button.pushable(class='comment-edit-btn' id=`editId${coin.Comment.id}`) Edit
+                form(class='hidden' id=`edit-form-${coin.Comment.id}`)
                   input(type='hidden' name='_csrf' value=csrfToken)
-                  label(for="content") Comment: 
+                  label(for="content") Comment:
                   input(type="text" name='content' value=coin.Comment.comment id=`comment-field-${coin.Comment.id}`)
                   button(class='edit-submit-btn' id=`edit-btn-${coin.Comment.id}`) Submit Edit
-                
+
                 button.pushable(class='comment-delete-btn' id=`deleteId${coin.Comment.id}`) Delete

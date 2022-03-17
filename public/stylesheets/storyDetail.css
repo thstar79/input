@@ -1,0 +1,71 @@
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.containerBoxWrapper {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 1em;
+}
+
+.containerBox {
+    width: 80%;
+}
+
+.headerBox {
+    display: flex;
+}
+
+.headerBox a {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+.storyContentBox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.storyContentBox p {
+    padding: 2rem 5rem;
+    text-align: justify;
+}
+
+.editDelButtonBox button {
+    margin: 2rem 0.5rem;
+}
+
+.commentBoxWrapper {
+    padding-top: 2rem;
+}
+
+.commentList {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.commentFormBox {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#create-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    width: 500px;
+    height: 75px;
+    resize: none;
+    border: 0.1rem solid;
+    margin-right: 1rem;
+}

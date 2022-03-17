@@ -6,6 +6,10 @@ const { csrfProtection, asyncHandler } = require("./utils");
 
 const { requireAuth } = require("../auth");
 
+router.get('/test', (req,res) => {
+    res.render('test')
+})
+
 router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
@@ -168,7 +172,6 @@ router.get(
         const id = parseInt(req.params.id, 10);
 
         const story = await db.Story.findByPk(id);
-        console.log(story.dataValues.id, req.session.auth.userId);
         res.render("story-delete", {
             title: "Delete this Story???",
             story,
@@ -183,8 +186,9 @@ router.post(
     asyncHandler(async(req, res) => {
         const id = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(id);
+
         //current story id !== authed user id
-        if (story.dataValues.id !== req.session.auth.userId) {
+        if (story.userId !== res.locals.user.id) {
             res.send("You do not have permissions to delete this story");
         } else {
             await story.destroy();
