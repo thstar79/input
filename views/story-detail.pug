@@ -50,5 +50,11 @@ block content
                   button(class='edit-submit-btn' id=`edit-btn-${coin.Comment.id}`) Submit Edit
                 
                 button.pushable(class='comment-delete-btn' id=`deleteId${coin.Comment.id}`) Delete
-              .CoinBox(class='refresh-button')
-                button(class='coin-btn' id=`coin-${coin.Comment.id}`)=`${coin.count}`
+              .commentExtra(class='refresh-button')
+                .cELeft
+                  .cECoin 
+                    .cECoinImg(id=`coin-${coin.Comment.id}` class='coin-btn')
+                      img(id=`coin-${coin.Comment.id}` src='/img/coin.png' width='20px') 
+                    .cECoinCnt(id=`coin-count-${coin.Comment.id}`)=`${coin.count}`
+                .cEMid
+                .cERight

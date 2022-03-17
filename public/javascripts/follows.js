@@ -87,7 +87,8 @@ window.onload = async function(){
             if (returnData.message === "Success") {
                 const container = document.getElementById('topBoxWrpper');
                 const content = container.innerHTML;
-                container.innerHTML= content; 
+                container.innerHTML= content;
+                //e.preventDefault();
             }
         });
     }
