@@ -5,6 +5,9 @@ const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
 const { requireAuth } = require("../auth");
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 
 router.get('/test', (req,res) => {
     res.render('test')
@@ -22,7 +25,7 @@ router.get(
             include: [{
                     model: db.Comment,
                     where: {
-                        storyId: storyId,
+                        id: storyId,
                     },
                 },
                 {
@@ -31,10 +34,24 @@ router.get(
             ],
         });
 
+        const storyCoinsCount = await db.StoryCoin.sum('count', {
+            where: {
+                storyId: storyId,
+            }
+        });
+        const userStoryCoinsCount = await db.StoryCoin.sum('count', {
+            where: { userId: res.locals.user.id}
+        })
+        if (!userStoryCoinsCount) {
+            userStoryCoinsCount = 0
+        } 
+
         res.render("story-detail", {
             title: "Detailed Story",
             story,
             coins,
+            storyCoinsCount,
+            userStoryCoinsCount,
             csrfToken: req.csrfToken(),
         });
     })
@@ -79,25 +96,36 @@ router.post(
     storyValidator,
     asyncHandler(async(req, res) => {
         const { title, content, topicType, gameId, gameTitle } = req.body;
+        const { userId } = req.session.auth;
         let story = db.Story.build({
             title,
             content,
             topicType,
             gameId,
-            userId: res.locals.user.id,
+            userId,
         });
 
         const validatorErrors = validationResult(req);
 
         if (validatorErrors.isEmpty()) {
             await story.save();
-            //   let story =  await db.Story.findOne({
-            //     //sort by the lastest created limit 1
-            // })
-            // // query for story we just created -> pull id from it
-            // // build StoryCoin.build({
-            //   story:id
-            // })
+
+            let newStory =  await db.Story.findOne({
+                where: {
+                   [Op.and]: [
+                       { title: title },
+                       { content: content }
+                   ] 
+                }
+            })
+
+            const coin = db.StoryCoin.build({
+                count: 0,
+                storyId: newStory.id,
+                userId: userId,
+            });
+            await coin.save();
+               
             res.redirect("/");
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
@@ -197,5 +225,6 @@ router.post(
         }
     })
 );
+
 
 module.exports = router;

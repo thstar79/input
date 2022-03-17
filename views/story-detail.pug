@@ -26,6 +26,10 @@ block content
           span.edge
           span.front
             a(href=`/stories/delete/${story.id}`) Delete
+      .coinBox 
+         img(id=`storyCoin-${story.id}` src='/img/coin.png' width='25px' class='storyCoinImg')
+         p(id='storyCoinText')=storyCoinsCount
+         p(id='userStoryCoinText')=userStoryCoinsCount      
       .commentBoxWrapper
         .commentList
           .commentFormBox
@@ -67,3 +71,4 @@ block content
                 .cERight
 
                 script(src="/javascripts/coinSound.js" type="module") 
+                script(src="/javascripts/coin-story.js" type="module")
