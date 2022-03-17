@@ -9,18 +9,27 @@ block content
         #mainContainer 
             #screenContainer
                 .loginBox
-                    h1=title
+                    h1(id="loginTitle")=title
                     +validationErrorSummary(errors)
                     form(action='' method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
-                        +field('Email Address', 'email', email)
-                        +field('Password', 'password','','password')
-                        .loginbuttonbox
-                            button#transparent-button
-                                span.start-btn LOGIN      
-                            a(href="/users/register")
-                                span.start-btn REGISTER
-                        .mario
+                        #loginformBox
+                            #loginField
+                                #loginFieldLabel
+                                    label(for='email') Email Address
+                                #loginFieldInput    
+                                    input(type='text' id='loginEmailInput' name='email' value=email)
+                            #loginField
+                                #loginFieldLabel
+                                    label(for='password') Password
+                                #loginFieldInput
+                                    input(type='password' id='loginPasswordInput' name='password' )
+                            .loginbuttonbox
+                                button#transparent-button
+                                    span.start-btn LOGIN      
+                                a(href="/users/register")
+                                    span.start-btn REGISTER
+                            .mario
         #controller
             div
                 button.pushable

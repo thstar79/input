@@ -3,7 +3,7 @@
 
 .loginbuttonbox {
     position: relative;
-    left:150px;
+    left:130px;
 }
 
 #email, #password  {
@@ -48,14 +48,17 @@
     left: -5px;
     width:520px;
     height:400px;
-    background-color: rgb(36, 36, 36);
+    background-color: rgb(19, 19, 19);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #screenContainer {
-    border: solid black 10px;
+    border-top: solid black 10px;
+    border-bottom: solid black 10px;
+    border-left: solid black 20px;
+    border-right: solid black 20px;
     width: 85%;
     height: 300px;
     background-color: rgba(138, 172, 15, 0.815);
@@ -63,7 +66,8 @@
     padding: 0 10px 0 10px;
 }
 #controller {
-    border-top: solid black 7px;
+    border-top: solid black 5px;
+    border-right: solid black 5px;
     position:relative;
     left: -5px;
     width:620px;
@@ -83,9 +87,20 @@
     background-color: black;
     clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
 }
+#loginTitle {
+    color: rgb(59, 59, 59);
+}
 
-
-
+#loginformBox {
+    display:flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+#loginField {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .mario{
     position: absolute;
     width: 71px;
