@@ -136,15 +136,40 @@ router.delete('/comments/:id(\\d+)', async(req, res) => {
     }
 })
 
+router.patch('/comments/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
+    const id = parseInt(req.params.id,10);
+    const coin = await db.CommentCoin.findOne({
+        where: {
+            commentId: id,
+        }
+    });
+    const coin_limit = 50;
+
+    if(coin){
+        if(coin.count < coin_limit){
+            coin.count++;
+            await coin.save();
+            res.json({message: "Success", coin});
+        }
+        else{
+            res.json({message: "Max"});
+        }
+    }
+    else{
+        res.json({message: "Could not find coin please try again"});
+    }
+}));
+
 router.patch('/comments/:id(\\d+)', async(req, res) => {
-    const comment = await db.Comment.findByPk(req.params.id)
+    const id = parseInt(req.params.id,10);
+    const comment = await db.Comment.findByPk(id)
 
     if (comment) {
         comment.comment = req.body.comment;
         await comment.save();
-        res.json({message: "Success", comment})
+        res.json({message: "Success", comment});
     } else {
-        res.json({message: "Could not find post please try again"})
+        res.json({message: "Could not find comment please try again"});
     }
 })
 

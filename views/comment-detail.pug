@@ -1,0 +1,16 @@
+.commentBox(id=`comment-box-${coin.Comment.id}`)
+    .commentBoxContent
+    .profile
+        img(src='/img/usericon.png' width='50px')
+        p=`${coin.User.firstName} ${coin.User.lastName}`
+    .commentBoxBubble 
+        p(id=`comment-content-${coin.Comment.id}`)=coin.Comment.comment
+    .editDelButtonBox(class='refresh-button') 
+    button.pushable(class='comment-edit-btn' id=`editId${coin.Comment.id}`) Edit 
+    form(class='hidden' id=`edit-form-${coin.Comment.id}`) 
+        input(type='hidden' name='_csrf' value=csrfToken)
+        label(for="content") Comment: 
+        input(type="text" name='content' value=coin.Comment.comment id=`comment-field-${coin.Comment.id}`)
+        button(class='edit-submit-btn' id=`edit-btn-${coin.Comment.id}`) Submit Edit
+    
+    button.pushable(class='comment-delete-btn' id=`deleteId${coin.Comment.id}`) Delete
