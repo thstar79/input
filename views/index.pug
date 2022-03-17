@@ -16,11 +16,10 @@ block content
               p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}` 
             .storyBoxHeaderMenu  
               .dropdown
-                button#dropbtn Dropdown
+                i(class="fa fa-bars" aria-hidden="true" id='dropbtn') 
                 .dropdown-content
                   a(href=`/stories/edit/${story.id}`) Edit
                   a(href=`/stories/delete/${story.id}`) Delete
-                  a(href="#") Bookmark
           .storyBoxContent 
             .storyBoxContentTextBox
               h2=story.title
