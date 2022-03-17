@@ -66,7 +66,9 @@ block content
                 .cELeft
                   .cECoin
                     .cECoinImg(id=`coin-${coin.Comment.id}` class='coin-btn')
-                      img(id=`coin-${coin.Comment.id}` src='/img/coin.png' width='20px')
+                      img(id=`coin-${coin.Comment.id}` src='/img/coin.png' width='20px' class='coinimg')
                     .cECoinCnt(id=`coin-count-${coin.Comment.id}`)=`${coin.count}`
                 .cEMid
                 .cERight
+
+                script(src="/javascripts/coinSound.js" type="module")
