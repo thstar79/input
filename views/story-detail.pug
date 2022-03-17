@@ -27,7 +27,12 @@ block content
           span.front
             a(href=`/stories/delete/${story.id}`) Delete
       .coinBox 
-         img(id=`storyCoin-${story.id}` src='/img/coin.png' width='25px' class='storyCoinImg')
+         img(src='/img/coin.png' width='100px')
+         button.pushable
+              span.shadow
+              span.edge
+              span.front
+                a(id=`storyCoin-${story.id}` class='storyCoinImg' href=``) coin
          p(id='storyCoinText')=storyCoinsCount
          p(id='userStoryCoinText')=userStoryCoinsCount      
       .commentBoxWrapper

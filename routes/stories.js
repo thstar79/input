@@ -14,6 +14,18 @@ router.get('/test', (req,res) => {
 })
 
 router.get(
+    "/stories",
+    csrfProtection,
+    asyncHandler(async (req, res) => {
+        const stories = await db.Story.findAll({
+            include: [db.User, db.Game],
+        });
+        res.render("index", { title: "Stories List", stories });
+    })
+
+);
+
+router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
     asyncHandler(async(req, res) => {
@@ -43,7 +55,7 @@ router.get(
             where: { userId: res.locals.user.id}
         })
         if (!userStoryCoinsCount) {
-            userStoryCoinsCount = 0
+            let userStoryCoinsCount = 0
         } 
 
         res.render("story-detail", {
