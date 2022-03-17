@@ -72,11 +72,39 @@ a {
 
 .commentBox {
     width: 80%;
-    margin: 0 auto;
+    margin: 1rem auto;
+    padding: 0;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.editDelButtonBox .refresh-button button span .front {
-    font-size: 2em;
+.commentBox .commentExtra .refresh-button {
+    margin-left: 100px;
+    align-self: baseline;
+}
+
+#display-coins {
+    width: 1em;
+    background-color: blue;
+}
+
+#display-coins .cELeft.cECoin {
+    background-color: blue;
+}
+
+[id*="editId"] span {
+    font-size: 1em;
+    color: black;
+}
+
+[id*="deleteId"] span {
+    font-size: 1em;
+    color: black;
+}
+
+[id*="coin"] {
+    border: 1px solid black;
+    width: 1em;
 }
