@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         {}
     );
     Follow.associate = function (models) {
-        // Follow.belongsTo(models.User, {foreignKey: 'userId'});
+        // Follow.belongsTo(models.User, {foreignKey: 'follower'});
         // Follow.belongsTo(models.Comment, {foreignKey: 'commentId'});
     };
 
