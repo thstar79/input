@@ -1,5 +1,9 @@
-let audio = new Audio("../assets/smb_stage_clear.wav");
+window.addEventListener("DOMContentLoaded", event => {
+    let audio = new Audio("../assets/smb_stage_clear.wav");
 
-document.getElementById('testButton').onclick = function() {
-  audio.play();
-}
+    document.getElementById('testButton').addEventListener('click', () =>  {
+        audio.volume = 0.1;
+        audio.play();
+    })
+
+})
