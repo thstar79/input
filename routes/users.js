@@ -17,6 +17,15 @@ router.get(
     })
 );
 
+router.get('/users/random/:num(\\d+)',asyncHandler(async(req,res)=>{
+    const num = parseInt(req.params.num,10);
+    const users = await db.User.findAll({
+        order: db.Sequelize.literal('random()'),
+        limit: num,
+    });
+    res.json({users});
+}));
+
 const userValidators = [
     // TODO Define the user validators.
     check("firstName")
@@ -181,7 +190,10 @@ router.post(
 );
 
 router.get("/users/login/demo", async(req, res) => {
-    let user = await db.User.findByPk(1)
+    //let user = await db.User.findByPk(1)
+    let user = {
+        id : 2
+    }
     loginUser(req, res, user);
     res.redirect("/");
 })

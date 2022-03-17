@@ -41,7 +41,7 @@ block content
                 span.front Comment
         .commentList1(id='comment-list')
           each coin in coins
-            .commentBox
+            .commentBox(id=`comment-box-${coin.Comment.id}`)
               .commentBoxContent
                 .profile
                   img(src='/img/usericon.png' width='50px')

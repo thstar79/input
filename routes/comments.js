@@ -21,6 +21,19 @@ router.get(
 );
 
 router.get(
+    "/comments/last",
+    asyncHandler(async (req, res) => {
+        const comment = await db.Comment.findOne({
+            where: {
+                order: ['id','desc'],
+            },
+        });
+        console.log(comment.id);
+        res.json({id: comment.id});
+    })
+);
+
+router.get(
     "/comments/:id(\\d+)",
     csrfProtection,
     asyncHandler(async (req, res) => {})
@@ -48,9 +61,9 @@ const commentValidator = [
 
 router.post(
     "/comments",
-//    requireAuth,
+    requireAuth,
     commentValidator,
-//    csrfProtection,
+    //csrfProtection,
     asyncHandler(async (req, res) => {
         const { userId } = req.session.auth;
         const { comment, storyId } = req.body;
@@ -88,6 +101,7 @@ router.post(
             res.json({message: "Success", comment});
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
+            console.log(errors);
             res.render("comment-form", {
                 title: "Write a Comment",
                 comment: comment1,
@@ -97,30 +111,6 @@ router.post(
         }
     })
 );
-
-// router.post('/comments/delete/:id(\\d+)',asyncHandler(async(req,res)=>{
-//     const id = parseInt(req.params.id,10);
-//     const coin = await db.CommentCoin.findOne({
-//         where: {
-//             commentId: id
-//         }
-//     });
-    
-//     const errors = [];
-//     if(coin){
-//         await coin.destroy();
-//         const comment = await db.Comment.findByPk(id);
-//         if(comment){
-//             await comment.destroy();
-//         }
-//         else{
-//             errors.push('Comment is not in Database');    
-//         }
-//     }
-//     else{
-//         errors.push('Comment Coin is not in Database');
-//     }
-// }));
 
 router.delete('/comments/:id(\\d+)', async(req, res) => {
     console.log('you have arrived at the route handler');

@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#top {
+    position:relative;
+    left: -5px;
+    width:550px;
+    height:100px;
+    background-color: rgb(49, 49, 49);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#arcadeTopText {
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#toptwo{
+    position:relative;
+    left: -5px;
+    width:550px;
+    height:50px;
+    background-color: black;
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+}
+#mainContainer {
+    position:relative;
+    left: -5px;
+    width:520px;
+    height:400px;
+    background-color: rgb(36, 36, 36);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#screenContainer {
+    width: 85%;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+}
+#controller {
+    position:relative;
+    left: -5px;
+    width:620px;
+    height:150px;
+    background-color: rgb(49, 49, 49);
+    clip-path: polygon(8% 0, 92% 0, 100% 100%, 0% 100%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#bottom {
+    position:relative;
+    left: -5px;
+    width:620px;
+    height:100px;
+    background-color: black;
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+}
+

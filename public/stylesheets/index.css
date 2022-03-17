@@ -26,12 +26,17 @@ p {
     /* width: 10em; */
 }
 .storyBox {
-    margin-left: 50px;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px rgb(216, 216, 216);
+    padding: 0px 25px 0px 25px;
+    margin: 20px 0 20px 0;
+    width: 95%;
 }
 .storyBoxWrapper {
     width: 80%;
-    border-bottom:  lightgrey 0.5px solid;
     overflow: hidden;
+    margin-left: 50px;
 }
 
 .bodyWrapper {
@@ -41,17 +46,29 @@ p {
 
 .storyBoxHeader  {
  display:flex;
- align-items: center;
+ justify-content: space-between;
  padding-top: 20px;
-
 }
+
+.storyBoxHeaderProfile  {
+    display:flex;
+    align-items: center;
+    font-size: 13px;
+   }
+   
 
 .storyBoxContent {
     display: flex;
 }
 
-.storyBoxContentTextBox {
-
+.storyBoxContentImgBox {
+    width: 140px;
+    height: 140px;
+    border: solid white 2px;
+    box-shadow: 5px 5px 2px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .storyBoxFooter  {

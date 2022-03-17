@@ -207,13 +207,49 @@ a {
     display: none;
 }
 
+
+#userProfileBox {
+    box-sizing: border-box;
+    width: 350px;
+}
+#side-content-box {
+    margin-left: 15px;
+}
+
+#userProfileBoxWrapper {
+    padding: 10px 0px 10px 0;
+}
+.userProfileDetailBox {
+    margin: 10px 0px 10px 0;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    box-shadow: 5px 5px 3px rgb(216, 216, 216);
+}
+
+.userProfileMain {
+    display: flex;
+}
+#userProfileFooter {
+    display: flex;
+    justify-content: flex-end;
+}
+.userProfieImageBox {
+    margin-left: 25px;
+}
+.userProfileContentBox {
+    width: 220px;
+    font-size: 12px;
+}
+
 @media (max-width: 900px) {
     #nav {
         margin-left: 0px;
     }
     .storyBoxWrapper {
-       
         border-bottom:  lightgrey 0.5px solid;
+    }
+    #mainside {
+        visibility: hidden;
     }
     
 }
