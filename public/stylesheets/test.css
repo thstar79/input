@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+.loginbuttonbox {
+    position: relative;
+    left:130px;
+}
+
+#email, #password  {
+    background-color : rgba(138, 172, 15, 0.815);
+}
+
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#top {
+    border: solid black 7px;
+    position:relative;
+    left: -5px;
+    width:550px;
+    height:100px;
+    background-color: rgb(49, 49, 49);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#arcadeTopText {
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 40px;
+    font-weight: bold;
+}
+#toptwo{
+    position:relative;
+    left: -5px;
+    width:550px;
+    height:50px;
+    background-color: black;
+    clip-path: polygon(0 0, 100% 0, 97.5% 100%, 2.5% 100%);
+}
+#mainContainer {
+    position:relative;
+    left: -5px;
+    width:520px;
+    height:400px;
+    background-color: rgb(19, 19, 19);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#screenContainer {
+    border-top: solid black 10px;
+    border-bottom: solid black 10px;
+    border-left: solid black 20px;
+    border-right: solid black 20px;
+    width: 85%;
+    height: 300px;
+    background-color: rgba(138, 172, 15, 0.815);
+    overflow:hidden;
+    padding: 0 10px 0 10px;
+}
+#controller {
+    border-top: solid black 5px;
+    border-right: solid black 5px;
+    position:relative;
+    left: -5px;
+    width:620px;
+    height:150px;
+    background-color: rgb(49, 49, 49);
+    clip-path: polygon(8% 0, 92% 0, 100% 100%, 0% 100%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#bottom {
+    position:relative;
+    left: -5px;
+    width:620px;
+    height:100px;
+    background-color: black;
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+}
+#loginTitle {
+    color: rgb(59, 59, 59);
+}
+
+#loginformBox {
+    display:flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+#loginField {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mario{
+    position: absolute;
+    width: 71px;
+    height: 72px;
+    background: url('https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/mariowalking/result.png') left center;    
+    top:250px;
+    left:0px;
+    
+    -webkit-animation: play 0.8s steps(4) infinite,
+                run 2s both infinite linear;
+    
+            animation: play 0.8s steps(4) infinite,
+                run 2s both infinite linear;
+}
+@-webkit-keyframes play{
+    100%{background-position: -284px;}
+}
+@keyframes play{
+    100%{background-position: -284px;}
+}
+@-webkit-keyframes run{
+    from{left: 50px;}
+    to{left: 75%;}
+}
+@keyframes run{
+    from{left: 50px;}
+    to{left:75%;}
+}

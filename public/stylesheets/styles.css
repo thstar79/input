@@ -2,6 +2,11 @@
  * -- BASE STYLES --
  * Most of these are inherited from Base, but I want to change a few.
  */
+ @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.alert-danger {
+    color: red;
+
+}
 html {
     height: 100%;
 }
@@ -10,6 +15,15 @@ body {
     height: 100%;
     font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
     
+}
+
+.loginBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    font-family: 'Press Start 2P', cursive;
 }
 
 #loadinggifdiv {
