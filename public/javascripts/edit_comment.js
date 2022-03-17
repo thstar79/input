@@ -4,7 +4,7 @@ for (let i = 0; i < editBtns.length; i++) {
     const btn = editBtns[i];
     btn.addEventListener('click', async (e) => {
         e.stopPropagation();
-        const IDs = e.target.id.split('Id');
+        const IDs = e.target.id.split('ID');
         const commentId = IDs[1];
         const userId = IDs[2];
         const sessionId = IDs[3];
@@ -35,7 +35,7 @@ for (let i = 0; i < editBtns.length; i++) {
                 // if we get a Success response, the original post element should be updated
                 if (returnData.message === "Success") {
                     const postEle = document.getElementById(`comment-content-${commentId}`);
-                    postEle.innerHTML = returnData.comment.comment;
+                    postEle.innerHTML = returnData.comment.comment.split('!@#')[2];
                     // reapply hidden class to form
                     form.classList.add('hidden')
                 }
