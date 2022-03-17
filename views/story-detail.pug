@@ -49,31 +49,34 @@ block content
                 span.edge
                 span.front Comment
         .commentList1(id='comment-list')
-          each coin in coins
-            .commentBox(id=`comment-box-${coin.Comment.id}`)
+          each comment in comments
+            .commentBox(id=`comment-box-${comment.id}`)
+
               .commentBoxContent
                 .profile
-                  img(src='/img/usericon.png' width='50px')
-                  p=`${coin.User.firstName} ${coin.User.lastName}`
+                  img(src=`/img/users/user${comment.User.id}.png` width='50px')
+                  p=`${comment.User.firstName} ${comment.User.lastName}`
                 .commentBoxBubble
-                  p(id=`comment-content-${coin.Comment.id}`)=coin.Comment.comment
+                  p(id=`comment-content-${comment.id}`)=comment.comment
+                  //p(id=`comment-content-${comment.id}`)='asdf'
               .editDelButtonBox(class='refresh-button')
-                button.pushable(class='comment-edit-btn' id=`editId${coin.Comment.id}`) Edit
-                form(class='hidden' id=`edit-form-${coin.Comment.id}`)
+
+                button.pushable(class='comment-edit-btn' id=`editID${comment.id}ID${comment.User.id}ID${session.id}`) Edit
+                form(class='hidden' id=`edit-form-${comment.id}`)
                   input(type='hidden' name='_csrf' value=csrfToken)
                   label(for="content") Comment:
-                  input(type="text" name='content' value=coin.Comment.comment id=`comment-field-${coin.Comment.id}`)
-                  button(class='edit-submit-btn' id=`edit-btn-${coin.Comment.id}`) Submit Edit
+                  input(type="text" name='content' value=comment.comment id=`comment-field-${comment.id}`)
+                  button(class='edit-submit-btn' id=`edit-btn-${comment.id}`) Submit Edit
 
-                button.pushable(class='comment-delete-btn' id=`deleteId${coin.Comment.id}`) Delete
+                button.pushable(class='comment-delete-btn' id=`deleteID${comment.id}ID${comment.User.id}ID${session.id}`) Delete
               .commentExtra(class='refresh-button')
                 .cELeft
                   .cECoin 
-                    .cECoinImg(id=`coin-${coin.Comment.id}` class='coin-btn')
-                      img(id=`coin-${coin.Comment.id}` src='/img/coin.png' width='20px' class='coinimg') 
-                    .cECoinCnt(id=`coin-count-${coin.Comment.id}`)=`${coin.count}`
+                    .cECoinImg(id=`coinID${comment.id}ID${comment.User.id}ID${session.id}` class='coin-btn')
+                      img(id=`coinID${comment.id}ID${comment.User.id}ID${session.id}` src='/img/coin.png' width='20px' class='coinimg') 
+                    .cECoinCnt(id=`cntID${comment.id}ID${comment.User.id}ID${session.id}`)= `${sum[`${comment.id}`]}`
+
                 .cEMid
                 .cERight
-
                 script(src="/javascripts/coinSound.js" type="module") 
                 script(src="/javascripts/coin-story.js" type="module")
