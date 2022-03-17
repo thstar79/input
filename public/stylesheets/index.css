@@ -28,9 +28,7 @@ p {
     width: 95%;
 }
 .storyBoxWrapper {
-    width: 80%;
-    overflow: hidden;
-    margin-left: 50px;
+    margin-left: 20px;
 }
 
 .bodyWrapper {
