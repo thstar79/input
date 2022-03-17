@@ -50,3 +50,5 @@ block content
                   button(class='edit-submit-btn' id=`edit-btn-${coin.Comment.id}`) Submit Edit
                 
                 button.pushable(class='comment-delete-btn' id=`deleteId${coin.Comment.id}`) Delete
+              .CoinBox(class='refresh-button')
+                button(class='coin-btn' id=`coin-${coin.Comment.id}`)=`${coin.count}`
