@@ -86,12 +86,15 @@ router.get(
                 storyId: storyId,
             }
         });
-        const userStoryCoinsCount = await db.StoryCoin.sum('count', {
-            where: { userId: res.locals.user.id}
-        })
-        if (!userStoryCoinsCount) {
-            let userStoryCoinsCount = 0
-        } 
+        let userStoryCoinsCount;
+        if (req.session.auth) {
+            const { userId } = req.session.auth;
+            userStoryCoinsCount = await db.StoryCoin.sum('count', {
+                where: { userId: userId}
+            })
+        } else {
+            userStoryCoinsCount = 0
+        }
 
         res.render("story-detail", {
             title: "Detailed Story",
