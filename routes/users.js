@@ -121,7 +121,7 @@ router.post(
 
             await user.save();
             loginUser(req, res, user);
-            res.redirect("/");
+            res.redirect("/stories");
         } else {
             const errors = validationErrors.array().map((error) => error.msg);
             res.render("user-register", {
@@ -171,7 +171,7 @@ router.post(
                 );
                 if (passwordMatch) {
                     loginUser(req, res, user);
-                    res.redirect("/");
+                    res.redirect("/stories");
                 }
             }
             errors.push(
@@ -195,7 +195,7 @@ router.get("/users/login/demo", async(req, res) => {
         id : 2
     }
     loginUser(req, res, user);
-    res.redirect("/");
+    res.redirect("/stories");
 })
 
 
