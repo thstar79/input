@@ -6,6 +6,10 @@ const { csrfProtection, asyncHandler } = require("./utils");
 
 const { requireAuth } = require("../auth");
 
+router.get('/test', (req,res) => {
+    res.render('test')
+})
+
 router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
