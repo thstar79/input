@@ -9,7 +9,7 @@ block content
   .containerBoxWrapper
     .containerBox
       .headerBox
-        img(src='/img/usericon.png' width='100px')
+        img(src=`/img/users/user${story.userId}.png` width='100px')
         a(href='#') #{story.topicType}
       .storyContentBox
         h2=story.title
@@ -51,7 +51,6 @@ block content
         .commentList1(id='comment-list')
           each comment in comments
             .commentBox(id=`comment-box-${comment.id}`)
-
               .commentBoxContent
                 .profile
                   img(src=`/img/users/user${comment.User.id}.png` width='50px')
@@ -60,7 +59,6 @@ block content
                   p(id=`comment-content-${comment.id}`)=comment.comment
                   //p(id=`comment-content-${comment.id}`)='asdf'
               .editDelButtonBox(class='refresh-button')
-
                 button.pushable(class='comment-edit-btn' id=`editID${comment.id}ID${comment.User.id}ID${session.id}`) Edit
                 form(class='hidden' id=`edit-form-${comment.id}`)
                   input(type='hidden' name='_csrf' value=csrfToken)
@@ -75,7 +73,6 @@ block content
                     .cECoinImg(id=`coinID${comment.id}ID${comment.User.id}ID${session.id}` class='coin-btn')
                       img(id=`coinID${comment.id}ID${comment.User.id}ID${session.id}` src='/img/coin.png' width='20px' class='coinimg') 
                     .cECoinCnt(id=`cntID${comment.id}ID${comment.User.id}ID${session.id}`)= `${sum[`${comment.id}`]}`
-
                 .cEMid
                 .cERight
                 script(src="/javascripts/coinSound.js" type="module") 

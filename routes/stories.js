@@ -55,7 +55,7 @@ router.get(
             include: [{
                     model: db.Comment,
                     where: {
-                        id: storyId,
+                        storyId: storyId,
                     },
                 },
                 {
@@ -73,7 +73,7 @@ router.get(
                 sum[coins[i].Comment.id] += coins[i].count;
             }
         }
-
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~",coins.length,sum,"~~~~~~~~~~~~~~~~~~~~~~~~");
         for(let i=0;i<comments.length;++i){
             const comment = comments[i];
             let split = comment.comment.split('!@#');
@@ -99,7 +99,6 @@ router.get(
         res.render("story-detail", {
             title: "Detailed Story",
             story,
-
             comments,
             sum: sum,
             session: {id:userId},
