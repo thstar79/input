@@ -5,19 +5,52 @@ const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
 const { requireAuth } = require("../auth");
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 
 router.get('/test', (req,res) => {
     res.render('test')
 })
 
 router.get(
+    "/stories",
+    csrfProtection,
+    asyncHandler(async (req, res) => {
+        const stories = await db.Story.findAll({
+            include: [db.User, db.Game],
+        });
+        res.render("index", { title: "Stories List", stories });
+    })
+
+);
+
+router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
-    asyncHandler(async(req, res) => {
+    asyncHandler(async (req, res) => {
+        const {userId} = req.session.auth;
+        if(userId === null) userId = '-1';
+
         const storyId = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(storyId, {
             include: [db.User, db.Game],
         });
+
+        const comments = await db.Comment.findAll({
+            where: {
+                storyId : storyId,
+            }
+        });
+
+        // const followStories = await db.User.findByPk(userId, {
+        //     include: [{
+        //       model: db.User,
+        //       as: 'followings',
+        //       include: db.Story
+        //     }]
+        //   })
+
         const coins = await db.CommentCoin.findAll({
             include: [{
                     model: db.Comment,
@@ -30,11 +63,47 @@ router.get(
                 },
             ],
         });
+        const sum = {};
+
+        for(let i=0;i<coins.length;++i){
+            if(sum[coins[i].Comment.id] === undefined){
+                sum[coins[i].Comment.id] = coins[i].count;
+            }
+            else{
+                sum[coins[i].Comment.id] += coins[i].count;
+            }
+        }
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~",coins.length,sum,"~~~~~~~~~~~~~~~~~~~~~~~~");
+        for(let i=0;i<comments.length;++i){
+            const comment = comments[i];
+            let split = comment.comment.split('!@#');
+            comment.User = await db.User.findByPk(split[1]);
+            comment.comment = split[2];
+        }
+
+        const storyCoinsCount = await db.StoryCoin.sum('count', {
+            where: {
+                storyId: storyId,
+            }
+        });
+        let userStoryCoinsCount;
+        if (req.session.auth) {
+            const { userId } = req.session.auth;
+            userStoryCoinsCount = await db.StoryCoin.sum('count', {
+                where: { userId: userId}
+            })
+        } else {
+            userStoryCoinsCount = 0
+        }
 
         res.render("story-detail", {
             title: "Detailed Story",
             story,
-            coins,
+            comments,
+            sum: sum,
+            session: {id:userId},
+            storyCoinsCount,
+            userStoryCoinsCount,
             csrfToken: req.csrfToken(),
         });
     })
@@ -79,25 +148,36 @@ router.post(
     storyValidator,
     asyncHandler(async(req, res) => {
         const { title, content, topicType, gameId, gameTitle } = req.body;
+        const { userId } = req.session.auth;
         let story = db.Story.build({
             title,
             content,
             topicType,
             gameId,
-            userId: res.locals.user.id,
+            userId,
         });
 
         const validatorErrors = validationResult(req);
 
         if (validatorErrors.isEmpty()) {
             await story.save();
-            //   let story =  await db.Story.findOne({
-            //     //sort by the lastest created limit 1
-            // })
-            // // query for story we just created -> pull id from it
-            // // build StoryCoin.build({
-            //   story:id
-            // })
+
+            let newStory =  await db.Story.findOne({
+                where: {
+                   [Op.and]: [
+                       { title: title },
+                       { content: content }
+                   ] 
+                }
+            })
+
+            const coin = db.StoryCoin.build({
+                count: 0,
+                storyId: newStory.id,
+                userId: userId,
+            });
+            await coin.save();
+               
             res.redirect("/");
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
@@ -197,5 +277,6 @@ router.post(
         }
     })
 );
+
 
 module.exports = router;
