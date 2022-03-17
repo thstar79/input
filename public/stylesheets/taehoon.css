@@ -13,3 +13,17 @@
 .topProfileMain{
 
 }
+
+.commentExtra{
+    display:flex;
+    flex-direction:row;
+}
+.cECoin{
+    display:flex;
+    flex-direction:row;
+    justify-content: start;
+}
+.cECoinImg.coin-btn{
+    width:100px;
+    cursor: grab;
+}

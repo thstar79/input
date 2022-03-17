@@ -58,8 +58,15 @@ block content
                   label(for="content") Comment:
                   input(type="text" name='content' value=coin.Comment.comment id=`comment-field-${coin.Comment.id}`)
                   button(class='edit-submit-btn' id=`edit-btn-${coin.Comment.id}`) Submit Edit
-
                 button.pushable(class='comment-delete-btn' id=`deleteId${coin.Comment.id}`)
                   span.shadow
                   span.edge
                   span.front Delete
+              .commentExtra(class='refresh-button')
+                .cELeft
+                  .cECoin
+                    .cECoinImg(id=`coin-${coin.Comment.id}` class='coin-btn')
+                      img(id=`coin-${coin.Comment.id}` src='/img/coin.png' width='20px')
+                    .cECoinCnt(id=`coin-count-${coin.Comment.id}`)=`${coin.count}`
+                .cEMid
+                .cERight
