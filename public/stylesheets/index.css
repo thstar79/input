@@ -36,6 +36,7 @@ p {
 .storyBoxWrapper {
     width: 80%;
     overflow: hidden;
+    margin-left: 50px;
 }
 
 .bodyWrapper {
@@ -45,17 +46,29 @@ p {
 
 .storyBoxHeader  {
  display:flex;
- align-items: center;
+ justify-content: space-between;
  padding-top: 20px;
-
 }
+
+.storyBoxHeaderProfile  {
+    display:flex;
+    align-items: center;
+    font-size: 13px;
+   }
+   
 
 .storyBoxContent {
     display: flex;
 }
 
-.storyBoxContentTextBox {
-
+.storyBoxContentImgBox {
+    width: 140px;
+    height: 140px;
+    border: solid white 2px;
+    box-shadow: 5px 5px 2px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .storyBoxFooter  {

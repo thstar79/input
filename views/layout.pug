@@ -7,6 +7,7 @@ html
         link(rel='stylesheet' href='/stylesheets/index.css')
         link(rel='stylesheet' href='/stylesheets/styles.css')
         link(rel='stylesheet' href='/stylesheets/button.css')
+        link(rel='stylesheet' href='/stylesheets/tooltip.css')
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
         script(src='/javascripts/index.js')
         script(src="/javascripts/create_comment.js" type="module") 
@@ -106,4 +107,9 @@ html
                         a(href="#") Follow
                         a(href="#") Link2 
                         a(href="#") Link3
-                  
+                  .dropdown
+                    button#dropbtn Dropdown
+                    .dropdown-content
+                      a(href="#") Link 1
+                      a(href="#") Link 2
+                      a(href="#") Link 3
