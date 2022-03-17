@@ -219,24 +219,24 @@ a {
 #userProfileBoxWrapper {
     padding: 10px 0px 10px 0;
 }
-#userProfileDetailBox {
+.userProfileDetailBox {
     margin: 10px 0px 10px 0;
     background-color: rgb(250, 250, 250);
     border-radius: 10px;
     box-shadow: 5px 5px 3px rgb(216, 216, 216);
 }
 
-#userProfileMain {
+.userProfileMain {
     display: flex;
 }
 #userProfileFooter {
     display: flex;
     justify-content: flex-end;
 }
-#userProfieImageBox {
+.userProfieImageBox {
     margin-left: 25px;
 }
-#userProfileContentBox {
+.userProfileContentBox {
     width: 220px;
     font-size: 12px;
 }
