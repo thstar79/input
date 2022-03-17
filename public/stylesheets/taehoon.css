@@ -1,0 +1,15 @@
+#main{
+    display:flex;
+    flex-direction:column;
+}
+
+#topBoxWrpper{
+    display: flex;
+    justify-content: start;
+}
+.topProfileDetailBox{
+}
+
+.topProfileMain{
+
+}

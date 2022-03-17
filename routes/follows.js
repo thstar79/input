@@ -8,6 +8,16 @@ const { csrfProtection, asyncHandler } = require("./utils");
 const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
 
 
+router.get('/follows', asyncHandler(async (req,res)=>{
+    const { userId } = req.session.auth;
+    const follows = await db.Follow.findAll({
+        where: {
+            follower: userId, 
+        }
+    });
+    res.json({follows});
+}));
+
 router.post('/follows', asyncHandler(async (req,res)=>{
     const { userId } = req.session.auth;
     const { userId1 } = req.body;
@@ -29,6 +39,7 @@ router.post('/follows', asyncHandler(async (req,res)=>{
         
         await follow.save();
     }
+    res.json({message:"Success"});
 }));
 
 

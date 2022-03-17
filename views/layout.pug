@@ -8,6 +8,7 @@ html
         link(rel='stylesheet' href='/stylesheets/styles.css')
         link(rel='stylesheet' href='/stylesheets/button.css')
         link(rel='stylesheet' href='/stylesheets/tooltip.css')
+        link(rel='stylesheet' href='/stylesheets/taehoon.css')
         link(rel='stylesheet' href='/stylesheets/test.css')
         link(rel="preconnect" href="https://fonts.googleapis.com")
         link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
@@ -34,8 +35,11 @@ html
                 #login-status-box
                     a(href="/users/register" id="menu-link"): img(id="menu-icon5" src='/img/loginicon.gif')
         #main
-            #content-box
-                block content
+          #topBoxWrpper
+          //- #top-content-box 
+          //-   block content-top
+          #content-box
+            block content
         #mainside
             #side-content-box
               if locals.authenticated
