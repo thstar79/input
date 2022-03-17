@@ -28,11 +28,29 @@ router.get(
 router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
-    asyncHandler(async(req, res) => {
+    asyncHandler(async (req, res) => {
+        const {userId} = req.session.auth;
+        if(userId === null) userId = '-1';
+
         const storyId = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(storyId, {
             include: [db.User, db.Game],
         });
+
+        const comments = await db.Comment.findAll({
+            where: {
+                storyId : storyId,
+            }
+        });
+
+        // const followStories = await db.User.findByPk(userId, {
+        //     include: [{
+        //       model: db.User,
+        //       as: 'followings',
+        //       include: db.Story
+        //     }]
+        //   })
+
         const coins = await db.CommentCoin.findAll({
             include: [{
                     model: db.Comment,
@@ -45,6 +63,23 @@ router.get(
                 },
             ],
         });
+        const sum = {};
+
+        for(let i=0;i<coins.length;++i){
+            if(sum[coins[i].Comment.id] === undefined){
+                sum[coins[i].Comment.id] = coins[i].count;
+            }
+            else{
+                sum[coins[i].Comment.id] += coins[i].count;
+            }
+        }
+
+        for(let i=0;i<comments.length;++i){
+            const comment = comments[i];
+            let split = comment.comment.split('!@#');
+            comment.User = await db.User.findByPk(split[1]);
+            comment.comment = split[2];
+        }
 
         const storyCoinsCount = await db.StoryCoin.sum('count', {
             where: {
@@ -61,7 +96,10 @@ router.get(
         res.render("story-detail", {
             title: "Detailed Story",
             story,
-            coins,
+
+            comments,
+            sum: sum,
+            session: {id:userId},
             storyCoinsCount,
             userStoryCoinsCount,
             csrfToken: req.csrfToken(),
