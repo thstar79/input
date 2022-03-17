@@ -14,27 +14,40 @@ router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
     asyncHandler(async(req, res) => {
+        const {userId} = req.session.auth;
         const storyId = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(storyId, {
             include: [db.User, db.Game],
         });
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         const coins = await db.CommentCoin.findAll({
             include: [{
                     model: db.Comment,
-                    where: {
-                        storyId: storyId,
-                    },
+                    include: {
+                        model: db.User,
+                    }
+                    // where: {
+                    //     storyId: storyId,
+                    // },
                 },
-                {
-                    model: db.User,
-                },
+                // {
+                //     model: db.User,
+                // },
             ],
         });
+        console.log("Please.......................", coins[0].Comment.User,"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+        let sum = 0;
+        for(let i=0;i<coins.length;++i){
+            sum += coins[i].count;
+        }
 
         res.render("story-detail", {
             title: "Detailed Story",
             story,
             coins,
+            sum: sum,
+            session: {id:userId},
             csrfToken: req.csrfToken(),
         });
     })

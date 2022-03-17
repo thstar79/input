@@ -138,32 +138,62 @@ router.delete('/comments/:id(\\d+)', async(req, res) => {
 
 router.patch('/comments/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
     const id = parseInt(req.params.id,10);
-    const coin = await db.CommentCoin.findOne({
+    let flag = 3;
+    const coin_limit = 50;
+
+    const {userId} = req.session.auth;
+    const userCoin = await db.CommentCoin.findOne({
+        where: {
+            commentId: id,
+            userId: userId,
+        }
+    });
+
+    if(userCoin){
+        if(userCoin.count < coin_limit){
+            userCoin.count++;
+            await userCoin.save();
+            flag = 1;
+        }
+        else{
+            flag = 2;
+        }
+    }
+    else{// create record for commentCoin table
+        const newRecord = await db.CommentCoin.create({
+            count: 1,
+            commentId: id,
+            userId: userId,
+        });
+        flag = 1;
+    }
+
+    let coin_sum = 0;
+    const coins = await db.CommentCoin.findAll({
         where: {
             commentId: id,
         }
     });
-    const coin_limit = 50;
+    
+    for(let i=0;i<coins.length;++i) coin_sum += coins[i].count;
 
-    if(coin){
-        if(coin.count < coin_limit){
-            coin.count++;
-            await coin.save();
-            res.json({message: "Success", coin});
-        }
-        else{
+    switch(flag) {
+        case 1:
+            res.json({message: "Success", sum:coin_sum});
+            break;
+        case 2:
             res.json({message: "Max"});
-        }
-    }
-    else{
-        res.json({message: "Could not find coin please try again"});
+            break;
+        default: 
+            res.json({message: "Could not find coin please try again"});
+            break;
     }
 }));
 
 router.patch('/comments/:id(\\d+)', async(req, res) => {
     const id = parseInt(req.params.id,10);
     const comment = await db.Comment.findByPk(id)
-
+    
     if (comment) {
         comment.comment = req.body.comment;
         await comment.save();

@@ -16,7 +16,7 @@ for (let i = 0; i < coinBtns.length; i++) {
         // if we get a Success response, the original post element should be updated
         if (returnData.message === "Success") {
             const coin = document.getElementById(`coin-count-${commentId}`);
-            coin.innerText = returnData.coin.count;
+            coin.innerText = returnData.sum;
         }
     })
 }
