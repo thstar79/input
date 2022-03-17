@@ -1,7 +1,5 @@
-console.log('hello from edit')
-
 const editBtns = document.querySelectorAll('.comment-edit-btn')
-console.log(editBtns.length);
+
 for (let i = 0; i < editBtns.length; i++) {
     const btn = editBtns[i];
     btn.addEventListener('click', async (e) => {
