@@ -26,6 +26,15 @@ block content
           span.edge
           span.front
             a(href=`/stories/delete/${story.id}`) Delete
+      .coinBox 
+         img(src='/img/coin.png' width='100px')
+         button.pushable
+              span.shadow
+              span.edge
+              span.front
+                a(id=`storyCoin-${story.id}` class='storyCoinImg' href=``) coin
+         p(id='storyCoinText')=storyCoinsCount
+         p(id='userStoryCoinText')=userStoryCoinsCount      
       .commentBoxWrapper
         .commentList
           .commentFormBox
@@ -66,5 +75,5 @@ block content
                     .cECoinCnt(id=`cntID${comment.id}ID${comment.User.id}ID${session.id}`)= `${sum[`${comment.id}`]}`
                 .cEMid
                 .cERight
-
                 script(src="/javascripts/coinSound.js" type="module") 
+                script(src="/javascripts/coin-story.js" type="module")

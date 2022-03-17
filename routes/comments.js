@@ -9,10 +9,10 @@ const salt = "!@#";
 router.get(  
     "/comments",
     asyncHandler(async (req, res) => {
-        const comments = await db.Comment.findAll({
+        const comments = await db.Follow.findAll({
             include: {
-                model: db.Story,
-                include: [db.User, db.Game],
+                model: db.User,
+                include: [db.Story],
             },
         });
         res.render("comment-list", {
