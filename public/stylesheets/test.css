@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+
+.loginbuttonbox {
+    position: relative;
+    left:150px;
+}
+
+#email, #password  {
+    background-color : rgba(138, 172, 15, 0.815);
+}
+
+
 #container {
     display: flex;
     flex-direction: column;
@@ -7,6 +18,7 @@
 }
 
 #top {
+    border: solid black 7px;
     position:relative;
     left: -5px;
     width:550px;
@@ -23,14 +35,13 @@
     font-size: 40px;
     font-weight: bold;
 }
-
 #toptwo{
     position:relative;
     left: -5px;
     width:550px;
     height:50px;
     background-color: black;
-    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+    clip-path: polygon(0 0, 100% 0, 97.5% 100%, 2.5% 100%);
 }
 #mainContainer {
     position:relative;
@@ -44,11 +55,15 @@
 }
 
 #screenContainer {
+    border: solid black 10px;
     width: 85%;
     height: 300px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(138, 172, 15, 0.815);
+    overflow:hidden;
+    padding: 0 10px 0 10px;
 }
 #controller {
+    border-top: solid black 7px;
     position:relative;
     left: -5px;
     width:620px;
@@ -69,3 +84,33 @@
     clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
 }
 
+
+
+.mario{
+    position: absolute;
+    width: 71px;
+    height: 72px;
+    background: url('https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/mariowalking/result.png') left center;    
+    top:250px;
+    left:0px;
+    
+    -webkit-animation: play 0.8s steps(4) infinite,
+                run 2s both infinite linear;
+    
+            animation: play 0.8s steps(4) infinite,
+                run 2s both infinite linear;
+}
+@-webkit-keyframes play{
+    100%{background-position: -284px;}
+}
+@keyframes play{
+    100%{background-position: -284px;}
+}
+@-webkit-keyframes run{
+    from{left: 50px;}
+    to{left: 75%;}
+}
+@keyframes run{
+    from{left: 50px;}
+    to{left:75%;}
+}
