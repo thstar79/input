@@ -8,31 +8,36 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 router.get('/stories/coins/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-    let coins = await db.StoryCoin.sum('count',{
+    let count = await db.StoryCoin.sum('count',{
         where: 
          { storyId: req.params.id } 
     })
-    res.json({coins});
-    /// we can count all the coins belonging to a story!
-    /// DO STUFF BELOW THIS
-
+    res.json({count});
 
 }));
 
+router.get('/stories/coins/user/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+    let count = await db.StoryCoin.sum('count',{
+        where:{
+            [Op.and]: [
+                { storyId: req.params.id },
+                { userId: res.locals.user.id }
+            ] 
+        } 
+    })
+    res.json({count});
+}));
 
-// router.post('/coins/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-//     let coins = await db.StoryCoin.sum('count',{
-//         where: {
-//             [Op.and]: [
-//                 { storyId: req.params.id },
-//                 { userId: res.locals.user.id }
-//             ] 
-//         }
-//     })
 
-//     //// able to get indiv users coin count.
-//     /// now to add or give max 50 restriction with conditionals
-// }));
+router.post('/stories/coins/:id(\\d+)', asyncHandler(async (req, res) => {
+    let coin = db.StoryCoin.build({
+        count:1,
+        storyId: req.params.id,
+        userId: res.locals.user.id
+    })   
+    await coin.save();
+
+}));
 
 router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
     const storyId = parseInt(req.params.id,10);
