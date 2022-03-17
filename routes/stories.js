@@ -1,0 +1,282 @@
+const express = require("express");
+const { check, validationResult } = require("express-validator");
+const router = express.Router();
+const db = require("../db/models");
+const { csrfProtection, asyncHandler } = require("./utils");
+
+const { requireAuth } = require("../auth");
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
+
+router.get('/test', (req,res) => {
+    res.render('test')
+})
+
+router.get(
+    "/stories",
+    csrfProtection,
+    asyncHandler(async (req, res) => {
+        const stories = await db.Story.findAll({
+            include: [db.User, db.Game],
+        });
+        res.render("index", { title: "Stories List", stories });
+    })
+
+);
+
+router.get(
+    "/stories/:id(\\d+)",
+    csrfProtection,
+    asyncHandler(async (req, res) => {
+        const {userId} = req.session.auth;
+        if(userId === null) userId = '-1';
+
+        const storyId = parseInt(req.params.id, 10);
+        const story = await db.Story.findByPk(storyId, {
+            include: [db.User, db.Game],
+        });
+
+        const comments = await db.Comment.findAll({
+            where: {
+                storyId : storyId,
+            }
+        });
+
+        // const followStories = await db.User.findByPk(userId, {
+        //     include: [{
+        //       model: db.User,
+        //       as: 'followings',
+        //       include: db.Story
+        //     }]
+        //   })
+
+        const coins = await db.CommentCoin.findAll({
+            include: [{
+                    model: db.Comment,
+                    where: {
+                        storyId: storyId,
+                    },
+                },
+                {
+                    model: db.User,
+                },
+            ],
+        });
+        const sum = {};
+
+        for(let i=0;i<coins.length;++i){
+            if(sum[coins[i].Comment.id] === undefined){
+                sum[coins[i].Comment.id] = coins[i].count;
+            }
+            else{
+                sum[coins[i].Comment.id] += coins[i].count;
+            }
+        }
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~",coins.length,sum,"~~~~~~~~~~~~~~~~~~~~~~~~");
+        for(let i=0;i<comments.length;++i){
+            const comment = comments[i];
+            let split = comment.comment.split('!@#');
+            comment.User = await db.User.findByPk(split[1]);
+            comment.comment = split[2];
+        }
+
+        const storyCoinsCount = await db.StoryCoin.sum('count', {
+            where: {
+                storyId: storyId,
+            }
+        });
+        let userStoryCoinsCount;
+        if (req.session.auth) {
+            const { userId } = req.session.auth;
+            userStoryCoinsCount = await db.StoryCoin.sum('count', {
+                where: { userId: userId}
+            })
+        } else {
+            userStoryCoinsCount = 0
+        }
+
+        res.render("story-detail", {
+            title: "Detailed Story",
+            story,
+            comments,
+            sum: sum,
+            session: {id:userId},
+            storyCoinsCount,
+            userStoryCoinsCount,
+            csrfToken: req.csrfToken(),
+        });
+    })
+);
+
+const storyValidator = [
+    check("title")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Title")
+    .isLength({ max: 50 })
+    .withMessage("Title must not be more than 50 characters long"),
+    check("content")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Content"),
+    check("topicType")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for Topic Type")
+    .isLength({ max: 50 })
+    .withMessage("Topic Type must not be more than 50 characters long"),
+];
+
+router.get(
+    "/stories/new",
+    csrfProtection,
+    requireAuth,
+    asyncHandler(async(req, res) => {
+        const story = db.Story.build();
+        const games = await db.Game.findAll();
+        res.render("story-new", {
+            title: "Write a new Story",
+            story,
+            games,
+            csrfToken: req.csrfToken(),
+        });
+    })
+);
+
+router.post(
+    "/stories/new",
+    csrfProtection,
+    requireAuth,
+    storyValidator,
+    asyncHandler(async(req, res) => {
+        const { title, content, topicType, gameId, gameTitle } = req.body;
+        const { userId } = req.session.auth;
+        let story = db.Story.build({
+            title,
+            content,
+            topicType,
+            gameId,
+            userId,
+        });
+
+        const validatorErrors = validationResult(req);
+
+        if (validatorErrors.isEmpty()) {
+            await story.save();
+
+            let newStory =  await db.Story.findOne({
+                where: {
+                   [Op.and]: [
+                       { title: title },
+                       { content: content }
+                   ] 
+                }
+            })
+
+            const coin = db.StoryCoin.build({
+                count: 0,
+                storyId: newStory.id,
+                userId: userId,
+            });
+            await coin.save();
+               
+            res.redirect("/");
+        } else {
+            const errors = validatorErrors.array().map((error) => error.msg);
+            const games = await db.Game.findAll();
+            res.render("story-new", {
+                title: "Write a Story",
+                games,
+                story,
+                errors,
+                csrfToken: req.csrfToken(),
+            });
+        }
+    })
+);
+
+router.get(
+    "/stories/edit/:id(\\d+)",
+    csrfProtection,
+    requireAuth,
+    asyncHandler(async(req, res) => {
+        const storyId = parseInt(req.params.id, 10);
+        const story = await db.Story.findByPk(storyId);
+        if (story.userId === res.locals.user.id) {
+            const games = await db.Game.findAll();
+            res.render("story-edit", {
+                title: "Edit Story",
+                story,
+                games,
+                csrfToken: req.csrfToken(),
+            });
+        } else {
+            res.send(
+                "this story does not belong to you, you do not have permission to edit."
+            );
+        }
+    })
+);
+
+router.post(
+    "/stories/edit/:id(\\d+)",
+    csrfProtection,
+    requireAuth,
+    storyValidator,
+    asyncHandler(async(req, res) => {
+        const storyId = parseInt(req.params.id, 10);
+        const storyToUpdate = await db.Story.findByPk(storyId);
+
+        const { title, content, topicType, userId, gameId } = req.body;
+        const story = { title, content, topicType, userId, gameId };
+
+        const validatorErrors = validationResult(req);
+
+        if (validatorErrors.isEmpty()) {
+            await storyToUpdate.update(story);
+            res.redirect(`/stories/${storyId}`);
+        } else {
+            const errors = validatorErrors.array().map((error) => error.msg);
+            res.render("story-edit", {
+                title: "Edit Story",
+                story: {...story, id: storyId },
+                errors,
+                csrfToken: req.csrfToken(),
+            });
+        }
+    })
+);
+
+router.get(
+    "/stories/delete/:id(\\d+)",
+    csrfProtection,
+    asyncHandler(async(req, res) => {
+        const id = parseInt(req.params.id, 10);
+
+        const story = await db.Story.findByPk(id);
+        res.render("story-delete", {
+            title: "Delete this Story???",
+            story,
+            csrfToken: req.csrfToken(),
+        });
+    })
+);
+
+router.post(
+    "/stories/delete/:id(\\d+)",
+    requireAuth,
+    asyncHandler(async(req, res) => {
+        const id = parseInt(req.params.id, 10);
+        const story = await db.Story.findByPk(id);
+
+        //current story id !== authed user id
+        if (story.userId !== res.locals.user.id) {
+            res.send("You do not have permissions to delete this story");
+        } else {
+            await story.destroy();
+
+            res.redirect("/");
+        }
+    })
+);
+
+
+module.exports = router;
