@@ -1,10 +1,12 @@
 
 window.onload = async function(){
+    
+    //for the right hand side follow recommendation
     const wrapper = document.getElementById('userProfileBoxWrapper');
     const numPeople = 5;
     const res = await fetch(`/users/random/${numPeople}`);
     const returnData = await res.json();
-    for(let i=0;i<numPeople;++i){
+    for(let i=0;i<returnData.users.length;++i){
         const id = returnData.users[i].id;
         const box = document.createElement('div');
         const profile = document.createElement('div');
@@ -33,15 +35,60 @@ window.onload = async function(){
         profile.appendChild(btn);
     }
 
+    //for the content-top
+    const wrapper1 = document.getElementById('topBoxWrpper');
+    const res1 = await fetch(`/follows`);
+    const returnData1 = await res1.json();
+    for(let i=0;i<returnData1.follows.length;++i){
+        const id = returnData1.follows[i].followee;
+        const box = document.createElement('div');
+        const profile = document.createElement('div');
+        const pImg = document.createElement('div');
+        
+        box.setAttribute('id', `topProfileDetail${id}`);
+        box.setAttribute('class','topProfileDetailBox');
+        profile.setAttribute('id', `topProfile${id}`);
+        profile.setAttribute('class','topProfileMain');
+        pImg.setAttribute('id',`topProfileImg${id}`);
+        pImg.setAttribute('class','topProfieImageBox');
+        
+        pImg.innerHTML= `<img src='/img/users/user${id}.png' width='75px'>`;
+
+        wrapper1.appendChild(box);
+        box.appendChild(profile);
+        profile.appendChild(pImg);
+    }
+
+    function reload(){
+        const container = document.getElementById('topBoxWrpper');
+        const content = container.innerHTML;
+        container.innerHTML= content; 
+        console.log("Refreshed"); 
+    }
+
+    //add follow to the database
     const fbtns = document.getElementsByClassName('followBtn');
 
-    for(let i=0;i<fbtns;++i){
+    for(let i=0;i<fbtns.length;++i){
         const fbtn = fbtns[i];
         fbtn.addEventListener('click',async (e) => {
             e.stopPropagation();
-            const id=e.target.id.split('followBtn')[1];
-    
+            const id=e.target.id.split('followBtn')[1];//follower = current user, followee= this id
+            const res = await fetch('/follows',{
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userId1: id,
+                }),
+            });
+            const returnData = await res.json()
+            if (returnData.message === "Success") {
+                const container = document.getElementById('topBoxWrpper');
+                const content = container.innerHTML;
+                container.innerHTML= content; 
+            }
         });
     }
-    
 }
