@@ -1,5 +1,4 @@
 const deleteBtns = document.querySelectorAll('.comment-delete-btn');
-console.log(deleteBtns.length);
 for (let i = 0; i < deleteBtns.length; i++) {
     const btn = deleteBtns[i];
     btn.addEventListener('click', async(e) => {
