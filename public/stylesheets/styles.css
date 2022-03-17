@@ -160,7 +160,9 @@ a {
     }
 }
 
-
+#content-box {
+    width:80%;
+}
 .containerBoxWrapper {
     display: flex;
     align-items: center;
@@ -255,18 +257,22 @@ a {
     font-size: 12px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
     #nav {
         margin-left: 0px;
     }
-    .storyBoxWrapper {
-        border-bottom:  lightgrey 0.5px solid;
-    }
     #mainside {
+        width: 0px;
         visibility: hidden;
+    }
+    #main {
+        width: 100%;
     }
     
 }
 
-@media (min-width: 60em) {
+@media (min-width: 900px) {
+    .storyBox {
+        width: 80%;
+    }
 }
