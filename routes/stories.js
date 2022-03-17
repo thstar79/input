@@ -187,6 +187,7 @@ router.post(
     asyncHandler(async(req, res) => {
         const id = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(id);
+
         //current story id !== authed user id
         if (story.dataValues.id !== req.session.auth.userId) {
             res.send("You do not have permissions to delete this story");
