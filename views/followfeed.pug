@@ -1,19 +1,18 @@
 extends layout.pug
 
 append head
-  //- add page specific styles by appending to the head
-  //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
+    script(src="/javascripts/index.js" type="module" defer)
 
 block content
     h1= title
+    //- each follower in Stories
     each story in stories
       div(class="storyBoxWrapper" id=`storyId${story.id}`)
         .storyBox
           .storyBoxHeader
             .storyBoxHeaderProfile
               img(src='/img/usericon.png' height='20px')
-              p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
+              //- p(id="userNameText")=`${story.firstName} ${story.lastName}`
             .storyBoxHeaderMenu
               .dropdown
                 i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
@@ -28,4 +27,4 @@ block content
               img(src=`/img/gameimg/game${story.gameId}.png` height='120px')
           .storyBoxFooter
             a(id='topic-link' href="#")=story.topicType
-            a(id='game-link' href="#")=story.Game.title
+            a(id='game-link' href="#")=story.title
