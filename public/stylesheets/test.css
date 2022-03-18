@@ -129,3 +129,31 @@
     from{left: 50px;}
     to{left:75%;}
 }
+
+
+
+#storyCoinSpinImage {
+	transform: rotateY(45deg);
+	animation: rotateAnimation 0.5s linear infinite;
+}
+
+@keyframes rotateAnimation {
+	from {transform: rotateY(45deg);}
+	to {transform: rotateY(225deg);}
+}
+
+#topBoxWrpper {
+    width: 700px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 10px;
+    border: solid 3px rgb(146, 146, 146);
+    box-shadow: 5px 5px 2.5px rgb(59, 59, 59);
+    margin-bottom: 25px;
+}
+
+.topProfileDetailBox {
+    margin-left: 10px
+}
+.topProfieImageBox {
+    margin: 5px 5px 5px 0px
+}

@@ -11,8 +11,8 @@ block content
         .storyBox
           .storyBoxHeader
             .storyBoxHeaderProfile
-              img(src='/img/usericon.png' height='20px')
-              //- p(id="userNameText")=`${story.firstName} ${story.lastName}`
+              img(src=`/img/users/user${story.User.id}.png` height='20px')
+              p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
             .storyBoxHeaderMenu
               .dropdown
                 i(class="fa fa-bars" aria-hidden="true" id='dropbtn')

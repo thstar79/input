@@ -9,7 +9,6 @@ const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
 const user = require("../db/models/user");
 const follow = require("../db/models/follow");
 
-
 router.get('/follows', asyncHandler(async (req,res)=>{
     const { userId } = req.session.auth;
     const follows = await db.Follow.findAll({
@@ -56,15 +55,12 @@ router.get('/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
         }]
       })
 
-    //   console.log(followStories)
-
-
     for(let i = 0; i < followStories.followings.length; i++) {
-      stories.push(...followStories.followings[i].Stories)
+        for(let j=0; j < followStories.followings[i].Stories.length; ++j){
+            followStories.followings[i].Stories[j].User = followStories.followings[i];
+            stories.push(followStories.followings[i].Stories[j]);
+        }
     }
-
-
-    console.log(stories)
 
     res.render('followfeed', {
         title: 'Follower Feed',
