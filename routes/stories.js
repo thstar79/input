@@ -35,7 +35,7 @@ router.get(
             userId = req.session.auth.userId;
         }
         else{
-            const userId = '-1';
+            userId = '-1';
         }
         
         const storyId = parseInt(req.params.id, 10);

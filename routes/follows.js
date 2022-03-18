@@ -68,5 +68,25 @@ router.get('/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
     })
 }));
 
+router.post('/follows/isfollow', asyncHandler(async (req,res)=>{
+    let userId;
+    if(req.session.auth){
+        userId = req.session.auth.userId;
+    }
+    else{
+        userId = '-1';
+    }
+    const {followee} = req.body;
+    const record = await db.Follow.findAll({
+        where: {
+            follower: userId,
+            followee: followee
+        }
+    });
+    let isfollow;
+    if(record.length === 1)  isfollow=1;
+    else    isfollow=0;
+    res.json({isfollow:isfollow});
+}));
 
 module.exports = router;

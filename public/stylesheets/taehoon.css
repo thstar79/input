@@ -28,25 +28,26 @@
     cursor: grab;
 }
 
-/* button {
+.followBtn {
     background: blue;
     border: none;
     padding: 5px 10px;
     color: whitesmoke;
-    width: 120px;
+    width: 60px;
     border-radius: 5px;
     transition: all .3s ease-in;
+    font-size: 10px;
 }
   
-button:active {
+.followBtn:active {
     outline: none;
 }
   
-button:visited {
+.followBtn:visited {
     outline: none;
 }
   
 .unfollow {
     background: red;
     color: white;
-} */
+}
