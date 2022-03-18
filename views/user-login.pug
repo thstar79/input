@@ -9,19 +9,20 @@ block content
         #mainContainer 
             #screenContainer
                 .loginBox
-                    h1(id="loginTitle")=title
+                    .typewriter
+                      h1(id="loginTitle")=title
                     +validationErrorSummary(errors)
                     form(action='' method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
                         #loginformBox
                             #loginField
-                                #loginFieldLabel
-                                    label(for='email') Email Address
+                                #loginFieldLabel.typewriter
+                                    p(id="logtext" for='email') Email Address
                                 #loginFieldInput    
                                     input(type='text' id='loginEmailInput' name='email' value=email)
                             #loginField
                                 #loginFieldLabel
-                                    label(for='password') Password
+                                    p(id="logtext" for='password') Password
                                 #loginFieldInput
                                     input(type='password' id='loginPasswordInput' name='password' )
                             .loginbuttonbox

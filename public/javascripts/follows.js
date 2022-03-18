@@ -25,7 +25,7 @@ window.onload = async function(){
         btn.setAttribute('id',`followBtn${id}`);
         btn.setAttribute('class','followBtn');
         
-        pImg.innerHTML= `<img src='/img/users/user${id}.png' width='75px'>`;
+        pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>`;
         pContent.innerHTML= "<p>Do you want to hear the latest game News? You should follow him!.</p>";
         btn.innerHTML = "Follow";
         wrapper.appendChild(box);
@@ -52,7 +52,7 @@ window.onload = async function(){
         pImg.setAttribute('id',`topProfileImg${id}`);
         pImg.setAttribute('class','topProfieImageBox');
         
-        pImg.innerHTML= `<img src='/img/users/user${id}.png' width='75px'>`;
+        pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>`;
 
         wrapper1.appendChild(box);
         box.appendChild(profile);
