@@ -8,6 +8,10 @@ h1 {
     font-size: 50px;
 }
 
+.is-error {
+    font-family: 'Press Start 2p';
+}
+
 #newStory{
     font-family: 'Press Start 2p';
     text-align: center;
@@ -25,7 +29,7 @@ h1 {
     cursor: pointer;
 }
 
-#newStoryCancel {
+/* #newStoryCancel {
     font-family: 'Press Start 2p';
     text-align: center;
 	display: inline-block;
@@ -41,7 +45,7 @@ h1 {
 	border-radius: 7px;
     box-shadow: 0 .2em rgb(105, 120, 138);
     cursor: pointer;
-}
+} */
 
 #newStory:active {
 	box-shadow: none;

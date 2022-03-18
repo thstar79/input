@@ -54,7 +54,7 @@ router.get(
         else{
             userId = '-1';
         }
-        
+
         const storyId = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(storyId, {
             include: [db.User, db.Game],
@@ -190,7 +190,7 @@ router.post(
                    [Op.and]: [
                        { title: title },
                        { content: content }
-                   ] 
+                   ]
                 }
             })
 
@@ -200,8 +200,8 @@ router.post(
                 userId: userId,
             });
             await coin.save();
-               
-            res.redirect("/");
+
+            res.redirect("/stories");
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             const games = await db.Game.findAll();
