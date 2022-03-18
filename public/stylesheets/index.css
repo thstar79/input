@@ -14,6 +14,10 @@ body {
     display: flex;
     justify-content: center;
 }
+#centeringDiv {
+    display:flex;
+    justify-content: center;
+}
 #storyContentText {
     color: #afafaf;
 }
@@ -33,7 +37,10 @@ body {
     width: 95%;
 }
 .storyBoxWrapper {
-    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    width:100%
+
 }
 
 .bodyWrapper {

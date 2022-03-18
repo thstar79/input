@@ -21,7 +21,7 @@
     border: solid black 7px;
     position:relative;
     left: -5px;
-    width:745px;
+    width:650px;
     height:120px;
     background-color: rgb(49, 49, 49);
     display: flex;
@@ -39,7 +39,7 @@
 #toptwo{
     position:relative;
     left: -5px;
-    width:740px;
+    width:650px;
     height:90px;
     background-color: black;
     clip-path: polygon(0 0, 100% 0, 97.5% 100%, 2.5% 100%);
@@ -47,9 +47,9 @@
 #mainContainer {
     position:relative;
     left: -5px;
-    width:700px;
-    height:450px;
-    background-color: rgb(19, 19, 19);
+    width:619px;
+    height:350px;
+    background-color: rgb(39, 39, 39);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,9 +61,9 @@
     border-left: solid black 20px;
     border-right: solid black 20px;
     width: 85%;
-    height: 400px;
+    height: 300px;
     background-color: rgba(138, 172, 15, 0.815);
-    overflow:hidden;
+    overflow-y:auto;
     padding: 0 10px 0 10px;
 }
 #controller {
@@ -71,8 +71,8 @@
     border-right: solid black 5px;
     position:relative;
     left: -5px;
-    width:820px;
-    height:150px;
+    width:730px;
+    height:100px;
     background-color: rgb(49, 49, 49);
     clip-path: polygon(8% 0, 92% 0, 100% 100%, 0% 100%);
     display: flex;
@@ -83,7 +83,7 @@
 #bottom {
     position:relative;
     left: -5px;
-    width:820px;
+    width:725px;
     height:200px;
     background-color: black;
     clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
@@ -107,7 +107,7 @@
     width: 71px;
     height: 72px;
     background: url('https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/mariowalking/result.png') left center;    
-    top:250px;
+    top:240px;
     left:0px;
     
     -webkit-animation: play 0.8s steps(4) infinite,
@@ -147,8 +147,7 @@
     width: 700px;
     background-color: rgb(241, 241, 241);
     border-radius: 10px;
-    border: solid 3px rgb(146, 146, 146);
-    box-shadow: 5px 5px 2.5px rgb(59, 59, 59);
+   
     margin-bottom: 25px;
 }
 
