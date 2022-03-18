@@ -1,5 +1,2 @@
 node_modules
 .env
-public/javascripts/themeselect.js
-public/stylesheets/theme.css
-public/img/theme/
