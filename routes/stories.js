@@ -33,7 +33,7 @@ router.get(
             const {userId} = req.session.auth;
         }
         else{
-            userId = '-1';
+            const userId = '-1';
         }
         
 
