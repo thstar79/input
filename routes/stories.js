@@ -29,6 +29,7 @@ router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
     asyncHandler(async (req, res) => {
+
         let userId;
         if(req.session.auth){
             userId = req.session.auth.userId;
