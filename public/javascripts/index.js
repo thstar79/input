@@ -14,8 +14,17 @@ window.addEventListener("DOMContentLoaded", event => {
         stories[i].addEventListener('click', (e) => {
         //document.getElementById(`storyId${i}`).addEventListener('click', (e) => {
             const id = stories[i].id.split('storyId')[1];
+<<<<<<< HEAD
             //document.location.href = `https://input-app.herokuapp.com/stories/${id}`;
             document.location.href = `../stories/${id}`;
+=======
+<<<<<<< HEAD
+            document.location.href = `https://inputapptest.herokuapp.com/stories/${id}`;
+=======
+            //document.location.href = `https://input-app.herokuapp.com/stories/${id}`;
+            document.location.href = `../stories/${id}`;
+>>>>>>> 03a0bb0415f42908bbdd0e106f84c479ad6cdae0
+>>>>>>> main
         });
     }
 });

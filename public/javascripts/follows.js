@@ -1,6 +1,6 @@
 
 window.onload = async function(){
-    
+
     //for the right hand side follow recommendation
     const wrapper = document.getElementById('userProfileBoxWrapper');
     const numPeople = 5;
@@ -13,7 +13,7 @@ window.onload = async function(){
         const pImg = document.createElement('div');
         const pContent = document.createElement('div');
         const btn = document.createElement('button');
-        
+
         box.setAttribute('id', `userProfileDetail${id}`);
         box.setAttribute('class','userProfileDetailBox');
         profile.setAttribute('id', `userProfile${id}`);
@@ -24,7 +24,7 @@ window.onload = async function(){
         pContent.setAttribute('class','userProfileContentBox');
         btn.setAttribute('id',`followBtn${id}`);
         btn.setAttribute('class','followBtn');
-        
+
         pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>`;
         pContent.innerHTML= "<p>Do you want to hear the latest game News? You should follow him!.</p>";
         const resfollow = await fetch('/follows/isfollow',{
@@ -54,19 +54,22 @@ window.onload = async function(){
     const res1 = await fetch(`/follows`);
     const returnData1 = await res1.json();
     for(let i=0;i<returnData1.follows.length;++i){
-        const id = returnData1.follows[i].followee;
+        const id = returnData1.follows[i].id;
+        const userName = returnData1.follows[i].userName;
         const box = document.createElement('div');
         const profile = document.createElement('div');
         const pImg = document.createElement('div');
-        
+        // console.log(id)
+        // console.log(returnData1)
+
         box.setAttribute('id', `topProfileDetail${id}`);
         box.setAttribute('class','topProfileDetailBox');
         profile.setAttribute('id', `topProfile${id}`);
         profile.setAttribute('class','topProfileMain');
         pImg.setAttribute('id',`topProfileImg${id}`);
         pImg.setAttribute('class','topProfieImageBox');
-        
-        pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>`;
+        pImg.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 8px;")
+        pImg.innerHTML = `${userName}<div><img src='/img/users/user${id}.png' width='50px'>`;
 
         wrapper1.appendChild(box);
         box.appendChild(profile);
@@ -76,8 +79,8 @@ window.onload = async function(){
     function reload(){
         const container = document.getElementById('topBoxWrpper');
         const content = container.innerHTML;
-        container.innerHTML= content; 
-        console.log("Refreshed"); 
+        container.innerHTML= content;
+        console.log("Refreshed");
     }
 
     //add follow to the database
