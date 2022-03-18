@@ -26,6 +26,23 @@ router.get(
 );
 
 router.get(
+    "/stories/user",
+    csrfProtection,
+    requireAuth,
+    asyncHandler(async (req, res) => {
+        const { userId } = req.session.auth;
+        const stories = await db.Story.findAll({
+            include: [db.User, db.Game],
+            where: {
+                userId:userId
+            }
+        });
+        res.render("index", { title: "My List", stories });
+    })
+
+);
+
+router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
     asyncHandler(async (req, res) => {
