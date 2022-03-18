@@ -16,12 +16,12 @@ html
         link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
         link(href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
-        
-        script(src="/javascripts/create_comment.js" type="module") 
-        script(src="/javascripts/edit_comment.js" type="module") 
-        script(src="/javascripts/delete_comment.js" type="module") 
-        script(src="/javascripts/follows.js" type="module") 
-        script(src="/javascripts/coin-comment.js" type="module") 
+
+        script(src="/javascripts/create_comment.js" type="module")
+        script(src="/javascripts/edit_comment.js" type="module")
+        script(src="/javascripts/delete_comment.js" type="module")
+        script(src="/javascripts/follows.js" type="module")
+        script(src="/javascripts/coin-comment.js" type="module")
   body
 
     #layout
@@ -45,7 +45,7 @@ html
             #side-content-box
               if locals.authenticated
                   p Welcome #{user.userName} !
-                  form(action='/users/logout' method='post')
+                  form(action='/users/logout' method='get')
                     button.pushable
                       span.shadow
                       span.edge
@@ -69,11 +69,11 @@ html
                 button.pushable
                     span.shadow
                     span.edge
-                    span.front B 
-              #topicBox 
+                    span.front B
+              #topicBox
               #userProfileBox
                 #userProfileBoxWrapper
 
-                script(src="/javascripts/coinSound.js" type="module") 
+                script(src="/javascripts/coinSound.js" type="module")
                 script(src="/javascripts/coin-story.js" type="module")
                 script(src='/javascripts/index.js' type="module")

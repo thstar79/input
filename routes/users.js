@@ -109,7 +109,6 @@ router.post(
     userValidators,
     asyncHandler(async(req, res) => {
         const { firstName, lastName, userName, email, password } = req.body;
-
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = db.User.build({
@@ -123,7 +122,6 @@ router.post(
         const validationErrors = validationResult(req);
 
         if (validationErrors.isEmpty()) {
-            const hashedPassword = await bcrypt.hash(password, 10);
             user.hashedPassword = hashedPassword;
 
             await user.save();
@@ -178,7 +176,7 @@ router.post(
                 );
                 if (passwordMatch) {
                     loginUser(req, res, user);
-                    res.redirect("/stories");
+                    req.session.save( () => res.redirect('/stories'))
                 }
             }
             errors.push(
@@ -202,14 +200,14 @@ router.get("/users/login/demo", async(req, res) => {
         id : 1
     }
     loginUser(req, res, user);
-    res.redirect("/stories");
+    req.session.save( () => res.redirect('/stories'))
 })
 
 
-router.post("/users/logout", (req, res) => {
+router.get("/users/logout", (req, res) => {
     logoutUser(req, res);
 
-    res.redirect("/users/login");
+    req.session.save( () => res.redirect('/users/login'))
 });
 
 module.exports = router;
