@@ -5,26 +5,17 @@ window.addEventListener("DOMContentLoaded", event => {
         document.getElementById('menu-icon1').setAttribute('src','/img/home-selected.png')
     })
 
-    document.getElementById('homelink').addEventListener('click', (e) => {
-        document.getElementById('homelink').style.color = 'grey'
-        document.location.href = `../stories`;
-    })
+    // document.getElementById('homelink').addEventListener('click', (e) => {
+    //     document.getElementById('homelink').style.color = 'grey'
+    //     document.location.href = `../stories`;
+    // })
     const stories = document.getElementsByClassName('storyBoxWrapper');
     for(let i=0;i<stories.length;++i){
         stories[i].addEventListener('click', (e) => {
         //document.getElementById(`storyId${i}`).addEventListener('click', (e) => {
             const id = stories[i].id.split('storyId')[1];
-<<<<<<< HEAD
             //document.location.href = `https://input-app.herokuapp.com/stories/${id}`;
             document.location.href = `../stories/${id}`;
-=======
-<<<<<<< HEAD
-            document.location.href = `https://inputapptest.herokuapp.com/stories/${id}`;
-=======
-            //document.location.href = `https://input-app.herokuapp.com/stories/${id}`;
-            document.location.href = `../stories/${id}`;
->>>>>>> 03a0bb0415f42908bbdd0e106f84c479ad6cdae0
->>>>>>> main
         });
     }
 });

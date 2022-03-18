@@ -6,7 +6,7 @@ block content
         #top
             p#arcadeTopText='INPUT'
         #toptwo
-        #mainContainer 
+        #mainContainer
             #screenContainer
                 .loginBox
                     .typewriter
@@ -18,38 +18,38 @@ block content
                             #loginField
                                 #loginFieldLabel.typewriter
                                     p(id="logtext") Email Address
-                                #loginFieldInput    
+                                #loginFieldInput
                                     input(type='text' id='loginEmailInput' name='email' value=user.email)
                             #loginField
                                 #loginFieldLabel
                                     p(id="logtext") Username
                                 #loginFieldInput
-                                    input(type='password' id='loginUserNameInput' name='userName' value=user.userName)
+                                    input(type='text' id='loginUserNameInput' name='userName' value=user.userName)
                             #loginField
                                 #loginFieldLabel.typewriter
                                     p(id="logtext") First Name
-                                #loginFieldInput    
+                                #loginFieldInput
                                     input(type='text' id='loginFirstNameInput' name='firstName' value=user.firstName)
                             #loginField
                                 #loginFieldLabel.typewriter
                                     p(id="logtext") Last Name
-                                #loginFieldInput    
+                                #loginFieldInput
                                     input(type='text' id='loginLastNameInput' name='lastName' value=user.lastName)
                             #loginField
                                 #loginFieldLabel.typewriter
                                     p(id="logtext") Password
-                                #loginFieldInput    
+                                #loginFieldInput
                                     input(type='password' id='loginPasswordInput' name='password')
                             #loginField
                                 #loginFieldLabel.typewriter
                                     p(id="logtext") Confirm Password
-                                #loginFieldInput    
-                                    input(type='password' id='loginConfirmPasswordInput' name='confirmPassword')                                
+                                #loginFieldInput
+                                    input(type='password' id='loginConfirmPasswordInput' name='confirmPassword')
                             .loginbuttonbox
                                 button#transparent-button
-                                    span.start-btn Create User      
+                                    span.start-btn Create User
                                 a(href="/users/login")
-                                    span.start-btn REGISAlready have an account?
+                                    span.start-btn Already have an account?
         #controller
             div
                 button.pushable
@@ -60,5 +60,5 @@ block content
                 button.pushable
                     span.shadow
                     span.edge
-                    span.front#testButton B        
+                    span.front#testButton B
         #bottom
