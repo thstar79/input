@@ -265,6 +265,10 @@ a {
         width: 0px;
         visibility: hidden;
     }
+    #extraside {
+        width: 0px;
+        visibility: hidden;
+    }
     #main {
         width: 100%;
     }
