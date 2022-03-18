@@ -81,3 +81,40 @@
   .pushable:focus:not(:focus-visible) {
     outline: none;
   }
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  #transparent-button {
+    background: none;
+	  color: inherit;
+	  border: none;
+	  padding: 0;
+	  font: inherit;
+	  cursor: pointer;
+	  outline: inherit;
+  }
+
+  .start-btn{
+    font-family: 'Press Start 2P', cursive;
+      text-align: center;
+    display: inline-block;
+    margin:5px;
+      font-weight: bold;
+      padding: 10px 0 10px 10px ;
+      background-color: lightgray;
+      text-shadow: -1px -1px black, 1px 1px white;
+      color: gray;
+      -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+      box-shadow: 0 .2em gray; 
+      cursor: pointer;
+  
+  }
+  .video-game-button:active, .start-btn:active {
+    box-shadow: none;
+    position: relative;
+    top: .2em;
+  }

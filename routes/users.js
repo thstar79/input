@@ -17,6 +17,22 @@ router.get(
     })
 );
 
+router.get('/users/random/:num(\\d+)',asyncHandler(async(req,res)=>{
+    let userId;
+    if(req.session.auth){
+        userId = req.session.auth.userId;
+    }
+    else{
+        userId = '-1';
+    }
+    const num = parseInt(req.params.num,10);
+    const users = await db.User.findAll({
+        order: db.Sequelize.literal('random()'),
+        limit: num,
+    });
+    res.json({users, session:userId});
+}));
+
 const userValidators = [
     // TODO Define the user validators.
     check("firstName")
@@ -112,7 +128,7 @@ router.post(
 
             await user.save();
             loginUser(req, res, user);
-            res.redirect("/");
+            res.redirect("/stories");
         } else {
             const errors = validationErrors.array().map((error) => error.msg);
             res.render("user-register", {
@@ -162,7 +178,7 @@ router.post(
                 );
                 if (passwordMatch) {
                     loginUser(req, res, user);
-                    res.redirect("/");
+                    res.redirect("/stories");
                 }
             }
             errors.push(
@@ -181,12 +197,12 @@ router.post(
 );
 
 router.get("/users/login/demo", async(req, res) => {
-    //let user = await db.User.findByPk(1)
+    // let user = await db.User.findByPk(1)
     let user = {
-        id : 2
+        id : 1
     }
     loginUser(req, res, user);
-    res.redirect("/");
+    res.redirect("/stories");
 })
 
 

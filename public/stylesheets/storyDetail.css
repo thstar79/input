@@ -1,0 +1,142 @@
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.containerBoxWrapper {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 1em;
+}
+
+.containerBox {
+    width: 80%;
+}
+
+.headerBox {
+    display: flex;
+}
+
+.headerBox a {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+.storyContentBox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.storyContentBox p {
+    padding: 2rem 5rem;
+    text-align: justify;
+}
+
+.editDelButtonBox.refresh-button {
+    background-color: rgb(241, 240, 240);
+}
+
+.editDelButtonBox button {
+    margin: 0.5rem;
+}
+
+.commentBoxWrapper {
+    padding-top: 2rem;
+    width: 100%;
+}
+
+.commentList {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.commentFormBox {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#create-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    width: 500px;
+    height: 75px;
+    resize: none;
+    border: 0.1rem solid;
+    margin-right: 1rem;
+}
+
+.commentBox {
+    background-color: rgb(241, 240, 240);
+    width: 100%;
+    margin: 1rem auto 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.commentBoxContent {
+    width: 70%;
+    padding: auto 0;
+}
+
+.commentBoxContent .profile {
+    margin-left: 0;
+}
+
+.commentBoxContent .profile p {
+    margin: 0 0 0 0.5em;
+    align-items: center;
+}
+
+.commentBoxBubble {
+    margin: 0 auto 0 1rem;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.commentBoxBubble [id*="comment-content"] {
+    margin: 0;
+}
+
+#display-coins {
+    width: 1rem;
+    align-self: flex-end;
+    order: -2;
+    z-index: 1;
+    position: relative;
+    left: 75px;
+    bottom: 10px;
+}
+
+[id*="editId"] span {
+    font-size: 1em;
+    color: black;
+}
+
+[id*="deleteId"] span {
+    font-size: 1em;
+    color: black;
+}
+
+.cECoinImg.coin-btn {
+    width: 1.5rem;
+}
+
+[id*="coin"] {
+    /* border: 1px solid black; */
+    width: 1rem;
+    align-content: center;
+}

@@ -7,11 +7,21 @@ html
         link(rel='stylesheet' href='/stylesheets/index.css')
         link(rel='stylesheet' href='/stylesheets/styles.css')
         link(rel='stylesheet' href='/stylesheets/button.css')
+        link(rel='stylesheet' href='/stylesheets/tooltip.css')
+        link(rel='stylesheet' href='/stylesheets/taehoon.css')
+        link(rel='stylesheet' href='/stylesheets/test.css')
+        link(rel='stylesheet' href='/stylesheets/typewriter.css')
+        link(rel='stylesheet' href='/font-awesome-4.7.0/css/font-awesome.min.css')
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
-        script(src='/javascripts/index.js')
+        
         script(src="/javascripts/create_comment.js" type="module") 
         script(src="/javascripts/edit_comment.js" type="module") 
         script(src="/javascripts/delete_comment.js" type="module") 
+        script(src="/javascripts/follows.js" type="module") 
+        script(src="/javascripts/coin-comment.js" type="module") 
   body
 
     #layout
@@ -19,17 +29,19 @@ html
             #menu-box
                 #icon-box
                     img(id="nav-bar-icon" src='/img/icon.png')
+                    i(id="homelink" class="fa fa-home" aria-hidden="true")
                 #menu-link-box
-                    a(href="/" id="menu-link"): img(id="menu-icon1" src='/img/home.png')
+                    a(href="/stories" id="menu-link"): img(id="menu-icon1" src='/img/home.png')
                     a(href="#" id="menu-link"): img(id="menu-icon2" src='/img/bell.png')
-                    a(href="#" id="menu-link"): img(id="menu-icon3" src='/img/bookmark.png')
-                    a(href="#" id="menu-link"): img(id="menu-icon4" src='/img/stories.png')
+                    a(href="/follows/feed" id="menu-link"): img(id="menu-icon3" src='/img/bookmark.png')
+                    a(href="/stories/user" id="menu-link"): img(id="menu-icon4" src='/img/stories.png')
                     a(href="/stories/new"  id="menu-link"): img(id="menu-icon4" src='/img/write.png')
                 #login-status-box
                     a(href="/users/register" id="menu-link"): img(id="menu-icon55" src='/img/loginicon.gif' width="100px")
         #main
-            #content-box
-                block content
+          #topBoxWrpper
+          #content-box
+            block content
         #mainside
             #side-content-box
               if locals.authenticated
@@ -53,7 +65,7 @@ html
                 button#submit-button A
                 button button1
                 p some more stuff
-                a some links as well!
+                a(href='/test') 123
                 a some links as well!
                 button.pushable
                     span.shadow
@@ -61,49 +73,8 @@ html
                     span.front B 
               #topicBox 
               #userProfileBox
-                #userProfileBoxWrapper 
-                  #userProfileDetailBox
-                    #userProfileMain 
-                      #userProfieImageBox
-                        img(src='/img/usericon.png' width='75px')
-                      #userProfileContentBox
-                        p this person is a great person! You should totally hire him!
-                    #userProfileFooter
-                      #userProfileLinkBox
-                        a(href="#") Follow
-                        a(href="#") Link2 
-                        a(href="#") Link3
-                  #userProfileDetailBox
-                    #userProfileMain 
-                      #userProfieImageBox
-                        img(src='/img/usericon.png' width='75px')
-                      #userProfileContentBox
-                        p this person is a great person! You should totally hire him!
-                    #userProfileFooter
-                      #userProfileLinkBox
-                        a(href="#") Follow
-                        a(href="#") Link2 
-                        a(href="#") Link3
-                  #userProfileDetailBox
-                    #userProfileMain 
-                      #userProfieImageBox
-                        img(src='/img/usericon.png' width='75px')
-                      #userProfileContentBox
-                        p this person is a great person! You should totally hire him!
-                    #userProfileFooter
-                      #userProfileLinkBox
-                        a(href="#") Follow
-                        a(href="#") Link2 
-                        a(href="#") Link3
-                  #userProfileDetailBox
-                    #userProfileMain 
-                      #userProfieImageBox
-                        img(src='/img/usericon.png' width='75px')
-                      #userProfileContentBox
-                        p this person is a great person! You should totally hire him!
-                    #userProfileFooter
-                      #userProfileLinkBox
-                        a(href="#") Follow
-                        a(href="#") Link2 
-                        a(href="#") Link3
-                  
+                #userProfileBoxWrapper
+
+                script(src="/javascripts/coinSound.js" type="module") 
+                script(src="/javascripts/coin-story.js" type="module")
+                script(src='/javascripts/index.js' type="module")

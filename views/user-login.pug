@@ -2,11 +2,46 @@ extends layout.pug
 include utils.pug 
 
 block content
-    h1=title
-    +validationErrorSummary(errors)
-    form(action='' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Email Address', 'email', email)
-        +field('Password', 'password','','password')
-        button(type='submit' class='submit-button') Log In
-        a(href="/users/register") Don't have an account?
+    #container
+        #top
+            p#arcadeTopText='INPUT'
+        #toptwo
+        #mainContainer 
+            #screenContainer
+                .loginBox
+                    .typewriter
+                      h1(id="loginTitle")=title
+                    +validationErrorSummary(errors)
+                    form(action='' method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        #loginformBox
+                            #loginField
+                                #loginFieldLabel.typewriter
+                                    p(id="logtext" for='email') Email Address
+                                #loginFieldInput    
+                                    input(type='text' id='loginEmailInput' name='email' value=email)
+                            #loginField
+                                #loginFieldLabel
+                                    p(id="logtext" for='password') Password
+                                #loginFieldInput
+                                    input(type='password' id='loginPasswordInput' name='password' )
+                            .loginbuttonbox
+                                button#transparent-button
+                                    span.start-btn LOGIN      
+                                a(href="/users/register")
+                                    span.start-btn REGISTER
+                            .mario
+        #controller
+            div
+                button.pushable
+                    span.shadow
+                    span.edge
+                    span.front A
+            div
+                button.pushable
+                    span.shadow
+                    span.edge
+                    span.front#testButton B        
+        #bottom
+
+        script(src="/javascripts/test.js" type="module") 
