@@ -96,9 +96,8 @@ router.get(
                 sum[coins[i].Comment.id] += coins[i].count;
             }
         }
-        console.log("~~~~~~~~~~~~~~~~~~~~~~~~",coins.length,sum,"~~~~~~~~~~~~~~~~~~~~~~~~");
         for(let i=0;i<comments.length;++i){
-            const comment = comments[i];
+            let comment = comments[i];
             let split = comment.comment.split('!@#');
             comment.User = await db.User.findByPk(split[1]);
             comment.comment = split[2];

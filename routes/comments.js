@@ -24,11 +24,13 @@ router.get(
 router.get(
     "/comments/last",
     asyncHandler(async (req, res) => {
-        console.log("asdf");
-        const comment = await db.Comment.findOne({
-        order: [['id','desc']],
+        let comment = await db.Comment.findOne({
+            order: [['id','desc']],
         });
-        res.json({id: comment.id});
+        let split = comment.comment.split('!@#');
+        comment.User = await db.User.findByPk(split[1]);
+        comment.comment = split[2];
+        res.json({comment: comment, id: comment.id, session: res.locals});
     })
 );
 
@@ -59,35 +61,39 @@ const commentValidator = [
 ];
 
 router.post(
-    "/comments",
+    "/api/comments",
     requireAuth,
     commentValidator,
     //csrfProtection,
     asyncHandler(async (req, res) => {
         const { userId } = req.session.auth;
         const { comment, storyId } = req.body;
+
         const comment1 = db.Comment.build({
             comment:`${salt}${userId}${salt}${comment}`,
             storyId,
         });
-        
+        console.log(comment1.comment, storyId);
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-1");
         const validatorErrors = validationResult(req);
         if (validatorErrors.isEmpty()) {
             await comment1.save();
-
+            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~0");
             const comment = await db.Comment.findOne({
                 order: [['id','desc']],
             });
-            const response = await res.json();
-            
+            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~1");
+            //const response = await res.json();
             const coin = await db.CommentCoin.create({
                 count: 0,
                 userId: userId,
                 commentId: comment.id,
             });
 
+            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2");
             res.json({message: "Success", comment});
         } else {
+            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3");
             const errors = validatorErrors.array().map((error) => error.msg);
             console.log(errors);
             res.render("comment-form", {
@@ -197,5 +203,83 @@ router.patch('/comments/:id(\\d+)', async(req, res) => {
         res.json({message: "Could not find comment please try again"});
     }
 })
+
+router.get(
+    "/api/stories/:id(\\d+)",
+    csrfProtection,
+    asyncHandler(async (req, res) => {
+
+        let userId;
+        if(req.session.auth){
+            userId = req.session.auth.userId;
+        }
+        else{
+            userId = '-1';
+        }
+        
+        const storyId = parseInt(req.params.id, 10);
+        const story = await db.Story.findByPk(storyId, {
+            include: [db.User, db.Game],
+        });
+
+        const comments = await db.Comment.findAll({
+            where: {
+                storyId : storyId,
+            }
+        });
+
+        const sum = {};
+        if(comments.length === 0){
+            res.json({
+                story: "norecord",
+                comments: [],
+                sum: sum,
+                session: {id:userId},
+                csrfToken: req.csrfToken(),
+            });
+        }
+
+        const coins = await db.CommentCoin.findAll({
+            include: [{
+                    model: db.Comment,
+                    where: {
+                        storyId: storyId,
+                    },
+                },
+                {
+                    model: db.User,
+                },
+            ],
+        });
+        
+        for(let i=0;i<coins.length;++i){
+            if(sum[coins[i].Comment.id] === undefined){
+                sum[coins[i].Comment.id] = coins[i].count;
+            }
+            else{
+                sum[coins[i].Comment.id] += coins[i].count;
+            }
+        }
+        const users =[];
+        for(let i=0;i<comments.length;++i){
+            let split = comments[i].comment.split('!@#');
+            //comments[i].User = await db.User.findByPk(split[1]);
+            comments[i].User = await db.User.findByPk(split[1]);
+            users.push(comments[i].User);
+            comments[i].comment = split[2];
+        }
+
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!", comments[0].User,"~~~~~~~~~~~~~~~~~~~~~~");
+        res.json({
+            story: story,
+            comments: comments,
+            users: users,
+            sum: sum,
+            session: {id:userId},
+            csrfToken: req.csrfToken(),
+        });
+    })
+);
+
 
 module.exports = router;
