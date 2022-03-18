@@ -29,8 +29,13 @@ router.get(
     "/stories/:id(\\d+)",
     csrfProtection,
     asyncHandler(async (req, res) => {
-        const {userId} = req.session.auth;
-        if(userId === null) userId = '-1';
+        if(req.session.auth){
+            const {userId} = req.session.auth;
+        }
+        else{
+            userId = '-1';
+        }
+        
 
         const storyId = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(storyId, {
