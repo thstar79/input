@@ -1,4 +1,4 @@
-const switchButton = document.querySelector("#switch")
+const switchButton = document.querySelector("#nav-bar-icon")
 
 switchButton.addEventListener('click', async(event) => {
     let home = document.querySelector("#menu-icon1")
