@@ -1,9 +1,3 @@
-$( "body" ).click(function() {
-    $( "#loadinggifdiv" ).fadeOut( "slow", function() {
-    });
-
-});
-
 
 window.addEventListener("DOMContentLoaded", event => {
 
@@ -11,6 +5,10 @@ window.addEventListener("DOMContentLoaded", event => {
         document.getElementById('menu-icon1').setAttribute('src','/img/home-selected.png')
     })
 
+    document.getElementById('homelink').addEventListener('click', (e) => {
+        document.getElementById('homelink').style.color = 'grey'
+        document.location.href = `../stories`;
+    })
     const stories = document.getElementsByClassName('storyBoxWrapper');
     for(let i=0;i<stories.length;++i){
         stories[i].addEventListener('click', (e) => {
@@ -20,4 +18,10 @@ window.addEventListener("DOMContentLoaded", event => {
             document.location.href = `../stories/${id}`;
         });
     }
+});
+
+
+$('#homelink').click(function() {
+    $('#homelink').toggle('1000');
+    $("i", this).toggleClass("icon-circle-arrow-up icon-circle-arrow-down");
 });

@@ -16,7 +16,7 @@ html
         link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
         link(href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
-        script(src='/javascripts/index.js')
+        
         script(src="/javascripts/create_comment.js" type="module") 
         script(src="/javascripts/edit_comment.js" type="module") 
         script(src="/javascripts/delete_comment.js" type="module") 
@@ -29,6 +29,7 @@ html
             #menu-box
                 #icon-box
                     img(id="nav-bar-icon" src='/img/icon.png')
+                    i(id="homelink" class="fa fa-home" aria-hidden="true")
                 #menu-link-box
                     a(href="/stories" id="menu-link"): img(id="menu-icon1" src='/img/home.png')
                     a(href="#" id="menu-link"): img(id="menu-icon2" src='/img/bell.png')
@@ -76,3 +77,4 @@ html
 
                 script(src="/javascripts/coinSound.js" type="module") 
                 script(src="/javascripts/coin-story.js" type="module")
+                script(src='/javascripts/index.js' type="module")
