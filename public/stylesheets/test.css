@@ -21,8 +21,8 @@
     border: solid black 7px;
     position:relative;
     left: -5px;
-    width:550px;
-    height:100px;
+    width:745px;
+    height:120px;
     background-color: rgb(49, 49, 49);
     display: flex;
     justify-content: center;
@@ -30,24 +30,25 @@
 }
 
 #arcadeTopText {
+    text-shadow: 3px 3px rgb(77, 77, 77), 5px 5px rgb(0, 0, 0);
     color: white;
     font-family: 'Press Start 2P', cursive;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
 }
 #toptwo{
     position:relative;
     left: -5px;
-    width:550px;
-    height:50px;
+    width:740px;
+    height:90px;
     background-color: black;
     clip-path: polygon(0 0, 100% 0, 97.5% 100%, 2.5% 100%);
 }
 #mainContainer {
     position:relative;
     left: -5px;
-    width:520px;
-    height:400px;
+    width:700px;
+    height:450px;
     background-color: rgb(19, 19, 19);
     display: flex;
     justify-content: center;
@@ -60,7 +61,7 @@
     border-left: solid black 20px;
     border-right: solid black 20px;
     width: 85%;
-    height: 300px;
+    height: 400px;
     background-color: rgba(138, 172, 15, 0.815);
     overflow:hidden;
     padding: 0 10px 0 10px;
@@ -70,7 +71,7 @@
     border-right: solid black 5px;
     position:relative;
     left: -5px;
-    width:620px;
+    width:820px;
     height:150px;
     background-color: rgb(49, 49, 49);
     clip-path: polygon(8% 0, 92% 0, 100% 100%, 0% 100%);
@@ -82,8 +83,8 @@
 #bottom {
     position:relative;
     left: -5px;
-    width:620px;
-    height:100px;
+    width:820px;
+    height:200px;
     background-color: black;
     clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
 }

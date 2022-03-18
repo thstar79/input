@@ -9,6 +9,11 @@ p {
     margin-left: 15px;
 }
 
+
+body {
+    display: flex;
+    justify-content: center;
+}
 #storyContentText {
     color: #afafaf;
 }
