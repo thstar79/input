@@ -7,3 +7,9 @@ window.addEventListener("DOMContentLoaded", event => {
     })
 
 })
+
+
+$('#homelink').click(function() {
+    $('#homelink').toggle('1000');
+    $("i", this).toggleClass("fa fa-home fa fa-superpowers");
+});

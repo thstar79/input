@@ -2,16 +2,63 @@ extends layout.pug
 include utils.pug
 
 block content
-  h1= title
-  +validationErrorSummary(errors)
-  form(action='/users/register' method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    +field('Email Address', 'email', user.email)
-    +field('Username', 'userName', user.userName)
-    +field('First Name', 'firstName', user.firstName)
-    +field('Last Name', 'lastName', user.lastName)
-    +field('Password', 'password','','password')
-    +field('Confirm Password', 'confirmPassword','','password')
-    div(class='py-4')
-      button(type='submit' id='submit-button') Create User
-      a(href='/users/login' class='') Already have an account?
+  #container
+        #top
+            p#arcadeTopText='INPUT'
+        #toptwo
+        #mainContainer
+            #screenContainer
+                .loginBox
+                    .typewriter
+                      h1(id="loginTitle")=title
+                    +validationErrorSummary(errors)
+                    form(action='' method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        #loginformBox
+                            #loginField
+                                #loginFieldLabel.typewriter
+                                    p(id="logtext") Email Address
+                                #loginFieldInput
+                                    input(type='text' id='loginEmailInput' name='email' value=user.email)
+                            #loginField
+                                #loginFieldLabel
+                                    p(id="logtext") Username
+                                #loginFieldInput
+                                    input(type='text' id='loginUserNameInput' name='userName' value=user.userName)
+                            #loginField
+                                #loginFieldLabel.typewriter
+                                    p(id="logtext") First Name
+                                #loginFieldInput
+                                    input(type='text' id='loginFirstNameInput' name='firstName' value=user.firstName)
+                            #loginField
+                                #loginFieldLabel.typewriter
+                                    p(id="logtext") Last Name
+                                #loginFieldInput
+                                    input(type='text' id='loginLastNameInput' name='lastName' value=user.lastName)
+                            #loginField
+                                #loginFieldLabel.typewriter
+                                    p(id="logtext") Password
+                                #loginFieldInput
+                                    input(type='password' id='loginPasswordInput' name='password')
+                            #loginField
+                                #loginFieldLabel.typewriter
+                                    p(id="logtext") Confirm Password
+                                #loginFieldInput
+                                    input(type='password' id='loginConfirmPasswordInput' name='confirmPassword')
+                            .loginbuttonbox
+                                button#transparent-button
+                                    span.start-btn Create User
+                                a(href="/users/login")
+                                    span.start-btn Already have an account?
+        #controller
+            div
+                button.pushable
+                    span.shadow
+                    span.edge
+                    span.front A
+            div
+                button.pushable
+                    span.shadow
+                    span.edge
+                    span.front#testButton B
+        #bottom

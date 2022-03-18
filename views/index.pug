@@ -6,26 +6,28 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-    h1= title
-    each story in stories
-      div(class="storyBoxWrapper" id=`storyId${story.id}`)
-        .storyBox
-          .storyBoxHeader
-            .storyBoxHeaderProfile
-              img(src='/img/usericon.png' height='20px')
-              p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
-            .storyBoxHeaderMenu
-              .dropdown
-                i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
-                .dropdown-content
-                  a(href=`/stories/edit/${story.id}`) Edit
-                  a(href=`/stories/delete/${story.id}`) Delete
-          .storyBoxContent
-            .storyBoxContentTextBox
-              h2=story.title
-              p(id='storyContentText') #{story.content.slice(0,200)+'...'}
-            .storyBoxContentImgBox
-              img(src=`/img/gameimg/game${story.gameId}.png` height='120px')
-          .storyBoxFooter
-            a(id='topic-link' href="#")=story.topicType
-            a(id='game-link' href="#")=story.Game.title
+    #centeringDiv
+      div 
+        h1= title
+        each story in stories
+          div(class="storyBoxWrapper" id=`storyId${story.id}`)
+            .storyBox
+              .storyBoxHeader
+                .storyBoxHeaderProfile
+                  img(src='/img/usericon.png' height='20px')
+                  p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
+                .storyBoxHeaderMenu
+                  .dropdown
+                    i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
+                    .dropdown-content
+                      a(href=`/stories/edit/${story.id}`) Edit
+                      a(href=`/stories/delete/${story.id}`) Delete
+              .storyBoxContent
+                .storyBoxContentTextBox
+                  h2=story.title
+                  p(id='storyContentText') #{story.content.slice(0,200)+'...'}
+                .storyBoxContentImgBox
+                  img(src=`/img/gameimg/game${story.gameId}.png` height='120px')
+              .storyBoxFooter
+                a(id='topic-link' href="#")=story.topicType
+                a(id='game-link' href="#")=story.Game.title

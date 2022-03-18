@@ -59,6 +59,12 @@ body {
 label {
 }
 
+#followUserName {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    font-weight: bold;
+}
+
 input {
     margin: 10px 5px 10px 5px;
 }
@@ -78,7 +84,6 @@ a {
     position: sticky;
     height: 100%;
     width: 80px;
-    border-right: 0.5px solid lightgrey;
     margin-left: 100px;
 }
 
@@ -121,6 +126,7 @@ a {
     flex-direction: column;
     align-items: center;
     padding-top: 25px;
+    border-left: 0.5px solid lightgrey;
     border-right: 0.5px solid lightgrey;
 }
 
@@ -237,24 +243,37 @@ a {
 }
 .userProfileDetailBox {
     margin: 10px 0px 10px 0;
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(255, 255, 255);
+    border-left: #e4000f solid 15px;
     border-radius: 10px;
-    box-shadow: 5px 5px 3px rgb(216, 216, 216);
+    border-top: 0.5px solid rgb(224, 224, 224);
+    border-right: 0.5px solid rgb(224, 224, 224);
+    border-bottom: 0.5px solid rgb(224, 224, 224);
+    box-shadow: 3px 3px 2px rgb(192, 192, 192);
+    transition: all .3s ease-in;
+}
+
+.followclicked {
+    border-left: blue solid 15px;
 }
 
 .userProfileMain {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #userProfileFooter {
     display: flex;
     justify-content: flex-end;
 }
 .userProfieImageBox {
-    margin-left: 25px;
+    margin-left: 10px;
 }
 .userProfileContentBox {
     width: 220px;
-    font-size: 12px;
+    font-size: 10px;
+    font-family: 'Press Start 2P', cursive;
+    padding: 5px 0 5px 0;
 }
 
 @media (max-width: 1200px) {
@@ -272,11 +291,15 @@ a {
     #main {
         width: 100%;
     }
-    
+    .storyBoxWrapper {
+        width: 400px;
+    }
+    #topBoxWrpper {
+        width: 400px;
+    }
 }
 
+
 @media (min-width: 900px) {
-    .storyBox {
-        width: 80%;
-    }
+    
 }

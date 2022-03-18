@@ -9,8 +9,18 @@ p {
     margin-left: 15px;
 }
 
+
+body {
+    display: flex;
+    justify-content: center;
+}
+#centeringDiv {
+    display:flex;
+    justify-content: center;
+}
 #storyContentText {
     color: #afafaf;
+    margin-left: 20px;
 }
 
 .custom-restricted-width {
@@ -23,12 +33,14 @@ p {
     background-color: rgb(250, 250, 250);
     border-radius: 10px;
     box-shadow: 10px 10px 5px rgb(216, 216, 216);
-    padding: 0px 25px 0px 25px;
+    
     margin: 20px 0 20px 0;
-    width: 95%;
+    width: 700px;
 }
 .storyBoxWrapper {
-    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    width:800px;
 }
 
 .bodyWrapper {
@@ -39,9 +51,24 @@ p {
 .storyBoxHeader  {
  display:flex;
  justify-content: space-between;
- padding-top: 20px;
+ align-items: center;
+ padding: 0 20px 0 20px;
+ border-radius: 10px 10px 0 0 ;
+ background-color: #e4000f;
+ color: white;
+ font-weight: bolder;
+ font-family: 'Poor Story', cursive;
+ height: 50px;
 }
 
+.storyBoxContentTextBox {
+    font-family: 'Poor Story', cursive;
+    overflow: hidden;
+}
+
+.storyBoxContentTextBox > h2 {
+    padding: 10px 0 0 40px;
+}
 .storyBoxHeaderProfile  {
     display:flex;
     align-items: center;
