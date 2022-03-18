@@ -36,7 +36,8 @@ block content
          p(id='storyCoinText')=storyCoinsCount
          p(id='userStoryCoinText')=userStoryCoinsCount
          //button.pushable(id=`commentID${comment.id}ID${comment.User.id}ID${session.id}`) Comment
-
+      .formBox
+        form(type='hidden' id='strcomment')
       .commentBoxWrapper
         .commentList
           .commentFormBox
