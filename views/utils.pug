@@ -4,7 +4,7 @@ mixin validationErrorSummary(errors)
       p The following error(s) occurred:
       ul
         each error in errors
-          li= error
+          li#errormessage= error
 
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder = null)
   div(class='form-group')
