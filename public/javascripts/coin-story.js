@@ -1,4 +1,4 @@
-const storyCoinBtn = document.getElementsByClassName('storyCoinImg')[0]
+const storyCoinBtn = document.getElementById('storyCoinSpinImage')
 
 storyCoinBtn.addEventListener('click', async (e) => {
     e.preventDefault();

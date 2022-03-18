@@ -37,11 +37,11 @@ window.onload = async function(){
         console.log(returnDataFollow.isfollow);
         if(returnDataFollow.isfollow === 0){
             btn.innerText = "Follow";
-            btn.classList.add("unfollow");
-            
+            btn.classList.add("unfollow");   
         }
         else{
             btn.innerText = "Unfollow";
+            box.classList.add("followclicked")
         }
         wrapper.appendChild(box);
         box.appendChild(profile);
@@ -69,7 +69,7 @@ window.onload = async function(){
         profile.setAttribute('class','topProfileMain');
         pImg.setAttribute('id',`topProfileImg${id}`);
         pImg.setAttribute('class','topProfieImageBox');
-        document.getElementById('topBoxWrpper').setAttribute('style',"border: solid 3px rgb(146, 146, 146); box-shadow: 5px 5px 2.5px rgb(59, 59, 59);");
+        document.getElementById('topBoxWrpper').setAttribute('style',"border: solid rgb(71, 71, 71) 0.5px; box-shadow: 5px 5px 2.5px rgb(59, 59, 59);");
         pImg.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 5px; display:flex; flex-direction:column; justify-content: space-between;")
         pImg.innerHTML = `<img src='/img/users/user${id}.png' width='50px' height='50px'><p id="followUserName">${userName.slice(0,7)}</p>`;
 
