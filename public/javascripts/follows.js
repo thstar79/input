@@ -38,6 +38,7 @@ window.onload = async function(){
         if(returnDataFollow.isfollow === 0){
             btn.innerText = "Follow";
             btn.classList.add("unfollow");
+            
         }
         else{
             btn.innerText = "Unfollow";
@@ -86,18 +87,22 @@ window.onload = async function(){
 
     //add follow to the database
     const fbtns = document.getElementsByClassName('followBtn');
-
+    const fboxes = document.getElementsByClassName('userProfileDetailBox');
     for(let i=0;i<fbtns.length;++i){
         const fbtn = fbtns[i];
+        const fbox = fboxes[i];
         fbtn.addEventListener('click',async (e) => {
             e.stopPropagation();
               console.log(e.target.innerText);
               if(e.target.innerText === "Follow") {
                 e.target.innerText = "Unfollow";
                 e.target.classList.remove("unfollow");
-              } else if(e.target.innerText === "Unfollow") {
+                fbox.classList.add("followclicked")
+                
+            } else if(e.target.innerText === "Unfollow") {
                 e.target.innerText = "Follow";
                 e.target.classList.add("unfollow");
+                fbox.classList.remove("followclicked")
               }
               console.log(e.target.innerText);
             const id=e.target.id.split('followBtn')[1];//follower = current user, followee= this id
