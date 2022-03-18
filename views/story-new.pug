@@ -4,7 +4,6 @@ include utils.pug
 block content
   h1= title
   link(rel='stylesheet' href='/stylesheets/newStory.css')
-  //- link(href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet")
   +validationErrorSummary(errors)
   form(action='/stories/new' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)

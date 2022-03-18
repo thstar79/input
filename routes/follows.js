@@ -11,11 +11,24 @@ const follow = require("../db/models/follow");
 
 router.get('/follows', asyncHandler(async (req,res)=>{
     const { userId } = req.session.auth;
-    const follows = await db.Follow.findAll({
-        where: {
-            follower: userId,
-        }
-    });
+    // const follows = await db.Follow.findAll({
+    //     where: {
+    //         follower: userId,
+    //     },
+    // });
+
+    const followStories = await db.User.findByPk(userId, {
+        include: [{
+          model: db.User,
+          as: 'followings',
+          include: db.Story
+        }]
+      })
+      let follows = []
+      for(let i = 0; i < followStories.followings.length; i++) {
+            follows.push(followStories.followings[i]);
+    }
+
     res.json({follows});
 }));
 
