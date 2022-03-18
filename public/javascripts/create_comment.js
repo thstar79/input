@@ -1,37 +1,44 @@
-const createBtns = document.querySelectorAll('.comment-create-btn');
-for (let i = 0; i < createBtns.length; i++) {
-    const btn = createBtns[i];
-    btn.addEventListener('click', async(e) => {
-        const commentData = document.getElementById('comment').value;
-        const storyId = document.getElementById('storyCId').value;
+//const createBtns = document.querySelectorAll('.comment-create-btn');
+const createBtn = document.getElementById('commentCreate');
+console.log("Create comment is here", createBtn);
+//for (let i = 0; i < createBtns.length; i++) {
+    console.log("Create comment is here");
+    
+    createBtn.addEventListener('click', async(e) => {
+        e.preventDefault();
+        //const btn = createBtns[i];
+        // const commentData = document.getElementById('comment').value;
+        // const storyId = document.getElementById('storyCId').value;
         
-        const res = await fetch(`/comments`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                comment: commentData,
-                storyId: storyId,
-            }),
-        });
-        const returnData = await res.json();
-        // if we get a Success response, the original post element should be updated
-        if (returnData.message === "Success") {
-            const newDiv = document.createElement("div");
-            const newCBDiv = document.createElement("div");
-            const newCBCDiv = document.createElement("div");commentBoxContent
-            const res1 = await fetch('/comments/last');
-            console.log(res1.json().id);
-            newCBDiv.setAttribute("id", `comment-box-${res1.json().id}`);
-            newCBDiv.setAttribute("class", "commentBox");
-            newCBCDIv.setAttribute("class", "commentBoxContent");
-            newDiv.setAttribute("id",`comment-box-${commentId}`);
+        
+        // const res = await fetch(`/api/comments`, {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         comment: commentData,
+        //         storyId: storyId,
+        //     }),
+        // });
+        // console.log("am I here?");
+        // const returnData = await res.json();
+        // console.log(returnData.message);
+        // // if we get a Success response, the original post element should be updated
+        // if (returnData.message === "Success") {
+        //     const newDiv = document.createElement("div");
+        //     const newCBDiv = document.createElement("div");
+        //     const newCBCDiv = document.createElement("div");
+        //     const res1 = await fetch('/comments/last');
+        //     newCBDiv.setAttribute("id", `comment-box-${res1.json().id}`);
+        //     newCBDiv.setAttribute("class", "commentBox");
+        //     newCBCDIv.setAttribute("class", "commentBoxContent");
+        //     newDiv.setAttribute("id",`comment-box-${commentId}`);
 
-            const commentList = document.getElementById('comment-list');
-            commentList.appendChild(newCBDiv);
-            newCBDiv.appendChild(newCBCDiv);
-            newCBCDiv.appendChild(newDiv);
-        }
+        //     const commentList = document.getElementById('comment-main-wrapper');
+        //     commentList.appendChild(newCBDiv);
+        //     newCBDiv.appendChild(newCBCDiv);
+        //     newCBCDiv.appendChild(newDiv);
+        // }
     });
-}
+//}
