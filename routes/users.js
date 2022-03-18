@@ -176,7 +176,7 @@ router.post(
                 );
                 if (passwordMatch) {
                     loginUser(req, res, user);
-                    req.session.save( () => res.redirect('/stories'))
+                    res.redirect('/stories')
                 }
             }
             errors.push(
@@ -200,7 +200,7 @@ router.get("/users/login/demo", async(req, res) => {
         id : 1
     }
     loginUser(req, res, user);
-    req.session.save( () => res.redirect('/stories'))
+    res.redirect('/stories')
 })
 
 
