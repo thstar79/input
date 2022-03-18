@@ -18,12 +18,19 @@ router.get(
 );
 
 router.get('/users/random/:num(\\d+)',asyncHandler(async(req,res)=>{
+    let userId;
+    if(req.session.auth){
+        userId = req.session.auth.userId;
+    }
+    else{
+        userId = '-1';
+    }
     const num = parseInt(req.params.num,10);
     const users = await db.User.findAll({
         order: db.Sequelize.literal('random()'),
         limit: num,
     });
-    res.json({users});
+    res.json({users, session:userId});
 }));
 
 const userValidators = [

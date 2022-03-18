@@ -27,7 +27,21 @@ window.onload = async function(){
         
         pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>`;
         pContent.innerHTML= "<p>Do you want to hear the latest game News? You should follow him!.</p>";
-        btn.innerHTML = "Follow";
+        const resfollow = await fetch('/follows/isfollow',{
+            method: 'POST',
+            body: JSON.stringify({followee:`${id}`}),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const returnDataFollow = await resfollow.json();
+        console.log(returnDataFollow.isfollow);
+        if(returnDataFollow.isfollow === 0){
+            btn.innerText = "Follow";
+            btn.classList.add("unfollow");
+        }
+        else{
+            btn.innerText = "Unfollow";
+        }
         wrapper.appendChild(box);
         box.appendChild(profile);
         profile.appendChild(pImg);
@@ -73,6 +87,15 @@ window.onload = async function(){
         const fbtn = fbtns[i];
         fbtn.addEventListener('click',async (e) => {
             e.stopPropagation();
+              console.log(e.target.innerText);
+              if(e.target.innerText === "Follow") {
+                e.target.innerText = "Unfollow";
+                e.target.classList.remove("unfollow");
+              } else if(e.target.innerText === "Unfollow") {
+                e.target.innerText = "Follow";
+                e.target.classList.add("unfollow");
+              }
+              console.log(e.target.innerText);
             const id=e.target.id.split('followBtn')[1];//follower = current user, followee= this id
             const res = await fetch('/follows',{
                 method: 'POST',
