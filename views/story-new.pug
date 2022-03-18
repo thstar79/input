@@ -1,0 +1,29 @@
+extends layout.pug
+include utils.pug
+
+block content
+  link(rel='stylesheet' href='/stylesheets/newStory.css')
+  #centeringdiv
+    #WriteStoryBoxWrapper
+      #WriteStoryBox
+        #writeStoryErrorBox
+          +validationErrorSummary(errors)
+        #writeStoryHeader 
+          h1= title
+        #writeStoryFormBox 
+          form(action='/stories/new' method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            +field('Title', 'title', story.title)
+            +field('Story', 'content', story.content, "textarea")
+            - let list = ["Story", "Review", "Walkthrough"]
+            label Select Topic
+              select(name="topicType")
+                each item in list
+                  option(value=`${item}`) #{item}
+              label Select Game
+                select(name="gameId")
+                  each game in games
+                      option(value=`${game.id}`) #{game.title}
+            #writeStoryButtonBox 
+              button#newStoryButton(type='submit') Write Story
+              a(id="newStoryCancel" href='/stories' class="nes-btn is-error") Cancel
