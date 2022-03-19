@@ -246,7 +246,7 @@ router.get(
 
         const story = await db.Story.findByPk(id);
         res.render("story-delete", {
-            title: "Delete this Story???",
+            title: "Delete this Story?",
             story,
             csrfToken: req.csrfToken(),
         });
