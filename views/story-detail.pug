@@ -52,7 +52,11 @@ block content
                 a(id=`storyCoin-${story.id}` class='storyCoinImg' href=``) coin
          p(id='storyCoinText')=storyCoinsCount
          p(id='userStoryCoinText')=userStoryCoinsCount
-         button.pushable(id=`strcomment${story.id}` class='strcomment') Comment
+         button.pushable(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment') Comment
+         
+          script(src="/javascripts/coinSound.js" type="module") 
+          script(src="/javascripts/coin-story.js" type="module")
+          script(src="/javascripts/comment.js" type="module") 
 
       //- .commentBoxWrapper
       //-   .commentList
@@ -94,3 +98,4 @@ block content
       //-               .cECoinCnt(id=`cntID${comment.id}ID${comment.User.id}ID${session.id}`)= `${sum[`${comment.id}`]}`
       //-           .cEMid
       //-           .cERight
+                
