@@ -154,7 +154,6 @@ const loginValidators = [
     .withMessage("Please provide a value for Password"),
 ];
 
-
 router.post(
     "/users/login",
     csrfProtection,
@@ -176,10 +175,15 @@ router.post(
                 if (passwordMatch) {
                     loginUser(req, res, user);
                 }
+                else{
+                    errors.push(
+                        "Login failed for the provided email address and password"
+                    );
+                }
             }
             else{
                 errors.push(
-                    "Login failed for the provided email address and password"
+                    "No User with this email registered"
                 );
             }
         } else {
