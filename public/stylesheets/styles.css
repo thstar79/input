@@ -16,7 +16,13 @@ body {
     font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
     
 }
-
+h1 {
+    font-family:'Press Start 2P', cursive;
+    font-weight: bolder;
+    font-size: 30px;
+    color: rgb(92, 92, 92);
+    text-shadow: 3px 3px rgb(0, 0, 0), -1px -1px rgb(211, 211, 211);
+}
 .loginBox {
     display: flex;
     flex-direction: column;
@@ -272,7 +278,7 @@ a {
 .userProfileContentBox {
     width: 220px;
     font-size: 10px;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Poor Story', cursive;
     padding: 5px 0 5px 0;
 }
 
