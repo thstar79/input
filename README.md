@@ -22,15 +22,18 @@ Input is a site where you share stories, post reviews, and read walkthroughs.
 - JavaScript
 - HTML
 - CSS
-- Node.Js
+- Postgres
+- Node.Js 
    - Express
    - Sequelize
-   - Postgres
    - Pug
    - bcrypt
+  
+  
 #### How to use our application
-  1. npm install
-      - This will install following dependencies...
+ 
+Below is the step-by-step to install and initiate the program.
+   - This will install following dependencies...
             bcrypt
             Cookie-parser / Csurf
             Express
@@ -40,10 +43,55 @@ Input is a site where you share stories, post reviews, and read walkthroughs.
             Sequelize / Sequelize-cli
             dotenv / per-env
             Nodemon
-   2. Following the .envexample file located in the root folder and create an .env file needed for the database connection needed and sesssion secret value.
-    .......include img
-    
-   3. In your terminal
+  
+  1. Get a free API Key at https://example.com
+  
+  2. Clone the repo
+  
+  3. git clone https://github.com/thstar79/input.git
+  
+  4. Install NPM packages
+  
+             npm install
+  5. Create/Update your .env in root folder (use .envexample for reference)
+  
+             PORT=
+             DB_USERNAME=
+             DB_PASSWORD=
+             DB_DATABASE=
+             DB_HOST=
+  
+  6. Initialize Sequelize package to create the necessary files to use Sequelize
+            
+             npx sequelize init
+  
+  7. Create the user in Postgres and give it the necessary privilege (using credential variables in .env).
+  
+            CREATE USER <<username>> WITH PASSWORD <<password>> CREATEDB;
+  
+  8. Create and seed the database and tables
+  
+             npx dotenv sequelize db:create
+             npx dotenv sequelize db:migrate
+             npx dotenv sequelize db:seed:all
+  
+  9. Start the server using below command in your terminal.
+  
+             npm start
+  
+  10. Console should pass below message if successful.
+  
+             [nodemon] 2.0.6
+             [nodemon] to restart at any time, enter `rs`
+             [nodemon] watching path(s): *.*
+             [nodemon] watching extensions: js,mjs,json
+             [nodemon] starting `node -r dotenv/config ./bin/www`
+             Executing (default): SELECT 1+1 AS result
+             Executing (default): CREATE TABLE IF NOT EXISTS "Session" ("sid" VARCHAR(36) , "expires" TIMESTAMP WITH TIME ZONE, "data" TEXT, "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL, "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("sid"));
+             Database connection success! Sequelize is ready to use...
+             Listening on port 8080...
+             Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'Session' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+  
 ## Stories
 Description about stories
 
