@@ -19,34 +19,32 @@ block content
           p=story.content
         .storyContentImgBox
           img(src=`/img/gameimg/game${story.gameId}.png` width="300px")
-
-      .editDelButtonBox
-        button#transparent-button
-          span.start-btn
-            a(href=`/stories/edit/${story.id}`) Edit
-        button.pushable
-          span.shadow
-          span.edge
-          span.front
-            a(href=`/stories/delete/${story.id}`) Delete
-    .coinBox
-      img(id="storyCoinSpinImage" src='/img/coin.png' width='60px')
-      button.pushable
-        span.shadow
-        span.edge
-        span.front
-          a(id=`storyCoin-${story.id}` class='storyCoinImg' href=``) coin
-      p(id='storyCoinText')=storyCoinsCount
-      p(id='userStoryCoinText')=userStoryCoinsCount
-    
-      button.pushable(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment') Comment
-       button#transparent-button
-         span.end-btn
-           a(href=`/stories/delete/${story.id}`) Delete 
-      script(src="/javascripts/coinSound.js" type="module") 
-      script(src="/javascripts/coin-story.js" type="module")
-      script(src="/javascripts/comment.js" type="module") 
-
+    if session.id === story.userId 
+      .storyContentFooter
+        .coinBox 
+          img(id="storyCoinSpinImage" src='/img/coin.png' width='60px')
+          p(id='storyCoinText')=storyCoinsCount
+          p(id='userStoryCoinText')=userStoryCoinsCount
+          button(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment')
+              span.start-btn Comment
+        .storyContentButtonBox     
+          button#transparent-button
+            span.start-btn
+              a(href=`/stories/edit/${story.id}`) Edit
+          button#transparent-button
+            span.end-btn
+              a(id="cancelbutton" href=`/stories/delete/${story.id}`) Delete
+    else
+      .storyContentFooter
+       .coinBox 
+          img(id="storyCoinSpinImage" src='/img/coin.png' width='60px')
+          p(id='storyCoinText')=storyCoinsCount
+          p(id='userStoryCoinText')=userStoryCoinsCount
+          .buttondiv
+            button(id=`strcomment${story.id}` class='strcomment') Comment 
+    script(src="/javascripts/coinSound.js" type="module")
+    script(src="/javascripts/coin-story.js" type="module")
+    script(src="/javascripts/comment.js" type="module") 
       //- .commentBoxWrapper
       //-   .commentList
       //-     .commentFormBox

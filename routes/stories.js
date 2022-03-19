@@ -17,10 +17,11 @@ router.get(
     "/stories",
     csrfProtection,
     asyncHandler(async (req, res) => {
+        const { userId } = req.session.auth;
         const stories = await db.Story.findAll({
             include: [db.User, db.Game],
         });
-        res.render("index", { title: "Stories List", stories });
+        res.render("index", { title: "Stories List", stories, userId });
     })
 
 );
