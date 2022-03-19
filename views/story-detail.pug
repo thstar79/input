@@ -10,7 +10,6 @@ block content
     .containerBox
       .headerBox
         .headerBoxImg
-
           img(src=`/img/users/user${story.userId}.png` width='75px')
         .headerBoxTopic
           h2=story.title
@@ -31,32 +30,22 @@ block content
           span.front
             a(href=`/stories/delete/${story.id}`) Delete
     .coinBox
-       img(id="storyCoinSpinImage" src='/img/coin.png' width='60px')
-       button.pushable
-            span.shadow
-            span.edge
-            span.front
-              a(id=`storyCoin-${story.id}` class='storyCoinImg' href=``) coin
-       p(id='storyCoinText')=storyCoinsCount
-       p(id='userStoryCoinText')=userStoryCoinsCount
-       button.pushable(id=`strcomment${story.id}` class='strcomment') Comment
-        button#transparent-button
-          span.end-btn
-            a(href=`/stories/delete/${story.id}`) Delete 
-      .coinBox 
-         img(id="storyCoinSpinImage" src='/img/coin.png' width='60px')
-         button.pushable
-              span.shadow
-              span.edge
-              span.front
-                a(id=`storyCoin-${story.id}` class='storyCoinImg' href=``) coin
-         p(id='storyCoinText')=storyCoinsCount
-         p(id='userStoryCoinText')=userStoryCoinsCount
-         button.pushable(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment') Comment
-         
-          script(src="/javascripts/coinSound.js" type="module") 
-          script(src="/javascripts/coin-story.js" type="module")
-          script(src="/javascripts/comment.js" type="module") 
+      img(id="storyCoinSpinImage" src='/img/coin.png' width='60px')
+      button.pushable
+        span.shadow
+        span.edge
+        span.front
+          a(id=`storyCoin-${story.id}` class='storyCoinImg' href=``) coin
+      p(id='storyCoinText')=storyCoinsCount
+      p(id='userStoryCoinText')=userStoryCoinsCount
+    
+      button.pushable(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment') Comment
+       button#transparent-button
+         span.end-btn
+           a(href=`/stories/delete/${story.id}`) Delete 
+      script(src="/javascripts/coinSound.js" type="module") 
+      script(src="/javascripts/coin-story.js" type="module")
+      script(src="/javascripts/comment.js" type="module") 
 
       //- .commentBoxWrapper
       //-   .commentList
