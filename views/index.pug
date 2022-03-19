@@ -16,7 +16,6 @@ block content
               .storyBoxHeader
                 .storyBoxHeaderProfile
                   img(src=`/img/users/user${story.userId}.png` height='20px')
-
                   p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
                 .storyBoxHeaderMenu
                 if userId === story.userId

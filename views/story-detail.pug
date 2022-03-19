@@ -10,24 +10,25 @@ block content
     .containerBox
       .headerBox
         .headerBoxImg
-
           img(src=`/img/users/user${story.userId}.png` width='75px')
         .headerBoxTopic
           h2=story.title
+          p(id="storyWrittenDate")=`${story.createdAt.toString().slice(0,15)}`
           p #{story.topicType}
       .storyContentBox
         .storyContentTextBox        
           p=story.content
         .storyContentImgBox
           img(src=`/img/gameimg/game${story.gameId}.png` width="300px")
-    if session.id === story.userId 
+    
       .storyContentFooter
         .coinBox 
-          img(id=`storyCoin-${story.id}` class="storyCoinSpinImage" src='/img/coin.png' width='60px')
+          img(id=`storyCoin-${story.id}` class="storyCoinSpinImage coinSound" src='/img/coin.png' width='60px')
           p(id='storyCoinText')=storyCoinsCount
           p(id='userStoryCoinText')=userStoryCoinsCount
-          button(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment')
+          button(id=`strcommentID${story.id}ID${session}` class='strcomment')
               span.start-btn Comment
+      if session === story.userId
         .storyContentButtonBox     
           button#transparent-button
             span.start-btn
@@ -35,14 +36,8 @@ block content
           button#transparent-button
             span.end-btn
               a(id="cancelbutton" href=`/stories/delete/${story.id}`) Delete
-    else
-      .storyContentFooter
-       .coinBox 
-          img(id=`storyCoin-${story.id}` class="storyCoinSpinImage" src='/img/coin.png' width='60px')
-          p(id='storyCoinText')=storyCoinsCount
-          p(id='userStoryCoinText')=userStoryCoinsCount
-          .buttondiv
-            button(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment') Comment 
+      end
+      
     script(src="/javascripts/coinSound.js" type="module")
     script(src="/javascripts/coin-story.js" type="module")
     script(src="/javascripts/comment.js" type="module") 
@@ -76,7 +71,6 @@ block content
       //-             label(for="content") Comment:
       //-             input(type="text" name='content' value=comment.comment id=`comment-field-${comment.id}`)
       //-             button(class='edit-submit-btn' id=`edit-btn-${comment.id}`) Submit Edit
-
       //-           button.pushable(class='comment-delete-btn' id=`deleteID${comment.id}ID${comment.User.id}ID${session.id}`) Delete
       //-         .commentExtra(class='refresh-button')
       //-           .cELeft

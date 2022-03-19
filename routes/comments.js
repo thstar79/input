@@ -260,11 +260,13 @@ router.get(
             });
             
             for(let i=0;i<coins.length;++i){
+                let count = coins[i].count;
+                if(count === undefined) count = 0;
                 if(sum[coins[i].Comment.id] === undefined){
-                    sum[coins[i].Comment.id] = coins[i].count;
+                    sum[coins[i].Comment.id] = count;
                 }
                 else{
-                    sum[coins[i].Comment.id] += coins[i].count;
+                    sum[coins[i].Comment.id] += count;
                 }
             }
             const users =[];
