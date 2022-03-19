@@ -259,6 +259,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         //dropDiv()
     }
 
+    
     strcomments[0].addEventListener('click', async (e)=>{
 
         if (extraside.classList.contains('hidden')) {
@@ -266,23 +267,26 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         } else {
             extraside.classList.add('hidden');
         }
+
+        const exit = document.getElementById('comment-top-top-exit-btn');
+        exit.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            if (!extraside.classList.contains('hidden')) {
+                extraside.classList.add('hidden');
+            }
+        });
     });
 
     const createBtn = document.getElementById('commentCreate');
     let editBtns = document.getElementsByClassName('comment-edit-btn');
     let deleteBtns = document.querySelectorAll('.comment-delete-btn');
     let coinBtns = document.querySelectorAll('.coin-btn');
-
-    console.log("EDIT : ", editBtns.length);
+    
 
     createBtn.addEventListener('click', async(e) => {
         e.preventDefault();
         e.stopPropagation();
         const commentData = document.getElementById('comment').value;
-        //const storyId = document.getElementById('storyCId').value;
-        
-        //console.log("story Id : ", storyId);
-        console.log("comment Data : ", commentData);
         const res = await fetch(`/api/comments`, {
             method: 'POST',
             headers: {
@@ -294,7 +298,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             }),
         });
         const returnData = await res.json();
-        console.log(returnData.message);
         // if we get a Success response, the original post element should be updated
         if (returnData.message === "Success") {
             const res1 = await fetch('/comments/last');
@@ -312,19 +315,17 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                 btn.addEventListener('click', editFn);
             }
         
-            //let deleteBtns = document.querySelectorAll('.comment-delete-btn');
-            //let coinBtns = document.querySelectorAll('.coin-btn');
             for (let i = 0; i < deleteBtns.length; i++) {
                 const btn = deleteBtns[i];
                 btn.addEventListener('click', delFn);
             }
         
-            //let coinBtns = document.querySelectorAll('.coin-btn');
-        
             for (let i = 0; i < coinBtns.length; i++) {
                 const btn = coinBtns[i];
                 btn.addEventListener('click', starFn);
             }
+
+
         }
     });
 
