@@ -26,4 +26,4 @@ block content
                       option(value=`${game.id}`) #{game.title}
             #writeStoryButtonBox
               button#newStoryButton(type='submit') Edit Story
-              a(id="newStoryCancel" href='/' class="nes-btn is-error") Cancel
+              a(id="newStoryCancel" href=`/stories/${story.id}` class="nes-btn is-error") Cancel
