@@ -1,9 +1,8 @@
 const storyCoinBtn = document.getElementsByClassName('storyCoinSpinImage')[0]
 
-storyCoinBtn.addEventListener('click', async (e) => {
+document.getElementById('storyCoinSpinImage').addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('clicked')
         const storyId = e.target.id.split('storyCoin-')[1];
         const resUserStoryCoin = await fetch(`/stories/coins/user/${storyId}`);
         const dataUserStoryCoin = await resUserStoryCoin.json()

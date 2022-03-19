@@ -10,7 +10,6 @@ block content
     .containerBox
       .headerBox
         .headerBoxImg
-
           img(src=`/img/users/user${story.userId}.png` width='75px')
         .headerBoxTopic
           h2=story.title
@@ -45,6 +44,7 @@ block content
             button(id=`strcomment${story.id}` class='strcomment') Comment 
     script(src="/javascripts/coinSound.js" type="module")
     script(src="/javascripts/coin-story.js" type="module")
+    script(src="/javascripts/comment.js" type="module") 
       //- .commentBoxWrapper
       //-   .commentList
       //-     .commentFormBox
