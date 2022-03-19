@@ -1,9 +1,8 @@
 const db = require("./db/models");
 
 const loginUser = (req, res, user) => {
-    req.session.auth = {
-        userId: user.id,
-    };
+    req.session.auth = { userId: user.id };
+    req.session.save( () => res.redirect('/stories'))
 };
 
 const restoreUser = async(req, res, next) => {
@@ -34,14 +33,13 @@ const restoreUser = async(req, res, next) => {
 
 const logoutUser = (req, res) => {
     delete req.session.auth;
-    
+    req.session.save( () => res.redirect("/users/login"))
 };
 
 const requireAuth = (req, res, next) => {
     if (!res.locals.authenticated) {
         return res.redirect("/users/login");
     }
-
     return next();
 };
 

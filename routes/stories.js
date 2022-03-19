@@ -290,12 +290,11 @@ router.post(
         const story = await db.Story.findByPk(id);
 
         //current story id !== authed user id
-        if (story.userId !== res.locals.user.id) {
-            res.send("You do not have permissions to delete this story");
-        } else {
+        if (story.userId === res.locals.user.id || res.locals.user.id === 1) {
             await story.destroy();
-
-            res.redirect("/");
+            res.redirect("/stories");
+        } else {
+            res.send("You do not have permissions to delete this story");
         }
     })
 );
