@@ -30,18 +30,20 @@ block content
                                     span.start-btn LOGIN      
                                 a(href="/users/register")
                                     span.start-btn REGISTER
-                            .mario
-        #controller
-            div
-                button.pushable
-                    span.shadow
-                    span.edge
-                    span.front A
-            div
-                button.pushable
-                    span.shadow
-                    span.edge
-                    span.front#testButton B        
+                        .mario            
+                        #yesButton
+                            button.pushable
+                                span.shadow
+                                span.edgeY
+                                span.frontY A
+                        #noButton
+                            button.pushable
+                                span.shadow
+                                span.edge
+                                span.front#testButton 
+                                 a(href="/users/register") B     
+                            
+        #controller      
         #bottom
 
         script(src="/javascripts/test.js" type="module") 
