@@ -23,6 +23,9 @@ h1 {
     color: rgb(92, 92, 92);
     text-shadow: 3px 3px rgb(0, 0, 0), -1px -1px rgb(211, 211, 211);
 }
+a {
+    margin-right:5px;
+}
 .loginBox {
     display: flex;
     flex-direction: column;
