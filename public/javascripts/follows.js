@@ -62,7 +62,7 @@ window.onload = async function(){
 
     //for the content-top
     const makeTopFollows = async ()=>{
-        
+
         const res1 = await fetch(`/follows`);
         const returnData1 = await res1.json();
         for(let i=0;i<returnData1.follows.length;++i){
@@ -72,9 +72,9 @@ window.onload = async function(){
             makeProfile(top_wrapper, id, userName);
         }
     };
-    
+
     if(userId !== 0)    makeTopFollows();
-    
+
     const addFollows = async (fbox, e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -117,7 +117,7 @@ window.onload = async function(){
     for(let i=0;i<fbtns.length;++i){
         const fbtn = fbtns[i];
         const fbox = fboxes[i];
-        
+
         const addFollowsWrapper = (e)=>{
             addFollows(fbox,e);
         }
