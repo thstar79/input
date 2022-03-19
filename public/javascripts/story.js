@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", event => {
             e.stopPropagation();
             console.log("clicked");
             await setTimeout(()=>{
-                $("#comment-list").load(window.location.href + " #comment-list>*");
+                $("#comment-main-wrapper").load(window.location.href + " #comment-main-wrapper>*");
             },500);
         });
     }
