@@ -13,33 +13,41 @@ router.get('/test', (req,res) => {
     res.render('test')
 })
 
+router.get(
+    '/stories/types/:id',
+    csrfProtection,
+    asyncHandler(async (req, res) => {
+    const topicType = req.params.id;
+    const userId = setUserId(req,res);
+    const stories = await db.Story.findAll({
+        include: [db.User, db.Game],
+        order: [['createdAt', 'DESC']],
+        where: {
+            topicType: topicType,
+        }
+    });
+    res.render("index", { title: "Story", stories, userId });
+}));
+
 router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {
     const userId = setUserId(req,res);
-    // req.session.visited
-            const stories = await db.Story.findAll({
-            include: [db.User, db.Game],
-            order: [['createdAt', 'DESC']],
-            limit: 5
-        });
-        res.render("recent", { title: "Recent stories", stories, userId });
+// req.session.visited
+        const stories = await db.Story.findAll({
+        include: [db.User, db.Game],
+        order: [['createdAt', 'DESC']],
+        limit: 5
+    });
+    res.render("recent", { title: "Recent stories", stories, userId });
 }))
 
 router.get(
     "/stories",
     csrfProtection,
     asyncHandler(async (req, res) => {
-        console.log("Heree......................................1");
         const userId = setUserId(req,res);
-        console.log("Heree......................................2");
         const stories = await db.Story.findAll({
             include: [db.User, db.Game],
         });
-        console.log("Heree......................................3");
-        console.log("Heree......................................3");
-        console.log("Heree......................................3");
-        console.log("Heree......................................3");
-        console.log("Heree......................................3");
-        console.log("Heree......................................3");
         res.render("index", { title: "Stories List", stories, userId });
     })
 
