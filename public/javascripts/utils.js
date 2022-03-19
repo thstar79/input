@@ -1,5 +1,5 @@
 const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
-        
+
     const cMBox = document.createElement('div');
 
     const cMB1 = document.createElement('div');
@@ -43,7 +43,7 @@ const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
     cMB1pp.innerText = `${user.firstName} ${user.lastName}`;
     cMB1cp.setAttribute('id',`comment-content-${comment.id}`);
     cMB1cp.innerText = comment.comment;
-    
+
     cMB2btn1.setAttribute('id',`editID${comment.id}ID${user.id}ID${sessionId}`);
     cMB2btn1.innerText = 'Edit';
     cMB2btn1.classList.add('pushable');
@@ -53,7 +53,7 @@ const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
     cMB2btn2.innerText = 'Delete';
     cMB2btn2.classList.add('pushable');
     cMB2btn2.classList.add('comment-delete-btn');
-    
+
     //Edit Form
     cMB2form.setAttribute('id',`edit-form-${comment.id}`);
     cMB2form.classList.add('hidden');
@@ -65,7 +65,7 @@ const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
     Minput3.setAttribute('rows','5');
     Minput3.setAttribute('value','');
     Mlabel_input3.setAttribute('for','content');
-    
+
     Mbtn.setAttribute('id',`edit-btn-${comment.id}`);
     Mbtn.classList.add('edit-submit-btn');
 
@@ -82,7 +82,7 @@ const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
     cMB3LcoinImg_img.classList.add('bounce');
     cMB3LcoinImg_img.classList.add('coin-btn');
     cMB3LcoinImg_img.classList.add('coinSound');
-    
+
     cMB3LcoinCnt.setAttribute('id',`cntID${comment.id}ID${user.id}ID${sessionId}`);
     let coinSum = `${sum[`${comment.id}`]}`;
     if(Object.keys(sum).length === 0)   coinSum = 0;
@@ -97,10 +97,10 @@ const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
     cMBox.appendChild(cMB1);
     cMBox.appendChild(cMB2);
     cMBox.appendChild(cMB3);
-    
+
     cMB1.appendChild(cMB1p);
     cMB1.appendChild(cMB1c);
-    
+
     cMB2.appendChild(cMB2btn1);
     cMB2.appendChild(cMB2form);
     cMB2.appendChild(cMB2btn2);
@@ -211,7 +211,7 @@ const editFn = async (e) => {
         })
     }
     else{
-        window.alert("auth failed");
+        window.alert("Cannot edit a comment you didn't make");
     }
 }
 
@@ -223,7 +223,8 @@ const delFn = async(e) => {
     const commentId = IDs[1];
     const userId = IDs[2];
     const sessionId = IDs[3];
-    if((userId === sessionId) && userId !== undefined){
+
+    if(((userId === sessionId) && userId !== undefined) || res.locals.user.id === 2){
 
         const res = await fetch(`/comments/${commentId}`, {
             method: 'DELETE'
@@ -238,7 +239,7 @@ const delFn = async(e) => {
         }
     }
     else{
-        window.alert("auth failed");
+        window.alert("Cannot delete a comment you didn't make");
     }
 }
 
@@ -252,11 +253,11 @@ const starFn = async (e) => {
     console.log(commentId, userId, sessionId);
     if(userId === sessionId){
         window.alert("shame on you. Don't give self coins");
-    } 
+    }
     else if( userId === undefined || userId === 0){
         window.alert("Only logged in user can give coins wanna log in or sign up?");
     }
-    else{        
+    else{
             const res = await fetch(`/comments/coins/${commentId}`,{
             method: 'PATCH',
             body: JSON.stringify({}),
