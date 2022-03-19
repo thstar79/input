@@ -7,14 +7,15 @@ append head
 
 block content
     #centeringDiv
-      div 
+      div
         h1= title
         each story in stories
           div(class="storyBoxWrapper" id=`storyId${story.id}`)
             .storyBox
               .storyBoxHeader
                 .storyBoxHeaderProfile
-                  img(src='/img/usericon.png' height='20px')
+                  img(src=`/img/users/user${story.userId}.png` height='20px')
+
                   p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
                 .storyBoxHeaderMenu
                   .dropdown
