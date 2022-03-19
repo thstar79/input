@@ -48,8 +48,8 @@ a {
 }
 
 .headerBoxImg {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     background-color: white;
     border-radius: 10px 0 0 0px;
     border-left:solid 2px white;
@@ -63,17 +63,33 @@ a {
 
 .storyContentBox {
     display: flex;
+    padding-top:0;
+    justify-content: space-between;
+}
+
+#content-box > div > div > div.storyContentBox > div > p {
+    padding: 10px 10px 10px 10px;
+}
+
+.storyContentTextBox {
+    font-family: 'Poor Story', cursive;
+    margin: 30px 0 0 30px;
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.storyContentImgBox {
+    float: right;
+}
+
+.editDelButtonBox {
+    height: 50px;
+    background-color: rgb(238, 49, 49);
+    display: flex;
     align-items: center;
-    flex-direction: column;
-}
-
-.storyContentBox p {
-    padding: 2rem 5rem;
-    text-align: justify;
-}
-
-.editDelButtonBox.refresh-button {
-    background-color: rgb(241, 240, 240);
+    margin-top:25px;
 }
 
 .editDelButtonBox button {
@@ -176,3 +192,19 @@ a {
     width: 1rem;
     align-content: center;
 }
+
+#comment-wrapper {
+    border-left:solid grey 0.5px;
+    border-radius: 10px 0 0 10px;
+}
+
+#comment-top-wrapper {
+    height: 100px;
+    border-top: 35px solid #e4000f;
+    border-radius: 10px 0 0 0 ;
+}
+
+#comment-box {
+    border-top: solid grey 0.5px;
+}
+

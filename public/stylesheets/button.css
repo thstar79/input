@@ -111,6 +111,23 @@
     border-radius: 7px;
       box-shadow: 0 .2em gray; 
       cursor: pointer;
+  }
+  .end-btn{
+    font-family: 'Press Start 2P', cursive;
+      text-align: center;
+    display: inline-block;
+    margin:5px;
+      font-weight: bold;
+      padding: 10px 0 10px 10px ;
+      background-color: rgb(196, 14, 14);
+      text-shadow: -1px -1px black, 1px 1px white;
+      color: gray;
+      -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+      box-shadow: 0 .2em gray; 
+      cursor: pointer;
   
   }
   .video-game-button:active, .start-btn:active {
