@@ -54,8 +54,9 @@ router.post('/stories/coins/:id(\\d+)', asyncHandler(async (req, res) => {
 }));
 
 router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
+    const userId = setUserId(req,res);
     const storyId = parseInt(req.params.id,10);
-    const coin = await db.StoryCoin.findOne({
+    let coin = await db.StoryCoin.findOne({
         where: {
             [Op.and]: [
                 { storyId: req.params.id },
@@ -76,7 +77,16 @@ router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
         }
     }
     else{
-        res.json({message: "Could not find coin please try again", count: 0});
+        if(userId !== 0){
+            coin = db.StoryCoin.build({
+                count:1,
+                storyId: storyId,
+                userId: userId
+            });
+            await coin.save();
+        }
+        if(coin)   res.json({message: "Success", count: coin.count});
+        else       res.json({message: "Failed", count: 0});
     }
 }));
 
