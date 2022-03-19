@@ -16,20 +16,20 @@ block content
           p(id="storyWrittenDate")=`${story.createdAt.toString().slice(0,15)}`
           p #{story.topicType}
       .storyContentBox
-        .storyContentTextBox        
+        .storyContentTextBox
           p=story.content
         .storyContentImgBox
           img(src=`/img/gameimg/game${story.gameId}.png` width="300px")
-    
+
       .storyContentFooter
-        .coinBox 
+        .coinBox
           img(id=`storyCoin-${story.id}` class="storyCoinSpinImage coinSound" src='/img/coin.png' width='60px')
           p(id='storyCoinText')=storyCoinsCount
           p(id='userStoryCoinText')=userStoryCoinsCount
           button(id=`strcommentID${story.id}ID${session}` class='strcomment')
               span.start-btn Comment
       if session === story.userId
-        .storyContentButtonBox     
+        .storyContentButtonBox
           button#transparent-button
             span.start-btn
               a(href=`/stories/edit/${story.id}`) Edit
@@ -40,7 +40,7 @@ block content
 
     script(src="/javascripts/coinSound.js" type="module")
     script(src="/javascripts/coin-story.js" type="module")
-    script(src="/javascripts/comment.js" type="module") 
+    script(src="/javascripts/comment.js" type="module")
       //- .commentBoxWrapper
       //-   .commentList
       //-     .commentFormBox
@@ -74,10 +74,9 @@ block content
       //-           button.pushable(class='comment-delete-btn' id=`deleteID${comment.id}ID${comment.User.id}ID${session.id}`) Delete
       //-         .commentExtra(class='refresh-button')
       //-           .cELeft
-      //-             .cECoin 
+      //-             .cECoin
       //-               .cECoinImg(id=`coinID${comment.id}ID${comment.User.id}ID${session.id}` class='coin-btn')
-      //-                 img(id=`coinID${comment.id}ID${comment.User.id}ID${session.id}` src='/img/coin.png' width='20px' class='coinimg animated bounce') 
+      //-                 img(id=`coinID${comment.id}ID${comment.User.id}ID${session.id}` src='/img/coin.png' width='20px' class='coinimg animated bounce')
       //-               .cECoinCnt(id=`cntID${comment.id}ID${comment.User.id}ID${session.id}`)= `${sum[`${comment.id}`]}`
       //-           .cEMid
       //-           .cERight
-                

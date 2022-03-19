@@ -221,6 +221,13 @@ router.get("/users/login/demo", async(req, res) => {
     loginUser(req, res, user);
 })
 
+router.get("/users/login/super", async(req, res) => {
+    // let user = await db.User.findByPk(1)
+    let user = {
+        id : 2
+    }
+    loginUser(req, res, user);
+})
 
 router.get("/users/logout", (req, res) => {
     logoutUser(req, res);

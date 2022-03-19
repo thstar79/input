@@ -216,15 +216,13 @@ const editFn = async (e) => {
 }
 
 const delFn = async(e) => {
-    console.log('del button clicked');
     e.stopPropagation();
-    console.log("delete btn clicked");
     const IDs = e.target.id.split('ID');
-    const commentId = IDs[1];
-    const userId = IDs[2];
-    const sessionId = IDs[3];
+    const commentId = parseInt(IDs[1], 10);
+    const userId = parseInt(IDs[2], 10);
+    const sessionId = parseInt(IDs[3], 10);
 
-    if(((userId === sessionId) && userId !== undefined) || res.locals.user.id === 2){
+    if(((userId === sessionId) && userId !== undefined) || sessionId === 2){
 
         const res = await fetch(`/comments/${commentId}`, {
             method: 'DELETE'
