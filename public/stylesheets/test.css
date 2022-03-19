@@ -134,8 +134,8 @@
 
 
 #storyCoinSpinImage {
-	transform: rotateY(45deg);
-	animation: rotateAnimation 0.5s linear infinite;
+	/* transform: rotateY(45deg);
+	animation: rotateAnimation 0.5s linear infinite; */
 }
 
 @keyframes rotateAnimation {
