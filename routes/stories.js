@@ -288,9 +288,9 @@ router.post(
     asyncHandler(async(req, res) => {
         const id = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(id);
-
+        
         //current story id !== authed user id
-        if (story.userId === res.locals.user.id || res.locals.user.id === 1) {
+        if (story.userId === res.locals.user.id || res.locals.user.id === 2) {
             await story.destroy();
             res.redirect("/stories");
         } else {

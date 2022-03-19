@@ -27,8 +27,8 @@ window.onload = async function(){
         pContent.setAttribute('class','userProfileContentBox');
         btn.setAttribute('id',`followBtn${id}`);
         btn.setAttribute('class','followBtn');
-        pImg.setAttribute("style", "font-family: 'Poor Story'; font-size: 18px; font-weight: 1000")
-        pContent.setAttribute("style", "font-family: 'Poor Story'; font-size: 16px;")
+        pImg.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 10px; font-weight: 1000")
+        pContent.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 8px;")
         pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>${username.slice(0,8)}`;
         pContent.innerHTML= `<p>Do you want to hear the latest game News? You should follow ${firstname.slice(0,7)} ${lastname.slice(0,7)}!.</p>`;
         const resfollow = await fetch('/follows/isfollow',{
