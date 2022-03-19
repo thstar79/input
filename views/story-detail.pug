@@ -23,7 +23,7 @@ block content
     if session.id === story.userId 
       .storyContentFooter
         .coinBox 
-          img(id="storyCoinSpinImage" src='/img/coin.png' width='60px')
+          img(id=`storyCoin-${story.id}` class="storyCoinSpinImage" src='/img/coin.png' width='60px')
           p(id='storyCoinText')=storyCoinsCount
           p(id='userStoryCoinText')=userStoryCoinsCount
           button(id=`strcomment${story.id}` class='strcomment')
@@ -38,7 +38,7 @@ block content
     else
       .storyContentFooter
        .coinBox 
-          img(id="storyCoinSpinImage" src='/img/coin.png' width='60px')
+          img(id=`storyCoin-${story.id}` class="storyCoinSpinImage" src='/img/coin.png' width='60px')
           p(id='storyCoinText')=storyCoinsCount
           p(id='userStoryCoinText')=userStoryCoinsCount
           .buttondiv
