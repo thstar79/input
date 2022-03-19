@@ -26,7 +26,7 @@ block content
           img(id=`storyCoin-${story.id}` class="storyCoinSpinImage" src='/img/coin.png' width='60px')
           p(id='storyCoinText')=storyCoinsCount
           p(id='userStoryCoinText')=userStoryCoinsCount
-          button(id=`strcomment${story.id}` class='strcomment')
+          button(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment')
               span.start-btn Comment
         .storyContentButtonBox     
           button#transparent-button
@@ -42,7 +42,7 @@ block content
           p(id='storyCoinText')=storyCoinsCount
           p(id='userStoryCoinText')=userStoryCoinsCount
           .buttondiv
-            button(id=`strcomment${story.id}` class='strcomment') Comment 
+            button(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment') Comment 
     script(src="/javascripts/coinSound.js" type="module")
     script(src="/javascripts/coin-story.js" type="module")
     script(src="/javascripts/comment.js" type="module") 
