@@ -1,4 +1,4 @@
-const storyCoinBtn = document.getElementsByClassName('storyCoinImg')[0]
+const storyCoinBtn = document.getElementById('storyCoinSpinImage')
 
 storyCoinBtn.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ storyCoinBtn.addEventListener('click', async (e) => {
                 body: JSON.stringify({}),
                 headers: { 'Content-Type': 'application/json' }
             });
-            const returnData = await res.json()
+            const returnData = await res.json();
 
             const resTotalStoryCoins = await fetch(`/stories/coins/${storyId}`);
             const dataTotalCount = resTotalStoryCoins.json();

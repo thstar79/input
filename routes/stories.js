@@ -54,7 +54,7 @@ router.get(
         else{
             userId = '-1';
         }
-        
+
         const storyId = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(storyId, {
             include: [db.User, db.Game],
@@ -189,7 +189,7 @@ router.post(
                    [Op.and]: [
                        { title: title },
                        { content: content }
-                   ] 
+                   ]
                 }
             })
 
@@ -199,8 +199,8 @@ router.post(
                 userId: userId,
             });
             await coin.save();
-               
-            res.redirect("/");
+
+            res.redirect("/stories");
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             const games = await db.Game.findAll();
@@ -288,14 +288,13 @@ router.post(
     asyncHandler(async(req, res) => {
         const id = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(id);
-
+        
         //current story id !== authed user id
-        if (story.userId !== res.locals.user.id) {
-            res.send("You do not have permissions to delete this story");
-        } else {
+        if (story.userId === res.locals.user.id || res.locals.user.id === 2) {
             await story.destroy();
-
-            res.redirect("/");
+            res.redirect("/stories");
+        } else {
+            res.send("You do not have permissions to delete this story");
         }
     })
 );

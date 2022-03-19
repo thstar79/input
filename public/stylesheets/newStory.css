@@ -5,17 +5,21 @@ h1 {
     justify-content: center;
     font-family: 'Poor Story', cursive;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 30px;
 }
 
-#newStory{
+.is-error {
+    font-family: 'Press Start 2p';
+}
+
+#newStoryButton{
     font-family: 'Press Start 2p';
     text-align: center;
 	display: inline-block;
 	margin:5px;
     font-weight: bold;
-    padding: 10px 0 10px 10px ;
-    text-shadow: -1px -1px black, 1px 1px white;
+    padding: 10px 10px 10px 10px ;
+    text-shadow: -2px -2px black, 1px 1px white;
     color: gray;
     -webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
@@ -25,23 +29,24 @@ h1 {
     cursor: pointer;
 }
 
-#newStoryCancel {
+ #newStoryCancel {
     font-family: 'Press Start 2p';
     text-align: center;
 	display: inline-block;
 	margin:5px;
     font-weight: bold;
-    padding: 10px 0 10px 10px;
+    border: solid rgb(92, 92, 92) 2px;
+    padding: 10px 10px 10px 10px;
     background-color: rgb(246, 60, 13);
-    text-shadow: -1px -1px black, 1px 1px white;
-    color: gray;
+    text-shadow: -2px -2px black, 1px 1px white;
+    color: rgb(201, 201, 201);
     -webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
 	-o-border-radius: 7px;
 	border-radius: 7px;
     box-shadow: 0 .2em rgb(105, 120, 138);
     cursor: pointer;
-}
+} 
 
 #newStory:active {
 	box-shadow: none;
@@ -57,6 +62,14 @@ form, input, label, nav {
     font-family: 'Poor Story', cursive;
     font-weight: bold;
     font-size: 1.2rem;
+}
+input {
+    margin: 15px 0 15px 0;
+}
+
+label {
+    margin-left:10px;
+    font-weight: bolder;
 }
 
 input[type=text], textarea, select {
@@ -81,5 +94,54 @@ input[type=text], textarea, select {
     div.newStory {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+   
+    }
+
+    #centeringdiv {
+        display: flex;
+        justify-content: center;
+    }
+
+    #WriteStoryBoxWrapper {
+        display:inline-block;
+        justify-content: center;
+        border-radius: 10px;
+        border: solid rgb(71, 71, 71) 0.5px;
+        padding: 0;
+    }
+    #WriteStoryBox {
+       width:700px;
+    }
+
+    #writeStoryErrorBox {     
+        border-radius: 10px;
+        background-color: rgb(253, 237, 212);
+        color: red;
+        display: flex;
+        justify-content: center;
+    }
+
+    p {
+        font-weight: bolder;
+        font-family: 'Poor Story', cursive;
+    }
+    #errormessage {
+        font-weight: bold;
+        font-family: 'Poor Story', cursive;
+        margin-bottom: 5px;
+    }
+    #writeStoryHeader {
+        color: white;
+        background-color: red;
+        border-radius: 10px 10px 0 0 ;
+    }
+
+    #writeStoryFormBox {
+        padding: 10px 0 10px 0;
+    }
+
+    #writeStoryButtonBox {
+        width:100%;
+        display: flex;
+        justify-content: flex-end;
     }

@@ -6,18 +6,54 @@ a {
 
 .containerBoxWrapper {
     /* border: 1px solid black; */
+    margin-top: 30px;
     display: flex;
-    flex-direction: column;
-    align-content: center;
-    padding: 1em;
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    border: 0.5px solid grey;
+    width: 800px;
 }
 
 .containerBox {
-    width: 80%;
+    width: 100%;
+    margin-top:0;
 }
 
 .headerBox {
     display: flex;
+    background-color: #e4000f;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.headerBoxTopic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding:0 20px 0 20px;
+    font-family:'Press Start 2P', cursive;
+}
+.headerBoxTopic h2{
+    font-weight: bolder;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px rgb(0, 0, 0), -1px -1px rgb(211, 211, 211);
+}
+
+.headerBoxTopic p{
+    font-weight: bolder;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px rgb(0, 0, 0), -1px -1px rgb(211, 211, 211);
+}
+
+.headerBoxImg {
+    width: 75px;
+    height: 75px;
+    background-color: white;
+    border-radius: 10px 0 0 0px;
+    border-left:solid 2px white;
+    border-top:solid 2px white;
 }
 
 .headerBox a {
@@ -27,17 +63,33 @@ a {
 
 .storyContentBox {
     display: flex;
+    padding-top:0;
+    justify-content: space-between;
+}
+
+#content-box > div > div > div.storyContentBox > div > p {
+    padding: 10px 10px 10px 10px;
+}
+
+.storyContentTextBox {
+    font-family: 'Poor Story', cursive;
+    margin: 30px 0 0 30px;
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.storyContentImgBox {
+    float: right;
+}
+
+.editDelButtonBox {
+    height: 50px;
+    background-color: rgb(238, 49, 49);
+    display: flex;
     align-items: center;
-    flex-direction: column;
-}
-
-.storyContentBox p {
-    padding: 2rem 5rem;
-    text-align: justify;
-}
-
-.editDelButtonBox.refresh-button {
-    background-color: rgb(241, 240, 240);
+    margin-top:25px;
 }
 
 .editDelButtonBox button {
@@ -140,3 +192,19 @@ a {
     width: 1rem;
     align-content: center;
 }
+
+#comment-wrapper {
+    border-left:solid grey 0.5px;
+    border-radius: 10px 0 0 10px;
+}
+
+#comment-top-wrapper {
+    height: 100px;
+    border-top: 35px solid #e4000f;
+    border-radius: 10px 0 0 0 ;
+}
+
+#comment-box {
+    border-top: solid grey 0.5px;
+}
+
