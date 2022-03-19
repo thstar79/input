@@ -69,7 +69,10 @@ router.get('/api/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
         include: [{
           model: db.User,
           as: 'followings',
-          include: db.Story
+          include: {
+          model: db.Story,
+          include: [db.Game]
+          }
         }]
       })
 
