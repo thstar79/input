@@ -1,12 +1,31 @@
 
-extends layout.pug 
-include utils.pug 
+extends layout.pug
+include utils.pug
 
-block content 
+block content
+    link(rel='stylesheet' href='/stylesheets/storyDetail.css')
+    style.
+      h1, h2 {
+          background-color: lightgrey;
+          display: flex;
+          justify-content: center;
+      }
+      h2 {
+          font-family: 'Tahoma';
+          padding: 15px;
+      }
+      div, button {
+          flex-direction: row
+          display: flex;
+          align-content: center;
+      }
     h1=title
     form(action=`/stories/delete/${story.id}` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        h2 Deleting story #{story.title}
-        button confirm
-        button
-            a(href=`/stories/${story.id}`) return
+        h2 Are you sure you want to delete #{story.title} ?
+    div
+        button#transparent-button
+            span.end-btn Confirm
+        button#transparent-button
+            span.start-btn
+                a(href=`/stories/${story.id}`) Cancel
