@@ -1,3 +1,20 @@
+const commentFn = async (e)=>{
+    console.log("Here we are....");
+    if (extraside.classList.contains('hidden')) {
+        extraside.classList.remove('hidden');
+    } else {
+        extraside.classList.add('hidden');
+    }
+
+    const exit = document.getElementById('comment-top-top-exit-btn');
+    exit.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        if (!extraside.classList.contains('hidden')) {
+            extraside.classList.add('hidden');
+        }
+    });
+}
+
 const editFn = async (e) => {
     console.log('edit button clicked');
     e.preventDefault();
@@ -97,4 +114,4 @@ const starFn = async (e) => {
         console.log("shame on you. Don't give self coins");
     }
 }
-export {editFn,delFn,starFn};
+export {commentFn, editFn,delFn,starFn};
