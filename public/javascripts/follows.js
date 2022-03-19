@@ -8,6 +8,9 @@ window.onload = async function(){
     const returnData = await res.json();
     for(let i=0;i<returnData.users.length;++i){
         const id = returnData.users[i].id;
+        let username = returnData.users[i].userName;
+        let firstname = returnData.users[i].firstName;
+        let lastname = returnData.users[i].lastName;
         const box = document.createElement('div');
         const profile = document.createElement('div');
         const pImg = document.createElement('div');
@@ -24,9 +27,10 @@ window.onload = async function(){
         pContent.setAttribute('class','userProfileContentBox');
         btn.setAttribute('id',`followBtn${id}`);
         btn.setAttribute('class','followBtn');
-
-        pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>`;
-        pContent.innerHTML= "<p>Do you want to hear the latest game News? You should follow him!.</p>";
+        pImg.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 10px; font-weight: 1000")
+        pContent.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 8px;")
+        pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>${username.slice(0,8)}`;
+        pContent.innerHTML= `<p>Do you want to hear the latest game News? You should follow ${firstname.slice(0,7)} ${lastname.slice(0,7)}!.</p>`;
         const resfollow = await fetch('/follows/isfollow',{
             method: 'POST',
             body: JSON.stringify({followee:`${id}`}),
@@ -37,7 +41,7 @@ window.onload = async function(){
         console.log(returnDataFollow.isfollow);
         if(returnDataFollow.isfollow === 0){
             btn.innerText = "Follow";
-            btn.classList.add("unfollow");   
+            btn.classList.add("unfollow");
         }
         else{
             btn.innerText = "Unfollow";
@@ -98,7 +102,7 @@ window.onload = async function(){
                 e.target.innerText = "Unfollow";
                 e.target.classList.remove("unfollow");
                 fbox.classList.add("followclicked")
-                
+
             } else if(e.target.innerText === "Unfollow") {
                 e.target.innerText = "Follow";
                 e.target.classList.add("unfollow");
