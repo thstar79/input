@@ -85,6 +85,12 @@
       600ms
       cubic-bezier(.3, .7, .4, 1);
   }
+
+  #registerlink {
+    font-size: 1.25rem;
+    color: rgb(59,58,64);
+    font-weight: bolder;
+  }
   .pushable:hover {
     filter: brightness(110%);
   }
@@ -108,6 +114,17 @@
   }
   .pushable:active .shadow {
     transform: translateY(1px);
+    transition: transform 34ms;
+  }
+  .pushable:hover .frontY {
+    transform: translateY(-6px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+  .pushable:active .frontY {
+    transform: translateY(-2px);
     transition: transform 34ms;
   }
   .pushable:focus:not(:focus-visible) {

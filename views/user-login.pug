@@ -25,11 +25,7 @@ block content
                                     p(id="logtext" for='password') Password
                                 #loginFieldInput
                                     input(type='password' id='loginPasswordInput' name='password' )
-                            .loginbuttonbox
-                                button#transparent-button
-                                    span.start-btn LOGIN      
-                                a(href="/users/register")
-                                    span.start-btn REGISTER
+                            
                         .mario            
                         #yesButton
                             button.pushable
@@ -37,13 +33,13 @@ block content
                                 span.edgeY
                                 span.frontY A
                         #noButton
-                            button.pushable
+                            button.pushable#registerLink
                                 span.shadow
                                 span.edge
-                                span.front#testButton 
-                                 a(href="/users/register") B     
+                                span.front B
+                                    
                             
         #controller      
         #bottom
 
-        script(src="/javascripts/test.js" type="module") 
+        script(src="/javascripts/test.js" type="module")
