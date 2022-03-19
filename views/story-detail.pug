@@ -10,7 +10,6 @@ block content
     .containerBox
       .headerBox
         .headerBoxImg
-
           img(src=`/img/users/user${story.userId}.png` width='75px')
         .headerBoxTopic
           h2=story.title
@@ -26,7 +25,7 @@ block content
           img(id=`storyCoin-${story.id}` class="storyCoinSpinImage" src='/img/coin.png' width='60px')
           p(id='storyCoinText')=storyCoinsCount
           p(id='userStoryCoinText')=userStoryCoinsCount
-          button(id=`strcomment${story.id}` class='strcomment')
+          button(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment')
               span.start-btn Comment
         .storyContentButtonBox     
           button#transparent-button
@@ -45,6 +44,7 @@ block content
             button(id=`strcomment${story.id}` class='strcomment') Comment 
     script(src="/javascripts/coinSound.js" type="module")
     script(src="/javascripts/coin-story.js" type="module")
+    script(src="/javascripts/comment.js" type="module") 
       //- .commentBoxWrapper
       //-   .commentList
       //-     .commentFormBox
