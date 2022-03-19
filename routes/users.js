@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
@@ -176,18 +176,20 @@ router.post(
                     loginUser(req, res, user);
                 }
             }
-            errors.push(
-                "Login failed for the provided email address and password"
-            );
+            else{
+                errors.push(
+                    "Login failed for the provided email address and password"
+                );
+            }
         } else {
             errors = validatorErrors.array().map((error) => error.msg);
+            res.render("user-login", {
+                title: "Login",
+                email,
+                errors,
+                csrfToken: req.csrfToken(),
+            });
         }
-        res.render("user-login", {
-            title: "Login",
-            email,
-            errors,
-            csrfToken: req.csrfToken(),
-        });
     })
 );
 

@@ -229,7 +229,12 @@ router.get(
         });
 
         const sum = {};
+        console.log('***********************************************************************');
+        console.log('***********************************************************************');
+        console.log('***********************************************************************');
+        console.log('***********************************************************************');
         if(comments.length === 0){
+            console.log('***********************************************************************1111');
             res.json({
                 story: "norecord",
                 comments: [],
@@ -238,46 +243,49 @@ router.get(
                 csrfToken: req.csrfToken(),
             });
         }
-
-        const coins = await db.CommentCoin.findAll({
-            include: [{
-                    model: db.Comment,
-                    where: {
-                        storyId: storyId,
+        else{
+            console.log(comments[0], comments.length);
+            console.log('***********************************************************************222222222');
+            const coins = await db.CommentCoin.findAll({
+                include: [{
+                        model: db.Comment,
+                        where: {
+                            storyId: storyId,
+                        },
                     },
-                },
-                {
-                    model: db.User,
-                },
-            ],
-        });
-        
-        for(let i=0;i<coins.length;++i){
-            if(sum[coins[i].Comment.id] === undefined){
-                sum[coins[i].Comment.id] = coins[i].count;
+                    {
+                        model: db.User,
+                    },
+                ],
+            });
+            
+            for(let i=0;i<coins.length;++i){
+                if(sum[coins[i].Comment.id] === undefined){
+                    sum[coins[i].Comment.id] = coins[i].count;
+                }
+                else{
+                    sum[coins[i].Comment.id] += coins[i].count;
+                }
             }
-            else{
-                sum[coins[i].Comment.id] += coins[i].count;
+            const users =[];
+            for(let i=0;i<comments.length;++i){
+                let split = comments[i].comment.split('!@#');
+                //comments[i].User = await db.User.findByPk(split[1]);
+                comments[i].User = await db.User.findByPk(split[1]);
+                users.push(comments[i].User);
+                comments[i].comment = split[2];
             }
-        }
-        const users =[];
-        for(let i=0;i<comments.length;++i){
-            let split = comments[i].comment.split('!@#');
-            //comments[i].User = await db.User.findByPk(split[1]);
-            comments[i].User = await db.User.findByPk(split[1]);
-            users.push(comments[i].User);
-            comments[i].comment = split[2];
-        }
 
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!", comments[0].User,"~~~~~~~~~~~~~~~~~~~~~~");
-        res.json({
-            story: story,
-            comments: comments,
-            users: users,
-            sum: sum,
-            session: {id:userId},
-            csrfToken: req.csrfToken(),
-        });
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!", comments[0].User,"~~~~~~~~~~~~~~~~~~~~~~");
+            res.json({
+                story: story,
+                comments: comments,
+                users: users,
+                sum: sum,
+                session: {id:userId},
+                csrfToken: req.csrfToken(),
+            });
+        }
     })
 );
 
