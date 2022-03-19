@@ -1,30 +1,38 @@
 extends layout.pug
 
 append head
-    script(src="/javascripts/index.js" type="module" defer)
+  //- add page specific styles by appending to the head
+  //- add page specific js
+  script(src="/javascripts/index.js" type="module" defer)
 
 block content
-    h1= title
-    //- each follower in Stories
-    each story in stories
-      div(class="storyBoxWrapper" id=`storyId${story.id}`)
-        .storyBox
-          .storyBoxHeader
-            .storyBoxHeaderProfile
-              img(src=`/img/users/user${story.User.id}.png` height='20px')
-              p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
-            .storyBoxHeaderMenu
-              .dropdown
-                i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
-                .dropdown-content
-                  a(href=`/stories/edit/${story.id}`) Edit
-                  a(href=`/stories/delete/${story.id}`) Delete
-          .storyBoxContent
-            .storyBoxContentTextBox
-              h2=story.title
-              p(id='storyContentText') #{story.content.slice(0,200)+'...'}
-            .storyBoxContentImgBox
-              img(src=`/img/gameimg/game${story.gameId}.png` height='120px')
-          .storyBoxFooter
-            a(id='topic-link' href="#")=story.topicType
-            a(id='game-link' href="#")=story.title
+    #centeringDiv
+      div
+        h1= title
+      div
+        each story in stories
+          div(class="storyBoxWrapper" id=`storyId${story.id}`)
+            .storyBox
+              .storyBoxHeader
+                .storyBoxHeaderProfile
+                  img(src=`/img/users/user${story.userId}.png` height='20px')
+                  p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
+                  - let date = story.createdAt.toString();
+                  p(id='storyWrittenDate')=`${date.slice(0,15)}`
+                .storyBoxHeaderMenu
+                if userId === story.userId
+                  .dropdown
+                    i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
+                    .dropdown-content
+                      a(href=`/stories/edit/${story.id}`) Edit
+                      a(href=`/stories/delete/${story.id}`) Delete
+                else
+              .storyBoxContent
+                .storyBoxContentTextBox
+                  h2=story.title
+                  p(id='storyContentText') #{story.content.slice(0,200)+'...'}
+                .storyBoxContentImgBox
+                  img(src=`/img/gameimg/game${story.gameId}.png` height='120px')
+              .storyBoxFooter
+                a(id='topic-link' href="#")=story.topicType
+                a(id='game-link' href="#")=story.Game.title
