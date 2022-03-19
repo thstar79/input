@@ -1,4 +1,4 @@
-const makeDiv = (cMainW, comment, user, sum={},sessionId)=>{
+const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
         
     const cMBox = document.createElement('div');
 
@@ -91,7 +91,8 @@ const makeDiv = (cMainW, comment, user, sum={},sessionId)=>{
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
     //MainW-----------------------------------------------------
-    cMainW.appendChild(cMBox);
+    if(flag === 1)  cMainW.appendChild(cMBox);
+    else    cMainW.insertBefore(cMBox, cMainW.firstChild);
 
     cMBox.appendChild(cMB1);
     cMBox.appendChild(cMB2);

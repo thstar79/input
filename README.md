@@ -101,6 +101,15 @@ Description about stories
 
 ## Comments
 Description about comments
+- Create Comments
+    *Login required
+    *
+- Read Comments
+    *Anyone can read
+- Update Comments
+    *Only the user who wrote comment can update.
+- Delete Comments
+    *Only the user who wrote comment can update.
 
 ## Coins
 Description about coins

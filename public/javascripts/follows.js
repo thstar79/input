@@ -6,7 +6,7 @@ window.onload = async function(){
     const wrapper = document.getElementById('userProfileBoxWrapper');
     const numPeople = 5;
     console.log("follow loading.....");
-    const res = await fetch(`/users/random/${numPeople}`);
+    const res = await fetch(`/api/users/random/${numPeople}`);
     console.log("follow complete");
     const returnData = await res.json();
     const userId = returnData.session;
@@ -37,7 +37,7 @@ window.onload = async function(){
         pContent.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 8px;")
         pImg.innerHTML= `<img src='/img/users/user${id}.png' width='50px'>${username.slice(0,8)}`;
         pContent.innerHTML= `<p>Do you want to hear the latest game News? You should follow ${firstname.slice(0,7)} ${lastname.slice(0,7)}!.</p>`;
-        const resfollow = await fetch('/follows/isfollow',{
+        const resfollow = await fetch('/api/follows/isfollow',{
             method: 'POST',
             body: JSON.stringify({followee:`${id}`}),
             headers: { 'Content-Type': 'application/json' }
@@ -62,8 +62,8 @@ window.onload = async function(){
 
     //for the content-top
     const makeTopFollows = async ()=>{
-
-        const res1 = await fetch(`/follows`);
+        
+        const res1 = await fetch(`/api/follows`);
         const returnData1 = await res1.json();
         for(let i=0;i<returnData1.follows.length;++i){
             const id = returnData1.follows[i].id;
@@ -92,7 +92,7 @@ window.onload = async function(){
           }
           console.log(e.target.innerText);
         const id=e.target.id.split('followBtn')[1];//follower = current user, followee= this id
-        const res = await fetch('/follows',{
+        const res = await fetch('/api/follows',{
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
