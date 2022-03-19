@@ -5,11 +5,8 @@ window.addEventListener("DOMContentLoaded", event => {
         audio.volume = 0.1;
         audio.play();
     })
-
+    document.getElementById('registerLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.location.href = `/users/register`;   
+    })
 })
-
-
-$('#homelink').click(function() {
-    $('#homelink').toggle('1000');
-    $("i", this).toggleClass("fa fa-home fa fa-superpowers");
-});
