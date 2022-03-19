@@ -9,12 +9,15 @@ block content
   .containerBoxWrapper
     .containerBox
       .headerBox
-        img(src=`/img/users/user${story.userId}.png` width='100px')
-        a(href='#') #{story.topicType}
+        .headerBoxImg
+          img(src=`/img/users/user${story.userId}.png` width='100px')
+        .headerBoxTopic
+          h2=story.title
+          p #{story.topicType}
       .storyContentBox
-        h2=story.title
+        
         p=story.content
-        img(src='/img/storycontent.webp' width="300px")
+        img(src=`/img/gameimg/game${story.gameId}.png` width="300px")
       .editDelButtonBox
         button.pushable
           span.shadow
