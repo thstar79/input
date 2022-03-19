@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
-const { requireAuth } = require("../auth");
+const { requireAuth,setUserId } = require("../auth");
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 const Sequelize = require('sequelize');
@@ -11,32 +11,46 @@ router.get('/stories/coins/:id(\\d+)', csrfProtection, asyncHandler(async (req, 
     let count = await db.StoryCoin.sum('count',{
         where: 
          { storyId: req.params.id } 
-    })
+    });
+    if(!count){
+        count = 0;
+    }
     res.json({count});
 
 }));
 
 router.get('/stories/coins/user/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-    let count = await db.StoryCoin.sum('count',{
-        where:{
-            [Op.and]: [
-                { storyId: req.params.id },
-                { userId: res.locals.user.id }
-            ] 
-        } 
-    })
+    const userId = setUserId(req,res);
+    
+    let count = 0;
+    if(userId !== 0){
+        count = await db.StoryCoin.sum('count',{
+            where:{
+                [Op.and]: [
+                    { storyId: req.params.id },
+                    { userId: userId }
+                ] 
+            } 
+        })
+    }
     res.json({count});
 }));
 
 
 router.post('/stories/coins/:id(\\d+)', asyncHandler(async (req, res) => {
-    let coin = db.StoryCoin.build({
-        count:1,
-        storyId: req.params.id,
-        userId: res.locals.user.id
-    })   
-    await coin.save();
-
+    const userId = setUserId(req,res);
+    if(userId !== 0) {
+        let coin = db.StoryCoin.build({
+            count:1,
+            storyId: req.params.id,
+            userId: res.locals.user.id
+        })   
+        await coin.save();
+        res.json({message: "Success", count: 1});
+    }
+    else{
+        res.json({message: "failed", count : 0});
+    }
 }));
 
 router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
@@ -55,14 +69,14 @@ router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
         if(coin.count < coin_limit){
             coin.count++;
             await coin.save();
-            res.json({message: "Success", coin});
+            res.json({message: "Success", count: coin.count});
         }
         else{
-            res.json({message: "Max"});
+            res.json({message: "Max", count: coin_limit});
         }
     }
     else{
-        res.json({message: "Could not find coin please try again"});
+        res.json({message: "Could not find coin please try again", count: 0});
     }
 }));
 

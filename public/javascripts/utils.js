@@ -1,3 +1,130 @@
+const makeDiv = (cMainW, comment, user, sum={},sessionId)=>{
+        
+    const cMBox = document.createElement('div');
+
+    const cMB1 = document.createElement('div');
+    const cMB1p = document.createElement('div');
+    const cMB1pimg = document.createElement('img');
+    const cMB1pp = document.createElement('p');
+    const cMB1c = document.createElement('div');
+    const cMB1cp = document.createElement('p');
+
+    const cMB2 = document.createElement('div');
+    const cMB2btn1 = document.createElement('button');
+    const cMB2btn2 = document.createElement('button');
+    const cMB2form = document.createElement('form');
+    const Minput1 = document.createElement('input');
+    const Minput3 = document.createElement('input');
+    const Mlabel_input3 = document.createElement('label');
+    const Mbtn = document.createElement('button');
+
+    const cMB3 = document.createElement('div');
+    const cMB3L = document.createElement('div');
+    const cMB3M = document.createElement('div');
+    const cMB3R = document.createElement('div');
+    const cMB3Lcoin = document.createElement('div');
+    const cMB3LcoinImg = document.createElement('div');
+    const cMB3LcoinCnt = document.createElement('div');
+    const cMB3LcoinImg_img = document.createElement('img');
+
+    ///////////////////////////////////////////////////////////////////////////////
+    cMBox.setAttribute('id',`comment-box-${comment.id}`);
+    cMBox.classList.add(`comment-box`);
+
+    cMB1.classList.add('comment-box-sub1');
+    cMB2.classList.add('comment-box-sub2');
+    cMB3.classList.add('comment-box-sub3');
+
+    cMB1p.classList.add('cMB1p');
+    cMB1c.classList.add('cMB1c');
+
+    cMB1pimg.setAttribute('src',`/img/users/user${user.id}.png`);
+    cMB1pimg.setAttribute('width','50px');
+    cMB1pp.innerText = `${user.firstName} ${user.lastName}`;
+    cMB1cp.setAttribute('id',`comment-content-${comment.id}`);
+    cMB1cp.innerText = comment.comment;
+    
+    cMB2btn1.setAttribute('id',`editID${comment.id}ID${user.id}ID${sessionId}`);
+    cMB2btn1.innerText = 'Edit';
+    cMB2btn1.classList.add('pushable');
+    cMB2btn1.classList.add('comment-edit-btn');
+
+    cMB2btn2.setAttribute('id',`deleteID${comment.id}ID${user.id}ID${sessionId}`);
+    cMB2btn2.innerText = 'Delete';
+    cMB2btn2.classList.add('pushable');
+    cMB2btn2.classList.add('comment-delete-btn');
+    
+    //Edit Form
+    cMB2form.setAttribute('id',`edit-form-${comment.id}`);
+    cMB2form.classList.add('hidden');
+    Minput1.setAttribute('type','hidden');
+    Minput1.setAttribute('name','_csrf');
+    Minput1.setAttribute('value','csrfToken');
+    Minput3.setAttribute('id',`comment-field-${comment.id}`);
+    Minput3.setAttribute('name','content');
+    Minput3.setAttribute('rows','5');
+    Minput3.setAttribute('value','');
+    Mlabel_input3.setAttribute('for','content');
+    
+    Mbtn.setAttribute('id',`edit-btn-${comment.id}`);
+    Mbtn.classList.add('edit-submit-btn');
+
+    Mbtn.innerText= 'Submit Edit';
+
+    cMB3LcoinImg.setAttribute('id',`coinID${comment.id}ID${user.id}ID${sessionId}`);
+    cMB3LcoinImg.classList.add('coin-btn');
+    cMB3LcoinImg.classList.add('coinSound');
+    cMB3LcoinImg_img.setAttribute('id',`coinID${comment.id}ID${user.id}ID${sessionId}`);
+    cMB3LcoinImg_img.setAttribute('src','/img/coin.png');
+    cMB3LcoinImg_img.setAttribute('width','20px');
+    cMB3LcoinImg_img.classList.add('coinimg');
+    cMB3LcoinImg_img.classList.add('animated');
+    cMB3LcoinImg_img.classList.add('bounce');
+    cMB3LcoinImg_img.classList.add('coin-btn');
+    cMB3LcoinImg_img.classList.add('coinSound');
+    
+    cMB3LcoinCnt.setAttribute('id',`cntID${comment.id}ID${user.id}ID${sessionId}`);
+    let coinSum = `${sum[`${comment.id}`]}`;
+    if(Object.keys(sum).length === 0)   coinSum = 0;
+    cMB3LcoinCnt.innerText = `${coinSum}`;
+    //cMB3LcoinCnt.innerText = `${sum[`${comment.id}`]}`;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+    //MainW-----------------------------------------------------
+    cMainW.appendChild(cMBox);
+
+    cMBox.appendChild(cMB1);
+    cMBox.appendChild(cMB2);
+    cMBox.appendChild(cMB3);
+    
+    cMB1.appendChild(cMB1p);
+    cMB1.appendChild(cMB1c);
+    
+    cMB2.appendChild(cMB2btn1);
+    cMB2.appendChild(cMB2form);
+    cMB2.appendChild(cMB2btn2);
+
+    cMB3.appendChild(cMB3L);
+    cMB3.appendChild(cMB3M);
+    cMB3.appendChild(cMB3R);
+
+    cMB1p.appendChild(cMB1pimg);
+    cMB1p.appendChild(cMB1pp);
+    cMB1c.appendChild(cMB1cp);
+
+    //edit form
+    cMB2form.appendChild(Minput1);
+    cMB2form.appendChild(Minput3);
+    Minput3.appendChild(Mlabel_input3);
+    cMB2form.appendChild(Mbtn);
+
+    cMB3L.appendChild(cMB3Lcoin);
+    cMB3Lcoin.appendChild(cMB3LcoinImg);
+    cMB3LcoinImg.appendChild(cMB3LcoinImg_img);
+    cMB3Lcoin.appendChild(cMB3LcoinCnt);
+
+};
+
 const commentFn = async (e)=>{
     console.log("Here we are....");
     if (extraside.classList.contains('hidden')) {
@@ -57,7 +184,7 @@ const editFn = async (e) => {
         })
     }
     else{
-        console.log("auth failed");
+        window.alert("auth failed");
     }
 }
 
@@ -84,7 +211,7 @@ const delFn = async(e) => {
         }
     }
     else{
-        console.log("auth failed");
+        window.alert("auth failed");
     }
 }
 
@@ -92,11 +219,17 @@ const starFn = async (e) => {
     console.log('coin button clicked');
     e.stopPropagation();
     const IDs = e.target.id.split('ID');
-    const commentId = IDs[1];
-    const userId = IDs[2];
-    const sessionId = IDs[3];
-    if(userId !== sessionId && userId !== undefined){
-        const res = await fetch(`/comments/coins/${commentId}`,{
+    const commentId = parseInt(IDs[1],10);
+    const userId = parseInt(IDs[2],10);
+    const sessionId = parseInt(IDs[3],10);
+    if(userId === sessionId){
+        window.alert("shame on you. Don't give self coins");
+    } 
+    else if( userId !== undefined && userId !== 0){
+        window.alert("Only logged in user can give coins wanna log in or sign up?");
+    }
+    else{        
+            const res = await fetch(`/comments/coins/${commentId}`,{
             method: 'PATCH',
             body: JSON.stringify({}),
             headers: { 'Content-Type': 'application/json' }
@@ -109,9 +242,27 @@ const starFn = async (e) => {
             const coin = document.getElementById(`cntID${commentId}ID${userId}ID${sessionId}`);
             coin.innerText = returnData.sum;
         }
+        else if(returnData.message === "Max"){
+            window.alert("Max coin reaches");
+        }
     }
-    else{
-        console.log("shame on you. Don't give self coins");
+};
+
+const commentListener = (editBtns,deleteBtns,coinBtns,sessionId)=>{
+    for (let i = 0; i < editBtns.length; i++) {
+        const btn = editBtns[i];
+        btn.addEventListener('click', editFn);
     }
-}
-export {commentFn, editFn,delFn,starFn};
+
+    for (let i = 0; i < deleteBtns.length; i++) {
+        const btn = deleteBtns[i];
+        btn.addEventListener('click', delFn);
+    }
+
+    for (let i = 0; i < coinBtns.length; i++) {
+        const btn = coinBtns[i];
+        btn.addEventListener('click', starFn);
+    }
+};
+
+export {makeDiv,commentFn, commentListener};

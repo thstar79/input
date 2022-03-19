@@ -4,7 +4,7 @@ const router = express.Router();
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 
-const { requireAuth } = require("../auth");
+const { requireAuth , setUserId} = require("../auth");
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -17,10 +17,18 @@ router.get(
     "/stories",
     csrfProtection,
     asyncHandler(async (req, res) => {
-        const { userId } = req.session.auth;
+        console.log("Heree......................................1");
+        const userId = setUserId(req,res);
+        console.log("Heree......................................2");
         const stories = await db.Story.findAll({
             include: [db.User, db.Game],
         });
+        console.log("Heree......................................3");
+        console.log("Heree......................................3");
+        console.log("Heree......................................3");
+        console.log("Heree......................................3");
+        console.log("Heree......................................3");
+        console.log("Heree......................................3");
         res.render("index", { title: "Stories List", stories, userId });
     })
 
@@ -48,83 +56,34 @@ router.get(
     csrfProtection,
     asyncHandler(async (req, res) => {
 
-        let userId;
-        if(req.session.auth){
-            userId = req.session.auth.userId;
-        }
-        else{
-            userId = '-1';
-        }
-
+        const userId = setUserId(req,res);
         const storyId = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(storyId, {
             include: [db.User, db.Game],
         });
 
-        const comments = await db.Comment.findAll({
-            where: {
-                storyId : storyId,
-            }
-        });
-
-        // const followStories = await db.User.findByPk(userId, {
-        //     include: [{
-        //       model: db.User,
-        //       as: 'followings',
-        //       include: db.Story
-        //     }]
-        //   })
-
-        const coins = await db.CommentCoin.findAll({
-            include: [{
-                    model: db.Comment,
-                    where: {
-                        storyId: storyId,
-                    },
-                },
-                {
-                    model: db.User,
-                },
-            ],
-        });
-        const sum = {};
-
-        for(let i=0;i<coins.length;++i){
-            if(sum[coins[i].Comment.id] === undefined){
-                sum[coins[i].Comment.id] = coins[i].count;
-            }
-            else{
-                sum[coins[i].Comment.id] += coins[i].count;
-            }
-        }
-        for(let i=0;i<comments.length;++i){
-            let comment = comments[i];
-            let split = comment.comment.split('!@#');
-            comment.User = await db.User.findByPk(split[1]);
-            comment.comment = split[2];
-        }
-
-        const storyCoinsCount = await db.StoryCoin.sum('count', {
+        let storyCoinsCount = await db.StoryCoin.sum('count', {
             where: {
                 storyId: storyId,
             }
         });
-        let userStoryCoinsCount;
-        if (req.session.auth) {
-            const { userId } = req.session.auth;
-            userStoryCoinsCount = await db.StoryCoin.sum('count', {
-                where: { userId: userId}
-            })
-        } else {
-            userStoryCoinsCount = 0
-        }
+        
+        let userStoryCoinsCount = await db.StoryCoin.sum('count', {
+            where: { 
+                [Op.and]: [
+                    { storyId: storyId },
+                    { userId: userId }
+                ],
+            }
+        });
 
+        if(!storyCoinsCount)   storyCoinsCount = 0;
+        if(!userStoryCoinsCount)   userStoryCoinsCount = 0;
+        
         res.render("story-detail", {
             title: "Detailed Story",
             story,
-            comments,
-            sum: sum,
-            session: {id:userId},
+            session: userId,
             storyCoinsCount,
             userStoryCoinsCount,
             csrfToken: req.csrfToken(),

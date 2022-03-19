@@ -3,9 +3,10 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
 const db = require("../db/models");
+
 const { csrfProtection, asyncHandler } = require("./utils");
 
-const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
+const { loginUser, logoutUser, restoreUser, requireAuth, setUserId } = require("../auth");
 
 /* GET users listing. */
 router.get(
@@ -18,18 +19,23 @@ router.get(
 );
 
 router.get('/users/random/:num(\\d+)',asyncHandler(async(req,res)=>{
-    let userId;
-    if(req.session.auth){
-        userId = req.session.auth.userId;
+    const userId = setUserId(req,res);
+    const num = parseInt(req.params.num,10);
+    let users = [];
+    if(userId !== 0){
+        users = await db.User.findAll({
+            where: {
+                id: {
+                    [db.Sequelize.Op.ne]: userId, // not including myself
+                }
+            },
+            order: db.Sequelize.literal('random()'),
+            limit: num,
+        });
     }
     else{
-        userId = '-1';
+        users = [];
     }
-    const num = parseInt(req.params.num,10);
-    const users = await db.User.findAll({
-        order: db.Sequelize.literal('random()'),
-        limit: num,
-    });
     res.json({users, session:userId});
 }));
 

@@ -43,9 +43,18 @@ const requireAuth = (req, res, next) => {
     return next();
 };
 
+const setUserId = (req,res) => {
+    let userId = 0;
+    if(req.session.auth){
+        userId = req.session.auth.userId;
+    }
+    return userId;
+}
+
 module.exports = {
     loginUser,
     restoreUser,
     logoutUser,
     requireAuth,
+    setUserId,
 };
