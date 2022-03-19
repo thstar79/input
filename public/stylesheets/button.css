@@ -53,6 +53,44 @@
       600ms
       cubic-bezier(.3, .7, .4, 1);
   }
+
+  .edgeY {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(
+      to left,
+      rgb(23, 73, 0) 0%,
+      rgb(0, 163, 68) 8%,
+      rgb(0, 163, 41) 92%,
+      rgb(0, 82, 21) 100%
+    );
+  }
+  .frontY {
+    display: block;
+    position: relative;
+    padding: 6px 21px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: rgb(59,58,64);
+    background: rgb(26, 206, 2);
+    font-weight: bolder;
+    will-change: transform;
+    transform: translateY(-4px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+
+  #registerlink {
+    font-size: 1.25rem;
+    color: rgb(59,58,64);
+    font-weight: bolder;
+  }
   .pushable:hover {
     filter: brightness(110%);
   }
@@ -76,6 +114,17 @@
   }
   .pushable:active .shadow {
     transform: translateY(1px);
+    transition: transform 34ms;
+  }
+  .pushable:hover .frontY {
+    transform: translateY(-6px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+  .pushable:active .frontY {
+    transform: translateY(-2px);
     transition: transform 34ms;
   }
   .pushable:focus:not(:focus-visible) {

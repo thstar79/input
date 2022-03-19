@@ -107,7 +107,7 @@
     width: 71px;
     height: 72px;
     background: url('https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/mariowalking/result.png') left center;    
-    top:240px;
+    top:230px;
     left:0px;
     
     -webkit-animation: play 0.8s steps(4) infinite,
@@ -124,11 +124,11 @@
 }
 @-webkit-keyframes run{
     from{left: 50px;}
-    to{left: 75%;}
+    to{left: 70%;}
 }
 @keyframes run{
     from{left: 50px;}
-    to{left:75%;}
+    to{left:70%;}
 }
 
 
@@ -160,4 +160,19 @@
 #homelink  {
     font-size: 30px;
     color:red
+}
+
+#yesButton {
+    position: absolute;
+    top:380px;
+    z-index: 1;
+    background-color:;
+}
+
+#noButton {
+    position: absolute;
+    top:380px;
+    left: 450px;
+    z-index: 1;
+    background-color: ;
 }

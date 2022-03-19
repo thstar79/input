@@ -33,6 +33,9 @@ a {
     padding:0 20px 0 20px;
     font-family:'Press Start 2P', cursive;
 }
+#storyWrittenDate {
+    font-size: 20px;
+}
 .headerBoxTopic h2{
     font-weight: bolder;
     font-size: 25px;
