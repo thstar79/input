@@ -15,7 +15,7 @@ block content
             .storyBox
               .storyBoxHeader
                 .storyBoxHeaderProfile
-                  img(src=`/img/users/user${story.userId}.png` height='20px')
+                  img(src=`/img/users/user${story.userId%20}.png` height='20px')
                   p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
                   - let date = story.createdAt.toString();
                   p(id='storyWrittenDate')=`${date.slice(0,15)}`
