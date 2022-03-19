@@ -25,23 +25,21 @@ block content
                                     p(id="logtext" for='password') Password
                                 #loginFieldInput
                                     input(type='password' id='loginPasswordInput' name='password' )
-                            .loginbuttonbox
-                                button#transparent-button
-                                    span.start-btn LOGIN      
-                                a(href="/users/register")
-                                    span.start-btn REGISTER
-                            .mario
-        #controller
-            div
-                button.pushable
-                    span.shadow
-                    span.edge
-                    span.front A
-            div
-                button.pushable
-                    span.shadow
-                    span.edge
-                    span.front#testButton B        
+                            
+                        .mario            
+                        #yesButton
+                            button.pushable
+                                span.shadow
+                                span.edgeY
+                                span.frontY A
+                        #noButton
+                            button.pushable#registerLink
+                                span.shadow
+                                span.edge
+                                span.front B
+                                    
+                            
+        #controller      
         #bottom
 
-        script(src="/javascripts/test.js" type="module") 
+        script(src="/javascripts/test.js" type="module")
