@@ -1,3 +1,4 @@
+import {makeProfile} from './utils.js';
 
 window.onload = async function(){
 
@@ -9,6 +10,7 @@ window.onload = async function(){
     console.log("follow complete");
     const returnData = await res.json();
     const userId = returnData.session;
+    const top_wrapper = document.getElementById('topBoxWrpper');
 
     for(let i=0;i<returnData.users.length;++i){
         const id = returnData.users[i].id;
@@ -60,46 +62,23 @@ window.onload = async function(){
 
     //for the content-top
     const makeTopFollows = async ()=>{
-        const wrapper1 = document.getElementById('topBoxWrpper');
+        
         const res1 = await fetch(`/follows`);
         const returnData1 = await res1.json();
         for(let i=0;i<returnData1.follows.length;++i){
             const id = returnData1.follows[i].id;
             const userName = returnData1.follows[i].userName;
-            const box = document.createElement('div');
-            const profile = document.createElement('div');
-            const pImg = document.createElement('div');
-            // console.log(id)
-            // console.log(returnData1)
-
-            box.setAttribute('id', `topProfileDetail${id}`);
-            box.setAttribute('class','topProfileDetailBox');
-            profile.setAttribute('id', `topProfile${id}`);
-            profile.setAttribute('class','topProfileMain');
-            pImg.setAttribute('id',`topProfileImg${id}`);
-            pImg.setAttribute('class','topProfieImageBox');
-            document.getElementById('topBoxWrpper').setAttribute('style',"border: solid rgb(71, 71, 71) 0.5px; box-shadow: 5px 5px 2.5px rgb(59, 59, 59);");
-            pImg.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 5px; display:flex; flex-direction:column; justify-content: space-between;")
-            pImg.innerHTML = `<img src='/img/users/user${id}.png' width='50px' height='50px'><p id="followUserName">${userName.slice(0,7)}</p>`;
-
-            wrapper1.appendChild(box);
-            box.appendChild(profile);
-            profile.appendChild(pImg);
+            console.log(id, userName);
+            makeProfile(top_wrapper, id, userName);
         }
     };
     
-    console.log(userId);
     if(userId !== 0)    makeTopFollows();
     
-    function reload(){
-        const container = document.getElementById('topBoxWrpper');
-        const content = container.innerHTML;
-        container.innerHTML= content;
-        console.log("Refreshed");
-    }
-
     const addFollows = async (fbox, e) => {
+        e.preventDefault();
         e.stopPropagation();
+
           console.log(e.target.innerText);
           if(e.target.innerText === "Follow") {
             e.target.innerText = "Unfollow";
@@ -124,10 +103,11 @@ window.onload = async function(){
         });
         const returnData = await res.json()
         if (returnData.message === "Success") {
-            const container = document.getElementById('topBoxWrpper');
-            const content = container.innerHTML;
-            container.innerHTML= content;
-            //e.preventDefault();
+            const userId = parseInt(e.target.id.split('followBtn')[1],10);
+            const res2 = await fetch(`/api/users/${userId}`);
+            const newFollowee = await res2.json();
+            const userName = newFollowee.user.firstName;
+            makeProfile(top_wrapper, userId, userName);
         }
     };
 

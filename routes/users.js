@@ -18,6 +18,15 @@ router.get(
     })
 );
 
+router.get(
+    "/api/users/:id(\\d+)",
+    csrfProtection,
+    asyncHandler(async(req, res, next) => {
+        const user = await db.User.findByPk(req.params.id);
+        res.json({user: user});
+    })
+);
+
 router.get('/users/random/:num(\\d+)',asyncHandler(async(req,res)=>{
     const userId = setUserId(req,res);
     const num = parseInt(req.params.num,10);
