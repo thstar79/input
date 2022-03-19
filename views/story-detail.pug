@@ -26,7 +26,7 @@ block content
           img(id=`storyCoin-${story.id}` class="storyCoinSpinImage" src='/img/coin.png' width='60px')
           p(id='storyCoinText')=storyCoinsCount
           p(id='userStoryCoinText')=userStoryCoinsCount
-          button(id=`strcommentID${story.id}ID${locals.user.id}` class='strcomment')
+          button(id=`strcomment${story.id}` class='strcomment')
               span.start-btn Comment
         .storyContentButtonBox     
           button#transparent-button

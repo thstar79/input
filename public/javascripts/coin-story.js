@@ -3,7 +3,6 @@ const storyCoinBtn = document.getElementsByClassName('storyCoinSpinImage')[0]
 storyCoinBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('clicked')
         const storyId = e.target.id.split('storyCoin-')[1];
         const resUserStoryCoin = await fetch(`/stories/coins/user/${storyId}`);
         const dataUserStoryCoin = await resUserStoryCoin.json()
@@ -22,8 +21,8 @@ storyCoinBtn.addEventListener('click', async (e) => {
             const coinText = document.getElementById(`storyCoinText`);
             coinText.innerHTML = dataTotalCount.count;
             const coinTextTwo = document.getElementById(`userStoryCoinText`);
-            coinTextTwo.innerHTML = returnData.coin.count; 
-            
+            coinTextTwo.innerHTML = returnData.coin.count;
+
         } else {
             const res = await fetch(`/stories/coins/${storyId}`, {
                 method: 'PATCH',
@@ -37,7 +36,7 @@ storyCoinBtn.addEventListener('click', async (e) => {
             const coinText = document.getElementById(`storyCoinText`);
             coinText.innerHTML = dataTotalCount.count;
             const coinTextTwo = document.getElementById(`userStoryCoinText`);
-            coinTextTwo.innerHTML = returnData.coin.count; 
+            coinTextTwo.innerHTML = returnData.coin.count;
         }
 
     });
