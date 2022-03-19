@@ -46,16 +46,6 @@ module.exports = {
                     updatedAt: new Date(),
                 },
                 {
-                    firstName: "Haywood",
-                    lastName: "Johnson",
-                    userName: "Haywood",
-                    email: "haywood@johnson.com",
-                    hashedPassword:
-                        "$2a$10$Fbmn6VFmgwrF0HfB9okkxumzgSyzO0EKscCXpFpaYh/8MmkPNPIVS",
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
-                },
-                {
                     firstName: "Jared",
                     lastName: "Kunhart",
                     userName: "Purity",
