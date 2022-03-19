@@ -125,6 +125,32 @@ const makeDiv = (cMainW, comment, user, sum={},sessionId)=>{
 
 };
 
+const makeProfile = (wrapper1, id, userName)=>{
+    const check = document.getElementById(`topProfileDetail${id}`);
+    if(check){
+        wrapper1.removeChild(check);
+    }
+    else{
+        const box = document.createElement('div');
+        const profile = document.createElement('div');
+        const pImg = document.createElement('div');
+
+        box.setAttribute('id', `topProfileDetail${id}`);
+        box.setAttribute('class','topProfileDetailBox');
+        profile.setAttribute('id', `topProfile${id}`);
+        profile.setAttribute('class','topProfileMain');
+        pImg.setAttribute('id',`topProfileImg${id}`);
+        pImg.setAttribute('class','topProfieImageBox');
+        document.getElementById('topBoxWrpper').setAttribute('style',"border: solid rgb(71, 71, 71) 0.5px; box-shadow: 5px 5px 2.5px rgb(59, 59, 59);");
+        pImg.setAttribute("style", "font-family: 'Press Start 2p'; font-size: 5px; display:flex; flex-direction:column; justify-content: space-between;")
+        pImg.innerHTML = `<img src='/img/users/user${id}.png' width='50px' height='50px'><p id="followUserName">${userName.slice(0,7)}</p>`;
+
+        wrapper1.appendChild(box);
+        box.appendChild(profile);
+        profile.appendChild(pImg);
+    }
+}
+
 const commentFn = async (e)=>{
     console.log("Here we are....");
     if (extraside.classList.contains('hidden')) {
@@ -266,4 +292,4 @@ const commentListener = (editBtns,deleteBtns,coinBtns,sessionId)=>{
     }
 };
 
-export {makeDiv,commentFn, commentListener};
+export {makeDiv, makeProfile, commentFn, commentListener};
