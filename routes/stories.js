@@ -69,8 +69,14 @@ router.get(
         });
         
         let userStoryCoinsCount = await db.StoryCoin.sum('count', {
-            where: { userId: userId}
+            where: { 
+                [Op.and]: [
+                    { storyId: storyId },
+                    { userId: userId }
+                ],
+            }
         });
+
         if(!storyCoinsCount)   storyCoinsCount = 0;
         if(!userStoryCoinsCount)   userStoryCoinsCount = 0;
         

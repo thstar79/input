@@ -11,7 +11,10 @@ router.get('/stories/coins/:id(\\d+)', csrfProtection, asyncHandler(async (req, 
     let count = await db.StoryCoin.sum('count',{
         where: 
          { storyId: req.params.id } 
-    })
+    });
+    if(!count){
+        count = 0;
+    }
     res.json({count});
 
 }));
