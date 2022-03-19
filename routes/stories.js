@@ -13,6 +13,17 @@ router.get('/test', (req,res) => {
     res.render('test')
 })
 
+router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {
+    const userId = setUserId(req,res);
+    // req.session.visited
+            const stories = await db.Story.findAll({
+            include: [db.User, db.Game],
+            order: [['createdAt', 'DESC']],
+            limit: 5
+        });
+        res.render("recent", { title: "Recent stories", stories, userId });
+}))
+
 router.get(
     "/stories",
     csrfProtection,
@@ -67,9 +78,9 @@ router.get(
                 storyId: storyId,
             }
         });
-        
+
         let userStoryCoinsCount = await db.StoryCoin.sum('count', {
-            where: { 
+            where: {
                 [Op.and]: [
                     { storyId: storyId },
                     { userId: userId }
@@ -79,7 +90,7 @@ router.get(
 
         if(!storyCoinsCount)   storyCoinsCount = 0;
         if(!userStoryCoinsCount)   userStoryCoinsCount = 0;
-        
+
         res.render("story-detail", {
             title: "Detailed Story",
             story,
@@ -248,7 +259,7 @@ router.post(
     asyncHandler(async(req, res) => {
         const id = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(id);
-        
+
         //current story id !== authed user id
         if (story.userId === res.locals.user.id || res.locals.user.id === 2) {
             await story.destroy();

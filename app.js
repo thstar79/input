@@ -41,6 +41,19 @@ app.use(
 // create Session table if it doesn't already exist
 store.sync();
 
+// This app.use is for tracking last visited to the site
+// app.use('/stories', function findLastVisit(req, res, next) {
+//     if (req.session.visited)
+//       req.lastVisit = req.session.visited;
+//     //   console.log(`<<<<<<<<<<<<<<<<<<<<<<<<req.lastVisit>>>>>>>>>>>>>>>>>>>>>>>>`)
+//     //   console.log(`<<<<<<<<<<<<<<<<<<<<<<<<req.session.visited>>>>>>>>>>>>>>>>>>>>>>>>`)
+
+//       req.session.visited = Date.now();
+    //   console.log(`<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<req.session.visited>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`)
+
+//     next();
+//   });
+
 app.use(restoreUser);
 app.use("/", indexRouter);
 app.use(usersRouter);
@@ -48,6 +61,8 @@ app.use(storyRouter);
 app.use(commentRouter);
 app.use(followRouter);
 app.use(storyCoinsRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
