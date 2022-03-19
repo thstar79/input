@@ -1,4 +1,4 @@
-import {editFn, delFn, starFn} from './utils.js';
+import {commentFn, editFn, delFn, starFn} from './utils.js';
 
 window.addEventListener("DOMContentLoaded", async (event) => {
     
@@ -247,6 +247,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     cForm.appendChild(input3);
     //cForm.appendChild(btnDiv);
     cForm.appendChild(btn);
+    console.log("STORY I****D : ", storyId);
     const res = await fetch(`/api/stories/${storyId}`,{
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -260,22 +261,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     }
 
     
-    strcomments[0].addEventListener('click', async (e)=>{
-
-        if (extraside.classList.contains('hidden')) {
-            extraside.classList.remove('hidden');
-        } else {
-            extraside.classList.add('hidden');
-        }
-
-        const exit = document.getElementById('comment-top-top-exit-btn');
-        exit.addEventListener('click', (e)=>{
-            e.stopPropagation();
-            if (!extraside.classList.contains('hidden')) {
-                extraside.classList.add('hidden');
-            }
-        });
-    });
+    strcomments[0].addEventListener('click', commentFn);
 
     const createBtn = document.getElementById('commentCreate');
     let editBtns = document.getElementsByClassName('comment-edit-btn');
