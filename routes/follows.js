@@ -9,7 +9,7 @@ const { loginUser, logoutUser, restoreUser, requireAuth, setUserId } = require("
 const user = require("../db/models/user");
 const follow = require("../db/models/follow");
 
-router.get('/follows', asyncHandler(async (req,res)=>{
+router.get('/api/follows', asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
     // const follows = await db.Follow.findAll({
     //     where: {
@@ -32,7 +32,7 @@ router.get('/follows', asyncHandler(async (req,res)=>{
     res.json({follows});
 }));
 
-router.post('/follows', asyncHandler(async (req,res)=>{
+router.post('/api/follows', asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
     if(userId === 0){
 
@@ -61,7 +61,7 @@ router.post('/follows', asyncHandler(async (req,res)=>{
     }
 }));
 
-router.get('/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
+router.get('/api/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
     const { userId } = req.session.auth;
     let stories = []
 
@@ -86,7 +86,7 @@ router.get('/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
     })
 }));
 
-router.post('/follows/isfollow', asyncHandler(async (req,res)=>{
+router.post('/api/follows/isfollow', asyncHandler(async (req,res)=>{
     let userId;
     if(req.session.auth){
         userId = req.session.auth.userId;

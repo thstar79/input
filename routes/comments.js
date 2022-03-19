@@ -14,6 +14,7 @@ router.get(
                 model: db.User,
                 include: [db.Story],
             },
+            order: [['id','desc']],
         });
         res.render("comment-list", {
             comments,

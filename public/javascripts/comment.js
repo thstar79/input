@@ -89,9 +89,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     cForm.appendChild(label_input3);
     cForm.appendChild(input2);
     cForm.appendChild(input3);
-    //cForm.appendChild(btnDiv);
     cForm.appendChild(btn);
-    console.log("STORY I****D : ", storyId);
     const res = await fetch(`/api/stories/${storyId}`,{
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -102,7 +100,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     for(let i=0;i<comments.length;++i){
         makeDiv(cMainW,comments[i],users[i],sum,sessionId);
     }
-
     
     strcomments[0].addEventListener('click', commentFn);
 
@@ -117,7 +114,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         e.stopPropagation();
         
         if(sessionId !== 0) {
-            console.log("!!!!!!!!!!", sessionId,"!!!!!!!!!!!!!");
             const commentData = document.getElementById('comment').value;
             const res = await fetch(`/api/comments`, {
                 method: 'POST',
@@ -137,17 +133,15 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                 const returnData1 = await res1.json();
                 const session = returnData1.session;
                 let comment = returnData1.comment;
-                makeDiv(cMainW, comment,session.user,{},sessionId);
+                makeDiv(cMainW, comment,session.user,{},sessionId,2);
                 editBtns = document.getElementsByClassName('comment-edit-btn');
                 console.log("EDIT : ", editBtns.length);
                 deleteBtns = document.querySelectorAll('.comment-delete-btn');
                 coinBtns = document.querySelectorAll('.coin-btn');
-
                 commentListener(editBtns,deleteBtns,coinBtns,sessionId);
             }
         }
         else{
-            console.log("@@@@@@@@@@@@@@@");
             window.alert("Only logged in user can write comments");
         }
     });

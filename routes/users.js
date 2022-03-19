@@ -27,7 +27,7 @@ router.get(
     })
 );
 
-router.get('/users/random/:num(\\d+)',asyncHandler(async(req,res)=>{
+router.get('/api/users/random/:num(\\d+)',asyncHandler(async(req,res)=>{
     const userId = setUserId(req,res);
     const num = parseInt(req.params.num,10);
     let users = [];
