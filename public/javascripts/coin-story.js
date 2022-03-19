@@ -6,7 +6,6 @@ storyCoinBtn.addEventListener('click', async (e) => {
         const storyId = e.target.id.split('storyCoin-')[1];
         const resUserStoryCoin = await fetch(`/stories/coins/user/${storyId}`);
         const dataUserStoryCoin = await resUserStoryCoin.json()
-        console.log(dataUserStoryCoin)
         if (dataUserStoryCoin.count === null) {
             const res = await fetch(`/stories/coins/${storyId}`, {
                 method: 'POST',
