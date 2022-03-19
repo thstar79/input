@@ -23,6 +23,10 @@ Description about stories
 
 ## Comments
 Description about comments
+- Create Comments
+- Read Comments
+- Update Comments
+- Delete Comments
 
 ## Coins
 Description about coins
