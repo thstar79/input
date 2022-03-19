@@ -5,11 +5,7 @@ storyCoinBtn.addEventListener('click', async (e) => {
     e.stopPropagation();
 
     const storyId = e.target.id.split('storyCoin-')[1];
-    const resUserStoryCoin = await fetch(`/stories/coins/user/${storyId}`);
-    const dataUserStoryCoin = await resUserStoryCoin.json();
     let method = "PATCH";
-    if (dataUserStoryCoin.count === 0)  method = "POST";
-        
     const res = await fetch(`/stories/coins/${storyId}`, {
         method: method,
         body: JSON.stringify({}),
@@ -21,8 +17,7 @@ storyCoinBtn.addEventListener('click', async (e) => {
 
     const resTotalStoryCoins = await fetch(`/stories/coins/${storyId}`);
     const dataTotalCount = await resTotalStoryCoins.json();
-    console.log()
-    console.log(dataTotalCount);
+    console.log(method, dataTotalCount.message, dataTotalCount.count);
 
     const coinText = document.getElementById(`storyCoinText`);
     coinText.innerHTML = dataTotalCount.count;
