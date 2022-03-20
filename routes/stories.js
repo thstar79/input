@@ -37,7 +37,7 @@ router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {
         order: [['createdAt', 'DESC']],
         limit: 5
     });
-    res.render("recent", { title: "Recent stories", stories, userId });
+    res.render("index", { title: "Recent stories", stories, userId });
 }))
 
 router.get(
