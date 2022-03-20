@@ -65,6 +65,8 @@ body {
 .storyBoxContentTextBox {
     font-family: 'Poor Story', cursive;
     overflow: hidden;
+    margin-right: 15px;
+
 }
 
 .storyBoxContentTextBox > h2 {
@@ -109,4 +111,23 @@ body {
     color: rgb(209, 209, 209);
     font-size: 18px;
     font-weight: bolder;
+}
+
+#loginLink {
+    color: black;
+}
+
+#loginIndicatorOn {
+    font-size: 30px;
+    color:red;
+}
+
+#loginIndicatorOff {
+    font-size: 30px;
+    color:rgb(8, 194, 8);
+}
+
+#welcomMessage {
+    font-family: "Press start 2P", cursive;
+    text-shadow: 2px 2px 2px grey;
 }

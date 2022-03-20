@@ -16,7 +16,7 @@ block content
               .storyBoxHeader
                 .storyBoxHeaderProfile
                   img(src=`/img/users/user${story.userId%20}.png` height='20px')
-                  p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
+                  p(id="userNameText")=`${story.User.userName.toUpperCase()}`
                   - let date = story.createdAt.toString();
                   p(id='storyWrittenDate')=`${date.slice(0,15)}`
                 .storyBoxHeaderMenu
@@ -24,15 +24,18 @@ block content
                   .dropdown
                     i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
                     .dropdown-content
-                      a(href=`/stories/edit/${story.id}`) Edit
-                      a(href=`/stories/delete/${story.id}`) Delete
+                      a(href=`/stories/edit/${story.id}`)
+                        i(class="fa fa-pencil-square-o" aria-hidden="true")
+                      a(href=`/stories/delete/${story.id}`)
+                        i(class="fa fa-trash-o" aria-hidden="true")
                 else
               .storyBoxContent
                 .storyBoxContentTextBox
-                  h2=story.title
+                  h2=story.title.toUpperCase()
                   p(id='storyContentText') #{story.content.slice(0,200)+'...'}
                 .storyBoxContentImgBox
                   img(src=`/img/gameimg/game${story.gameId}.png` height='120px')
               .storyBoxFooter
-                a(id='topic-link' href="#")=story.topicType
-                a(id='game-link' href="#")=story.Game.title
+                #topicButton
+                  a(id='topiclink' href="")=story.topicType
+                p(id='gameTitleText' href="")=story.Game.title

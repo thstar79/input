@@ -153,12 +153,12 @@ window.addEventListener("DOMContentLoaded", event => {
         cMB1cp.innerText = comment.comment;
         
         cMB2btn1.setAttribute('id',`editID${comment.id}ID${user.id}ID${session.id}`);
-        cMB2btn1.innerText = 'Edit';
+        cMB2btn1.innerText = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
         cMB2btn1.classList.add('pushable');
         cMB2btn1.classList.add('comment-edit-btn');
 
         cMB2btn2.setAttribute('id',`deleteID${comment.id}ID${user.id}ID${session.id}`);
-        cMB2btn2.innerText = 'Delete';
+        cMB2btn2.innerText = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         cMB2btn2.classList.add('pushable');
         cMB2btn2.classList.add('comment-delete-btn');
         

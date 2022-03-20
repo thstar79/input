@@ -86,6 +86,38 @@
       cubic-bezier(.3, .7, .4, 1);
   }
 
+  .edgeS {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(
+      to left,
+      rgb(73, 72, 1) 0%,
+      rgb(255, 251, 42) 8%,
+      rgb(232, 255, 22) 92%,
+      rgb(129, 131, 0) 100%
+    );
+  }
+  .frontS {
+    display: block;
+    position: relative;
+    padding: 6px 21px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: rgb(59,58,64);
+    background: rgb(255, 251, 34);
+    font-weight: bolder;
+    will-change: transform;
+    transform: translateY(-4px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+
   #registerlink {
     font-size: 1.25rem;
     color: rgb(59,58,64);
@@ -183,4 +215,23 @@
     box-shadow: none;
     position: relative;
     top: .2em;
+  }
+
+  #commentCreate {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+      text-align: center;
+    display: inline-block;
+    margin:1px;
+      font-weight: bold;
+      padding: 4px 4px 4px 4px ;
+      background-color: lightgray;
+      text-shadow: -1px -1px black, 1px 1px white;
+      color: rgb(128, 126, 126);
+      -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+      box-shadow: 0 .2em gray; 
+      cursor: pointer;
   }

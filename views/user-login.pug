@@ -32,14 +32,24 @@ block content
                                 span.shadow
                                 span.edgeY
                                 span.frontY A
-                        #noButton
-                            button.pushable#registerLink
-                                span.shadow
-                                span.edge
-                                span.front B
+                        
                                     
                             
-        #controller      
+        #controller
+            #noButton
+              a(href="/users/register")   
+                button.pushable#registerLink
+                    span.shadow
+                    span.edge
+                    span.front B
+                        
+            div
+                #superButton
+                     a(href='/users/login/demo')
+                        button.pushable
+                            span.shadow
+                            span.edgeS
+                            span.frontS Super Demo User
         #bottom
 
         script(src="/javascripts/test.js" type="module")

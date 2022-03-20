@@ -162,17 +162,174 @@
     color:red
 }
 
+
 #yesButton {
     position: absolute;
     top:380px;
     z-index: 1;
-    background-color:;
 }
 
 #noButton {
-    position: absolute;
-    top:380px;
-    left: 450px;
     z-index: 1;
-    background-color: ;
+    position: relative;
+    left: 400px;
+    top: -5px;
 }
+#topicBox {
+    border-radius: 10px;
+    box-shadow: 5px 5px 3px rgb(223, 223, 223);
+    padding-bottom: 1px;
+}
+#topicHeader {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 10px 0 0 ;
+    background-color:  #e4000f;
+    height: 35px;
+}
+#topicHeaderText {
+    font-family: 'Poor Story', cursive;
+    color: white;
+    font-weight: bolder;
+    margin: 0 0 0 0;
+}
+
+#superButton {
+    position: relative;
+    left:-140px;
+    top: -5px;
+}
+
+#topicButtonBox {
+ display:flex;
+ justify-content: space-evenly;
+ align-items: center;
+ margin: 15px 0 20px 0;
+ height: 40px;
+}
+
+#topicButton {
+    border: solid #e4000f 0.5px;
+    border-radius: 30px;
+    padding: 3px 5px 3px 5px;
+    display: inline-block;
+    color: black;
+}
+
+#topiclink {
+    margin-left: 3px;
+    font-family:  'Press Start 2P', cursive;
+    font-size: 10px;
+    color: black;
+    font-weight: bold;
+    text-shadow: 2px 2px rgb(155, 155, 155);
+}
+
+#gameTitleText {
+    margin-left: 3px;
+    font-family:  'Press Start 2P', cursive;
+    font-size: 10px;
+    color: black;
+    font-weight: bold;
+    text-shadow: 2px 2px rgb(155, 155, 155);
+}
+
+#comment-main-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 25px 0 25px;
+}
+.comment-box {
+    border-radius: 10px;
+    border-left: #e4000f solid 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.comment-box-sub1 {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    display: flex;
+}
+.cMB1p {
+    background-color: white;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 90px;
+}
+
+.cMB1p > p {
+    margin-top: 2px;
+    text-align: center;
+    font-size: 12px;
+    font-family: 'Press start 2P', cursive;
+    text-shadow: 2px 2px grey;
+}
+
+.cMB1c {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 300px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Poor Story', cursive;
+}
+
+.comment-box-sub2 {
+    display: flex;
+    flex-direction: column;
+    height:90px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.comment-box-sub2 > button > i{
+    font-size: 25px;
+    font-weight: bold;
+    position: relative;
+    left: 90px;
+}
+
+.comment-box-sub3 {
+    position: relative;
+    left: 20px;
+    font-family: 'Press start 2P', cursive;
+    color: #e4000f;
+}
+
+.comment-box-sub3 > div> div {
+    display: flex;
+}
+
+.comment-box-sub3 > div> div > div {
+    margin-right:5px;
+}
+
+#comment-top-main {
+    height: 100px;
+    margin: 0 0 0 0;
+    display: flex; 
+}
+
+#userProfileContentBox > label {
+    visibility: hidden;
+}
+
+#comment {
+    border:none;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(216, 216, 216);
+
+}
+

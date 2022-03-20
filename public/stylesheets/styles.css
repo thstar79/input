@@ -21,7 +21,7 @@ h1 {
     font-weight: bolder;
     font-size: 30px;
     
-    text-shadow: 3px 3px rgb(0, 0, 0), -1px -1px rgb(211, 211, 211);
+    text-shadow: 3px 3px 2px rgb(82, 82, 82), -1px -1px rgb(211, 211, 211);
 }
 
 a {
@@ -306,7 +306,7 @@ a {
         width: 400px;
     }
     #topBoxWrpper {
-        width: 400px;
+        width: 100px;
     }
 }
 
