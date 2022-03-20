@@ -65,6 +65,8 @@ body {
 .storyBoxContentTextBox {
     font-family: 'Poor Story', cursive;
     overflow: hidden;
+    margin-right: 15px;
+
 }
 
 .storyBoxContentTextBox > h2 {
@@ -110,3 +112,4 @@ body {
     font-size: 18px;
     font-weight: bolder;
 }
+
