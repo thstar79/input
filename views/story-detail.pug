@@ -31,10 +31,15 @@ block content
           p(id='userStoryCoinText')=userStoryCoinsCount % 10000000
         if session !== 0
           button(id=`bmrkID${story.id}ID${session}` class='bookmarkBtn')
+            //- if userStoryCoinsCount >= 10000000
+            //-   span(id=`bmrkspanID${story.id}ID${session}`).start-btn UnBook
+            //- else 
+            //-   span(id=`bmrkspanID${story.id}ID${session}`).start-btn Bookmark
+            //- end
             if userStoryCoinsCount >= 10000000
-              span(id=`bmrkspanID${story.id}ID${session}`).start-btn UnBook
-            else 
-              span(id=`bmrkspanID${story.id}ID${session}`).start-btn Bookmark
+              img(src='/img/bookmarks_black.png' id=`bmrkimgbID${story.id}ID${session}` width '40px' height='40px')
+            else
+              img(src='/img/bookmarks_white.png' id=`bmrkimgwID${story.id}ID${session}` width '40px' height='40px')
             end
         end
           button(id=`strcommentID${story.id}ID${session}` class='strcomment')
@@ -52,7 +57,6 @@ block content
     script(src="/javascripts/coinSound.js" type="module")
     script(src="/javascripts/coin-story.js" type="module")
     script(src="/javascripts/comment.js" type="module")
-    script(src="/javascripts/bookmarks.js" type="module")
       //- .commentBoxWrapper
       //-   .commentList
       //-     .commentFormBox

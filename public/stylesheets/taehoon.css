@@ -177,3 +177,7 @@
 	  cursor: pointer;
 	  outline: inherit;
 }
+
+.bookmarkBtn:hover {
+    background-color:aqua;
+}

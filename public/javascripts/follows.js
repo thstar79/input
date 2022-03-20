@@ -1,7 +1,9 @@
 import {makeProfile} from './utils.js';
 
+console.log("follow loading.....");
 window.onload = async function(){
 
+    console.log("follow loading.....");
     //for the right hand side follow recommendation
     const wrapper = document.getElementById('userProfileBoxWrapper');
     const numPeople = 5;
