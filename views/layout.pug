@@ -58,12 +58,15 @@ html
                     #logUserProfileBox
                       #logUserProfileBoxHeader 
                         #logUserProfileBoxHeaderImgBox
-                          
+                          img(src=`/img/users/user${user.id}.png` width="50px")
                         #logUserProfileBoxHeaderNameBox 
-                          
+                          p(id="")=user.userName
                       #logUserProfileBoxContent
-                          
-                      #logUserProfileBoxFooter    
+                          p=`${user.firstName} ${user.lastName}`
+                          p=user.email
+                          p=user.createdAt.toString().slice(4,15)
+                      #logUserProfileBoxFooter
+                          i    
               else
                   a(id="loginLink" href='/users/login')
                    p#welcomMessage Not Logged In ?
