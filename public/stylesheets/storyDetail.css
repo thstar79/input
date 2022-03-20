@@ -33,9 +33,12 @@ a {
     padding:0 20px 0 20px;
     font-family:'Press Start 2P', cursive;
 }
-#storyWrittenDate {
-    font-size: 20px;
+#storyWrittenDateDetail {
+    font-size: 10px;
+    color: rgb(211, 211, 211);
 }
+
+
 .headerBoxTopic h2{
     font-weight: bolder;
     font-size: 25px;
@@ -57,7 +60,12 @@ a {
     border-radius: 10px 0 0 0px;
     border-left:solid 2px white;
     border-top:solid 2px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 
 .headerBox a {
     font-size: 1rem;

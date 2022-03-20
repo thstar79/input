@@ -26,7 +26,7 @@ router.get(
             topicType: topicType,
         }
     });
-    res.render("index", { title: "Story", stories, userId });
+    res.render("index", { title: topicType, stories, userId });
 }));
 
 router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {

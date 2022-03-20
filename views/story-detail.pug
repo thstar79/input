@@ -13,7 +13,7 @@ block content
           img(src=`/img/users/user${story.userId%20}.png` width='75px')
         .headerBoxTopic
           h2=story.title
-          p(id="storyWrittenDate")=`${story.createdAt.toString().slice(0,15)}`
+          p(id="storyWrittenDateDetail")=`${story.createdAt.toString().slice(0,15)}`
           p #{story.topicType}
       .storyContentBox
         .storyContentTextBox

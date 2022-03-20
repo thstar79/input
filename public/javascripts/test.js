@@ -7,6 +7,7 @@ window.addEventListener("DOMContentLoaded", event => {
     })
     document.getElementById('registerLink').addEventListener('click', (e) => {
         e.preventDefault();
+        
         document.location.href = `/users/register`;   
     })
 })
