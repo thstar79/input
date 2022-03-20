@@ -1,4 +1,5 @@
 "use strict";
+const Data = require('./Data/userSeedData');
 
 module.exports = {
     async up(queryInterface, Sequelize) {

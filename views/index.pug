@@ -39,3 +39,7 @@ block content
                 #topicButton
                   a(id='topiclink' href="")=story.topicType
                 p(id='gameTitleText' href="")=story.Game.title
+                if userId !== 0
+                .bookmarkImgBox 
+                  img(src=`/img/bookmarks_black.png` height='20px')
+                end

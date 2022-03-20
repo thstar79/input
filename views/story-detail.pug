@@ -27,12 +27,20 @@ block content
       .storyContentFooter
         .coinBox
           img(id=`storyCoin-${story.id}` class="storyCoinSpinImage coinSound" src='/img/coin.png' width='60px')
-          p(id='storyCoinText')=storyCoinsCount
-          p(id='userStoryCoinText')=userStoryCoinsCount
+          p(id='storyCoinText')=storyCoinsCount % 10000000
+          p(id='userStoryCoinText')=userStoryCoinsCount % 10000000
+        if session !== 0
+          button(id=`bmrkID${story.id}ID${session}` class='bookmarkBtn')
+            if userStoryCoinsCount >= 10000000
+              span(id=`bmrkspanID${story.id}ID${session}`).start-btn UnBook
+            else 
+              span(id=`bmrkspanID${story.id}ID${session}`).start-btn Bookmark
+            end
+        end
           button(id=`strcommentID${story.id}ID${session}` class='strcomment')
               span.start-btn Comment
       if session === story.userId || session === 2
-        .storyContentButtonBox
+        .storyContentButtonBox     
           button#transparent-button
             span.start-btn
               a(href=`/stories/edit/${story.id}`) Edit
@@ -44,6 +52,7 @@ block content
     script(src="/javascripts/coinSound.js" type="module")
     script(src="/javascripts/coin-story.js" type="module")
     script(src="/javascripts/comment.js" type="module")
+    script(src="/javascripts/bookmarks.js" type="module")
       //- .commentBoxWrapper
       //-   .commentList
       //-     .commentFormBox

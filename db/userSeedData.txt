@@ -1,5 +1,0 @@
-{firstName: "Michelle", lastName: "Evans", userName: "Warwatch", email: "cleora1997@deezmail.com", hashedPassword: "$&621U6@ElHd"},
-{firstName: "Bernard", lastName: "McLaughlin", userName: "Dreadphobia", email: "z89pa@roidirt.com", hashedPassword: "2mS!1u9aUjEZ"},
-{firstName: "Michael", lastName: "Garcia", userName: "IHasEars", email: "MichaelJGarcia@armyspy.com", hashedPassword: "9rz!@BRv&M0k"},
-{firstName: "Eliane", lastName: "Koelpin", userName: "Ultralord", email: "papoto9356@shopxda.com", hashedPassword: "GH2x1293!ZJ$"},
-{firstName: "Fernando", lastName: "Vega", userName: "FernandoasaurusRex", email: "fvega@deezmail.com", hashedPassword: "!@3*^eYI@x7I"}
