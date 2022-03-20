@@ -16,7 +16,7 @@ block content
               .storyBoxHeader
                 .storyBoxHeaderProfile
                   img(src=`/img/users/user${story.userId%20}.png` height='20px')
-                  p(id="userNameText")=`${story.User.firstName} ${story.User.lastName}`
+                  p(id="userNameText")=`${story.User.userName.toUpperCase()}`
                   - let date = story.createdAt.toString();
                   p(id='storyWrittenDate')=`${date.slice(0,15)}`
                 .storyBoxHeaderMenu
@@ -31,7 +31,7 @@ block content
                 else
               .storyBoxContent
                 .storyBoxContentTextBox
-                  h2=story.title
+                  h2=story.title.toUpperCase()
                   p(id='storyContentText') #{story.content.slice(0,200)+'...'}
                 .storyBoxContentImgBox
                   img(src=`/img/gameimg/game${story.gameId}.png` height='120px')
