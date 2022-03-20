@@ -10,9 +10,12 @@ block content
     .containerBox
       .headerBox
         .headerBoxImg
-          img(src=`/img/users/user${story.userId%20}.png` width='75px')
+          img(src=`/img/users/user${story.userId%20}.png`)
         .headerBoxTopic
-          h2=story.title
+          if story.title.length < 32
+            h2=`${story.title.toUpperCase()}`
+          else
+            h2 #{story.title.toUpperCase().slice(0,32)} #{"..."}
           p(id="storyWrittenDateDetail")=`${story.createdAt.toString().slice(0,15)}`
           p #{story.topicType}
       .storyContentBox
