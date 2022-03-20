@@ -1,7 +1,6 @@
 import {makeDiv, commentFn, commentListener} from './utils.js';
 
-//window.addEventListener("DOMContentLoaded", async (event) => {
-window.onload = async function (){
+window.addEventListener("DOMContentLoaded", async (event) => {
 
     const extraside = document.getElementById('extraside');
     extraside.classList.add('hidden');
@@ -147,5 +146,4 @@ window.onload = async function (){
         }
     });
     commentListener(editBtns,deleteBtns,coinBtns,sessionId);
-//});
-};
+});

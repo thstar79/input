@@ -8,6 +8,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 router.get('/stories/coins/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+    const Large = 10000000;
     let count = await db.StoryCoin.sum('count',{
         where: 
          { storyId: req.params.id } 
@@ -15,25 +16,29 @@ router.get('/stories/coins/:id(\\d+)', csrfProtection, asyncHandler(async (req, 
     if(!count){
         count = 0;
     }
-    res.json({count});
+    res.json({count: count%Large});
 
 }));
 
 router.get('/stories/coins/user/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const userId = setUserId(req,res);
-    
+    const Large = 10000000;
     let count = 0;
     if(userId !== 0){
         count = await db.StoryCoin.sum('count',{
             where:{
-                [Op.and]: [
-                    { storyId: req.params.id },
-                    { userId: userId }
-                ] 
+                // [Op.and]: [
+                //     { storyId: req.params.id },
+                //     { userId: userId }
+                // ] 
+                storyId: req.params.id,
+                userId: userId,
             } 
         })
     }
-    res.json({count});
+    count = count%Large;
+    console.log('+++++++++++++++++++++++++++++++', count, Large);
+    res.json({count: count%Large});
 }));
 
 
@@ -56,6 +61,8 @@ router.post('/stories/coins/:id(\\d+)', asyncHandler(async (req, res) => {
 router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
     const storyId = parseInt(req.params.id,10);
+    const Large = 10000000;
+
     let coin = await db.StoryCoin.findOne({
         where: {
             [Op.and]: [
@@ -67,10 +74,10 @@ router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
     const coin_limit = 50;
 
     if(coin){
-        if(coin.count < coin_limit){
+        if(coin.count%Large < coin_limit){
             coin.count++;
             await coin.save();
-            res.json({message: "Success", count: coin.count});
+            res.json({message: "Success", count: coin.count%Large});
         }
         else{
             res.json({message: "Max", count: coin_limit});
@@ -85,7 +92,7 @@ router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
             });
             await coin.save();
         }
-        if(coin)   res.json({message: "Success", count: coin.count});
+        if(coin)   res.json({message: "Success", count: 1});
         else       res.json({message: "Failed", count: 0});
     }
 }));

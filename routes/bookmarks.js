@@ -12,62 +12,59 @@ router.get('/bookmarks', asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
     const Large = 10000000;
 
-    const bookmarks = await db.StoryCoin.findAll(userId, {
+    const bookmarks = await db.StoryCoin.findAll({
         where: {
-            [db.sequelize.Op.and]: [
-                {count: {
-                    [db.Sequelize.Op.gte]: Large,
-                }},
-                { userId: userId }
-            ],
+            count: {
+                [db.Sequelize.Op.gte]: Large,
+            },
+            userId: userId,
         },
-        include: [db.User,db.Story],
+        include: [db.User,{
+            model: db.Story,
+            include: [db.User,db.Game],
+        }],
     });
     //res.render({bookMarks});
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',bookmarks.leng);
-    res.render("index", { title: "Book Marks", stories: bookmarks.Story, userId });
+    let stories = [];
+    if(bookmarks.length !== 0)  stories = bookmarks.map(ele=>ele.Story) ;
+    res.render("index", { title: "Book Marks", stories: stories, userId });
 }));
 
 router.patch('/api/bookmarks/:id(\\d+)', asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
     const storyId = parseInt(req.params.id,10);
     const Large = 10000000;
+    let bookmarked = 0;
 
     if(userId === 0){
 
     }
     else{
-        //if bookmark exists unbookmark
         let aBookmark = await db.StoryCoin.findOne({
             where: {
-                [db.sequelize.Op.and]: [
-                    // {count: {
-                    //     [db.Sequelize.Op.gte]: Large,
-                    // }},
-                    { userId: userId },
-                    { storyId: storyId },
-                ],
+                     userId: userId ,
+                     storyId: storyId ,
             },
             include: [db.User,db.Story],
-        })
+        });
         
-        
-        if(aBookmark){
-            if(aBookmark.coin >= Large) aBookmark.coin -= Large;
-            else    aBookmark.coin += Large;
+        if(aBookmark){ //if bookmark exists unbookmark
+            if(aBookmark.count >= Large) aBookmark.count = aBookmark.count%Large;
+            else    aBookmark.count += Large;
 
             await aBookmark.save();
         }
-        else{ //book mark not exist
-
+        else{ //book mark not exist add bookmark
             const bookmark = db.StoryCoin.build({
                 count: Large,
                 storyId: storyId,
                 userId: userId,
             })
             await bookmark.save();
+            bookmarked = 1;
         }
-        res.json({message:"Success"});
+        
+        res.json({message:"Success", bookmarked: bookmarked});
     }
 }));
 

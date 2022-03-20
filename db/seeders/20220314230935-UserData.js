@@ -3,9 +3,6 @@ const Data = require('./Data/userSeedData');
 
 module.exports = {
     async up(queryInterface, Sequelize) {
-<<<<<<< HEAD
-        await queryInterface.bulkInsert("Users",Data, {});
-=======
         await queryInterface.bulkInsert(
             "Users",
             [
@@ -222,7 +219,6 @@ module.exports = {
             ],
             {}
         );
->>>>>>> f43e716789f3d228170e7ec6b3562b3522f1ef85
     },
 
     async down(queryInterface, Sequelize) {
