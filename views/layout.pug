@@ -42,10 +42,10 @@ html
                 #login-status-box
                     if locals.authenticated 
                       a(id="loginLink" href="/users/logout")
-                       i(id="loginIndicator" class="fa fa-sign-out" aria-hidden="true")
+                       i(id="loginIndicatorOn" class="fa fa-sign-out" aria-hidden="true")
                     else 
                       a(id="loginLink" href="/users/login")
-                       i(id="loginIndicator" class="fa fa-sign-in" aria-hidden="true")
+                       i(id="loginIndicatorOff" class="fa fa-sign-in" aria-hidden="true")
         #main
           #topBoxWrpper
           #content-box
@@ -54,6 +54,16 @@ html
             #side-content-box
               if locals.authenticated
                   p#welcomMessage Welcome #{user.userName} !
+                  #logUserProfileBoxWrapper
+                    #logUserProfileBox
+                      #logUserProfileBoxHeader 
+                        #logUserProfileBoxHeaderImgBox
+                          
+                        #logUserProfileBoxHeaderNameBox 
+                          
+                      #logUserProfileBoxContent
+                          
+                      #logUserProfileBoxFooter    
               else
                   a(id="loginLink" href='/users/login')
                    p#welcomMessage Not Logged In ?

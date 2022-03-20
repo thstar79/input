@@ -117,10 +117,17 @@ body {
     color: black;
 }
 
-#loginIndicator {
+#loginIndicatorOn {
     font-size: 30px;
+    color:red;
+}
+
+#loginIndicatorOff {
+    font-size: 30px;
+    color:rgb(8, 194, 8);
 }
 
 #welcomMessage {
     font-family: "Press start 2P", cursive;
+    text-shadow: 2px 2px 2px grey;
 }
