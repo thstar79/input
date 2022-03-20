@@ -62,7 +62,7 @@ window.onload = async function(){
 
     //for the content-top
     const makeTopFollows = async ()=>{
-        
+
         const res1 = await fetch(`/api/follows`);
         const returnData1 = await res1.json();
         for(let i=0;i<returnData1.follows.length;++i){
@@ -106,7 +106,7 @@ window.onload = async function(){
             const userId = parseInt(e.target.id.split('followBtn')[1],10);
             const res2 = await fetch(`/api/users/${userId}`);
             const newFollowee = await res2.json();
-            const userName = newFollowee.user.firstName;
+            const userName = newFollowee.user.userName;
             makeProfile(top_wrapper, userId, userName);
         }
     };

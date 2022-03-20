@@ -65,7 +65,7 @@ router.get(
                 userId:userId
             }
         });
-        res.render("index", { title: "My List", stories });
+        res.render("index", { title: "My Stories", stories });
     })
 
 );
