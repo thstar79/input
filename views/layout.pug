@@ -21,6 +21,7 @@ html
         script(src="/javascripts/follows.js" type="module")
         script(src="/javascripts/themeselect.js" type="module")
         script(src="/javascripts/coinSound.js" type="module")
+        script(src="/javascripts/devProfile.js" type="module")
         //- script(src="/javascripts/create_comment.js" type="module")
         //- script(src="/javascripts/edit_comment.js" type="module")
         //- script(src="/javascripts/delete_comment.js" type="module")
@@ -60,6 +61,9 @@ html
                   p#welcomMessage Welcome #{user.userName} !
                   #logUserProfileBoxWrapper
                     #logUserProfileBox
+                      #logUserProfileBoxHeadMessage
+                        p P 
+                        p 1 
                       #logUserProfileBoxHeader 
                         #logUserProfileBoxHeaderImgBox
                           img(src=`/img/users/user${user.id}.png` width="50px")
@@ -86,6 +90,74 @@ html
                     a(id="topiclink" href='/stories/types/Walkthrough') Walk-through
               #userProfileBox
                 #userProfileBoxWrapper
+              #devProfileBoxWrapper
+                #leftbuttonBox
+                  i(class="fa fa-arrow-left" aria-hidden="true")
+                #devProfileBox
+                  #devProfileBoxHeadMessage
+                    p#devProfileHeadText Developer
+                  #devProfileBoxHeadImgBox 
+                  #devProfileBoxContentWrapper 
+                    #devProfileBoxContentMain
+                      #devNameBox
+                        p Haywood Johnson
+                      #devLinkBox
+                        a(href="linkedinlink")
+                          i(class="fa fa-linkedin" aria-hidden="true")
+                        a(href="linkedinlink")
+                          i(class="fa fa-github" aria-hidden="true")
+                  #devProfileBoxFooterWrapper 
+                    #devProfileBoxFooter  
+
+                #devProfileBox
+                  #devProfileBoxHeadMessage
+                    p#devProfileHeadText Developer
+                  #devProfileBoxHeadImgBox 
+                  #devProfileBoxContentWrapper 
+                    #devProfileBoxContentMain
+                      #devNameBox
+                        p Jared Kunhart
+                      #devLinkBox
+                        a(href="linkedinlink")
+                          i(class="fa fa-linkedin" aria-hidden="true")
+                        a(href="linkedinlink")
+                          i(class="fa fa-github" aria-hidden="true")
+                  #devProfileBoxFooterWrapper 
+                    #devProfileBoxFooter  
+
+                #devProfileBox.hiddenProfile
+                  #devProfileBoxHeadMessage
+                    p#devProfileHeadText Developer
+                  #devProfileBoxHeadImgBox 
+                  #devProfileBoxContentWrapper 
+                    #devProfileBoxContentMain
+                      #devNameBox
+                        p Taehoon Kim
+                      #devLinkBox
+                        a(href="linkedinlink")
+                          i(class="fa fa-linkedin" aria-hidden="true")
+                        a(href="linkedinlink")
+                          i(class="fa fa-github" aria-hidden="true")
+                  #devProfileBoxFooterWrapper 
+                    #devProfileBoxFooter  
+
+                #devProfileBox.hiddenProfile
+                  #devProfileBoxHeadMessage
+                    p#devProfileHeadText Developer
+                  #devProfileBoxHeadImgBox 
+                  #devProfileBoxContentWrapper 
+                    #devProfileBoxContentMain
+                      #devNameBox
+                        p Steve Choi
+                      #devLinkBox
+                        a(href="linkedinlink")
+                          i(class="fa fa-linkedin" aria-hidden="true")
+                        a(href="linkedinlink")
+                          i(class="fa fa-github" aria-hidden="true")
+                  #devProfileBoxFooterWrapper 
+                    #devProfileBoxFooter    
+                #rightbuttonBox
+                  i(class="fa fa-arrow-right" aria-hidden="true")          
         #extraside
           //- #comment-wrapper.hiddenC
           //-   #comment-top-wrapper
