@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", event => {
         //document.getElementById(`storyId${i}`).addEventListener('click', (e) => {
             const id = stories[i].id.split('storyId')[1];
             //document.location.href = `https://input-app.herokuapp.com/stories/${id}`;
-            document.location.href = `../stories/${id}`;
+            document.location.href = `/stories/${id}`;
         });
     }
 });
