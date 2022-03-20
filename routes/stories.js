@@ -47,6 +47,7 @@ router.get(
         const userId = setUserId(req,res);
         const stories = await db.Story.findAll({
             include: [db.User, db.Game],
+            order: [['createdAt', 'DESC']]
         });
         res.render("index", { title: "Stories List", stories, userId });
     })
