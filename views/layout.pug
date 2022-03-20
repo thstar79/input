@@ -41,11 +41,15 @@ html
                     a(href="/stories/new"  id="menu-link"): img(id="menu-icon4" src='/img/write.png' alt="Write a new Story" title="Write a new Story")
                 #login-status-box
                     if locals.authenticated 
-                      a(id="loginLink" href="/users/logout")
-                       i(id="loginIndicatorOn" class="fa fa-sign-out" aria-hidden="true")
+                      #loginIconBoxin
+                        a(id="loginLink" href="/users/logout")
+                          img(id="loginEffect" src="/img/logicon3.png" width="80px")
+                          img(src="/img/logicon.png" width="80px")
                     else 
-                      a(id="loginLink" href="/users/login")
-                       i(id="loginIndicatorOff" class="fa fa-sign-in" aria-hidden="true")
+                      #loginIconBoxout
+                        a(id="loginLink" href="/users/login")
+                          img(id="floatingCart" src="/img/logicon2.png" width="80px")
+                          img(src="/img/logicon1.png" width="80px")
         #main
           #topBoxWrpper
           #content-box
@@ -58,12 +62,15 @@ html
                     #logUserProfileBox
                       #logUserProfileBoxHeader 
                         #logUserProfileBoxHeaderImgBox
-                          
+                          img(src=`/img/users/user${user.id}.png` width="50px")
                         #logUserProfileBoxHeaderNameBox 
-                          
+                          p(id="")=user.userName
                       #logUserProfileBoxContent
-                          
-                      #logUserProfileBoxFooter    
+                          p=`${user.firstName} ${user.lastName}`
+                          p=user.email
+                          p=user.createdAt.toString().slice(4,15)
+                      #logUserProfileBoxFooter
+                          i    
               else
                   a(id="loginLink" href='/users/login')
                    p#welcomMessage Not Logged In ?
