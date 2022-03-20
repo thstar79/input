@@ -40,7 +40,12 @@ html
                     a(href="/stories/user" id="menu-link"): img(id="menu-icon4" src='/img/stories.png' alt="My Stories" title="My Stories")
                     a(href="/stories/new"  id="menu-link"): img(id="menu-icon4" src='/img/write.png' alt="Write a new Story" title="Write a new Story")
                 #login-status-box
-                    a(href="/users/register" id="menu-link"): img(id="menu-icon55" src='/img/loginicon.gif' width="100px" alt="User Register" title="User Register")
+                    if locals.authenticated 
+                      a(id="loginLink" href="/users/logout")
+                       i(id="loginIndicator" class="fa fa-sign-out" aria-hidden="true")
+                    else 
+                      a(id="loginLink" href="/users/login")
+                       i(id="loginIndicator" class="fa fa-sign-in" aria-hidden="true")
         #main
           #topBoxWrpper
           #content-box
@@ -48,16 +53,10 @@ html
         #mainside
             #side-content-box
               if locals.authenticated
-                  p Welcome #{user.userName} !
-                  form(action='/users/logout' method='get')
-                    button.pushable
-                      span.shadow
-                      span.edge
-                      span.front Logout
+                  p#welcomMessage Welcome #{user.userName} !
               else
-                  p Not Logged In ?
-                  a(href='/users/login')
-                    button#submit-button Login
+                  a(id="loginLink" href='/users/login')
+                   p#welcomMessage Not Logged In ?
               #topicBox
                 #topicHeader
                   p#topicHeaderText Recommended Topics
