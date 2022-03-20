@@ -113,3 +113,14 @@ body {
     font-weight: bolder;
 }
 
+#loginLink {
+    color: black;
+}
+
+#loginIndicator {
+    font-size: 30px;
+}
+
+#welcomMessage {
+    font-family: "Press start 2P", cursive;
+}
