@@ -8,11 +8,11 @@ const { csrfProtection, asyncHandler } = require("./utils");
 const { loginUser, logoutUser, restoreUser, requireAuth, setUserId } = require("../auth");
 const user = require("../db/models/user");
 
-router.get('/api/bookmarks', asyncHandler(async (req,res)=>{
+router.get('/bookmarks', asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
     const Large = 10000000;
 
-    const bookMarks = await db.StoryCoin.findAll(userId, {
+    const bookmarks = await db.StoryCoin.findAll(userId, {
         where: {
             [db.sequelize.Op.and]: [
                 {count: {
@@ -23,7 +23,9 @@ router.get('/api/bookmarks', asyncHandler(async (req,res)=>{
         },
         include: [db.User,db.Story],
     });
-    res.json({bookMarks});
+    //res.render({bookMarks});
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',bookmarks.leng);
+    res.render("index", { title: "Book Marks", stories: bookmarks.Story, userId });
 }));
 
 router.patch('/api/bookmarks/:id(\\d+)', asyncHandler(async (req,res)=>{
@@ -118,4 +120,4 @@ router.patch('/api/bookmarks/:id(\\d+)', asyncHandler(async (req,res)=>{
 //     res.json({isfollow:isfollow});
 // }));
 
-// module.exports = router;
+module.exports = router;

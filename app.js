@@ -11,6 +11,7 @@ const usersRouter = require("./routes/users");
 const storyRouter = require("./routes/stories");
 const commentRouter = require("./routes/comments");
 const followRouter = require("./routes/follows");
+const bookmarkRouter = require("./routes/bookmarks");
 const storyCoinsRouter = require("./routes/coins");
 const { restoreUser } = require("./auth");
 const { superSecret } = require('./config')
@@ -60,6 +61,7 @@ app.use(usersRouter);
 app.use(storyRouter);
 app.use(commentRouter);
 app.use(followRouter);
+app.use(bookmarkRouter);
 app.use(storyCoinsRouter);
 
 

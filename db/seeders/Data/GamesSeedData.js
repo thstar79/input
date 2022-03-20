@@ -1,3 +1,4 @@
+const Data = [
         {title: "Uncharted Waters II / 大航海時代 II", description: "Uncharted Waters II was released in 1993, the second game of the series. It is set primarily in Europe of the 16th century, the time of exploration. Players choose from among 6 different characters, each with their own background.", genre: "RPG", releaseDate: "1995/6/15", createdAt: new Date(), updatedAt: new Date() },
         {title: "Destiny", description: "Destiny is an online-only multiplayer first-person shooter video game developed by Bungie", genre: "FPS", releaseDate: "2014/9/9", createdAt: new Date(), updatedAt: new Date() },
         {title: "Cyberpunk 2077", description: "Cyberpunk 2077 is an action role-playing video game developed and published by CD Projekt.", genre: "FPS, RPG", releaseDate: "2020/12/10", createdAt: new Date(), updatedAt: new Date() },
@@ -24,3 +25,6 @@
         {title: "Doom", description: "Doom is a 1993 first-person shooter (FPS) game developed by id Software for MS-DOS.", genre: "FPS", releaseDate: "1993/01/01", createdAt: new Date(), updatedAt: new Date() },
         {title: "DOOM", description: "Doom is a 2016 first-person shooter game REMAKE developed by id Software and published by Bethesda Softworks.", genre: "FPS", releaseDate: "2016/05/13", createdAt: new Date(), updatedAt: new Date() },
         {title: "Elden Ring", description: "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.", genre: "Action, RPG", releaseDate: "2022/02/24", createdAt: new Date(), updatedAt: new Date() }
+];
+
+module.exports=Data
