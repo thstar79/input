@@ -372,13 +372,13 @@ body {
   #leftbuttonBox {
       position: absolute;
       left: 7px;
-      top: 78px;
+      top: 90px;
       z-index: 1;
   }
 
   #rightbuttonBox {
     position: absolute;
-    top: 78px;
+    top: 90px;
     left: 325px;
     z-index: 1;
 }

@@ -15,6 +15,7 @@ window.addEventListener("DOMContentLoaded", event => {
     document.getElementById('rightbuttonBox').addEventListener('click', () => {
         profileboxes.forEach(profile => {
             if (profile.classList.contains('hiddenProfile')) {
+                profile.style.animation= "disappear 1s"
                 profile.classList.remove('hiddenProfile')
             } else {
                 profile.style.animation= "disappear 1s"
