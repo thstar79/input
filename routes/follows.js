@@ -83,9 +83,10 @@ router.get('/api/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
         }
     }
 
-    res.render('followfeed', {
+    res.render('index', {
         title: 'Follower Feed',
         stories,
+        userId
     })
 }));
 
