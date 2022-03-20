@@ -22,7 +22,7 @@ a {
 .headerBox {
     display: flex;
     background-color: #e4000f;
-    border-radius: 10px 10px 0 0 ;
+    border-radius: 10px 10px 0 0;
 }
 
 .headerBoxTopic {
@@ -54,8 +54,7 @@ a {
 }
 
 .headerBoxImg {
-    width: 75px;
-    height: 75px;
+    width: 100px;
     background-color: white;
     border-radius: 10px 0 0 0px;
     border-left:solid 2px white;
@@ -63,6 +62,10 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.headerBoxImg > img {
+    max-width:100%;
+    max-height:100%;
 }
 
 

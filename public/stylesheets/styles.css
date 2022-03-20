@@ -265,7 +265,7 @@ a {
 }
 
 .followclicked {
-    border-left: blue solid 15px;
+    border-left:rgb(0, 97, 251) solid 15px;
 }
 
 .userProfileMain {
