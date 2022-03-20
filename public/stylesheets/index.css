@@ -180,12 +180,19 @@ body {
     justify-content: flex-end;
 }
 
-#loginIconBoxout, #loginIconBoxin {
+#loginIconBoxout {
     position: relative;
-    top:-50px;
+    top:-40px;
+}
+
+#loginIconBoxin {
+    position: relative;
+    top:-30px;
 }
 
 #floatingCart {
+    position: relative;
+    left:8px;
     animation: shaketwo 3s cubic-bezier(.36,.07,.19,.97) both infinite;
     transform: translate3d(0, 0, 0);
 }
