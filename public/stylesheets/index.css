@@ -255,20 +255,28 @@ body {
     }
   }
 
+  @keyframes disappear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
 
   #devProfileBoxWrapper {
       width: 360px;
-      height: 250px;
+      height: 300px;
       padding: 10px 20px 10px 20px;
       position: absolute;
-      top: 700px;
+      top: 670px;
       display: flex;
       justify-content: space-between;
   }
 
   #devProfileBox {
     width:150px;
-    height: 160px;
+    height: 220px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 3px 3px 3px rgb(209, 209, 209);
@@ -294,10 +302,30 @@ body {
   #devProfileBoxHeadImgBox {
     box-sizing: border-box;
     width: 150px;
-    height: 60px;
-    background-image: url('../img/gameimg/game9.png');
-    background-position: center;
+    height: 100px;
   }
+.devProfileImgOne {
+    background-image: url('../img/gameimg/game2.png');
+    background-size: 150px;
+    background-position: center;
+}
+.devProfileImgTwo {
+    background-image: url('../img/gameimg/game8.png');
+    background-size: 150px;
+    background-position: center;
+}
+.devProfileImgThree {
+    background-image: url('../img/gameimg/game1.png');
+    background-size: 150px;
+    background-position: center;
+}
+
+.devProfileImgFour {
+    background-image: url('../img/gameimg/game27.png');
+    background-size: 150px;
+    background-position: center;
+}
+
 
   #devProfileBoxContentMain {
       height: 70px;
@@ -345,12 +373,14 @@ body {
       position: absolute;
       left: 7px;
       top: 78px;
+      z-index: 1;
   }
 
   #rightbuttonBox {
     position: absolute;
     top: 78px;
     left: 325px;
+    z-index: 1;
 }
 
 .hiddenProfile {

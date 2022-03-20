@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", event => {
             if (profile.classList.contains('hiddenProfile')) {
                 profile.classList.remove('hiddenProfile')
             } else {
+                profile.style.animation= "disappear 1s"
                 profile.classList.add('hiddenProfile')
             }
         })
@@ -16,6 +17,7 @@ window.addEventListener("DOMContentLoaded", event => {
             if (profile.classList.contains('hiddenProfile')) {
                 profile.classList.remove('hiddenProfile')
             } else {
+                profile.style.animation= "disappear 1s"
                 profile.classList.add('hiddenProfile')
             }
         })
