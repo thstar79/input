@@ -9,6 +9,31 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
+const chckbookmark = async (stories, userId)=>{
+ 
+    for(let i=0;i<stories.length;++i){
+        const story = stories[i];
+        const storyId = story.id;
+        
+        let userStoryCoinsCount = await db.StoryCoin.sum('count', {
+            where: {
+                storyId: storyId,
+                userId: userId,
+            }
+        });
+        
+        if(!userStoryCoinsCount)   userStoryCoinsCount = 0;
+        if(userStoryCoinsCount >= 10000000){
+            story.isbookmarked = 1;
+        }  
+        else{
+            story.isbookmarked = 0;
+        }    
+    }
+}
+ 
+    
+
 router.get('/test', (req,res) => {
     res.render('test')
 })
@@ -26,17 +51,23 @@ router.get(
             topicType: topicType,
         }
     });
+    await chckbookmark(stories,userId);
+    // for(let i=0;i<stories.length;++i){
+    //     const story = stories[i];
+    //     if(userId === story.userId) story.isbookmarked = await chckbookmark(userId, story.userId);
+    // }
     res.render("index", { title: topicType, stories, userId });
 }));
 
 router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {
     const userId = setUserId(req,res);
 // req.session.visited
-        const stories = await db.Story.findAll({
+    const stories = await db.Story.findAll({
         include: [db.User, db.Game],
         order: [['createdAt', 'DESC']],
         limit: 5
     });
+    await chckbookmark(stories,userId);
     res.render("index", { title: "Recent stories", stories, userId });
 }))
 
@@ -49,6 +80,7 @@ router.get(
             include: [db.User, db.Game],
             order: [['createdAt', 'DESC']]
         });
+        await chckbookmark(stories,userId);
         res.render("index", { title: "Stories List", stories, userId });
     })
 
@@ -66,6 +98,7 @@ router.get(
                 userId:userId
             }
         });
+        await chckbookmark(stories,userId);
         res.render("index", { title: "My Stories", stories });
     })
 
@@ -201,7 +234,9 @@ router.get(
     requireAuth,
     asyncHandler(async(req, res) => {
         const storyId = parseInt(req.params.id, 10);
-        const story = await db.Story.findByPk(storyId);
+        const story = await db.Story.findByPk(storyId,{
+            include: [db.Game],
+        });
         if (story.userId === res.locals.user.id) {
             const games = await db.Game.findAll();
             res.render("story-edit", {

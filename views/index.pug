@@ -4,7 +4,7 @@ append head
   //- add page specific styles by appending to the head
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
-
+ 
 block content
     #centeringDiv
       div 
@@ -13,7 +13,7 @@ block content
         each story in stories
           div(class="storyBoxWrapper" id=`storyId${story.id}`)
             .storyBox
-              .storyBoxHeader
+              .storyBoxHeader(class="storyBoxClick" id=`SBHId${story.id}`)
                 .storyBoxHeaderProfile
                   img(src=`/img/users/user${story.userId%20}.png` height='20px')
                   p(id="userNameText")=`${story.User.userName.toUpperCase()}`
@@ -29,7 +29,7 @@ block content
                       a(href=`/stories/delete/${story.id}`)
                         i(class="fa fa-trash-o" aria-hidden="true")
                 else
-              .storyBoxContent
+              .storyBoxContent(class="storyBoxClick" id=`SBHId${story.id}`)
                 .storyBoxContentTextBox
                   h2=story.title.toUpperCase()
                   p(id='storyContentText') #{story.content.slice(0,200)+'...'}
@@ -40,6 +40,10 @@ block content
                   a(id='topiclink' href="")=story.topicType
                 p(id='gameTitleText' href="")=story.Game.title
                 if userId !== 0
-                .bookmarkImgBox 
-                  img(src=`/img/bookmarks_black.png` height='20px')
+                .bookmarkImgBox(class='bookmarkBtn' id=`bkmimgCID${story.id}`)
+                  if story.isbookmarked === 1
+                    img(src='/img/bookmarks_black.png' id=`bmrkimgbID${story.id}ID${session}` height='20px')
+                  else
+                    img(src='/img/bookmarks_white.png' id=`bmrkimgwID${story.id}ID${session}` height='20px')
+                  end
                 end

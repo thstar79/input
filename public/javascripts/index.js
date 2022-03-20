@@ -9,11 +9,11 @@ window.addEventListener("DOMContentLoaded", event => {
     //     document.getElementById('homelink').style.color = 'grey'
     //     document.location.href = `../stories`;
     // })
-    const stories = document.getElementsByClassName('storyBoxWrapper');
+    const stories = document.getElementsByClassName('storyBoxClick');
     for(let i=0;i<stories.length;++i){
         stories[i].addEventListener('click', (e) => {
         //document.getElementById(`storyId${i}`).addEventListener('click', (e) => {
-            const id = stories[i].id.split('storyId')[1];
+            const id = stories[i].id.split('Id')[1];
             //document.location.href = `https://input-app.herokuapp.com/stories/${id}`;
             document.location.href = `/stories/${id}`;
         });

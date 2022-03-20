@@ -23,21 +23,19 @@ window.onload = async function(){
     const addBookmarks = async (fbox, e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log(e.target.innerText);
-        if(e.target.innerText === "Bookmark") {
-            e.target.innerText = "UnBook";
-            e.target.classList.remove("unbook");
-            fbox.classList.add("bookmarkclicked")
-        } else if(e.target.innerText === "UnBook") {
-            e.target.innerText = "Bookmark";
-            e.target.classList.add("unbook");
-            fbox.classList.remove("bookmarkclicked")
-        }
+        // console.log(e.target.innerText);
+        // if(e.target.innerText === "Bookmark") {
+        //     e.target.innerText = "UnBook";
+        //     e.target.classList.remove("unbook");
+        //     fbox.classList.add("bookmarkclicked")
+        // } else if(e.target.innerText === "UnBook") {
+        //     e.target.innerText = "Bookmark";
+        //     e.target.classList.add("unbook");
+        //     fbox.classList.remove("bookmarkclicked")
+        // }
         
-        //console.log(e.target.innerText);
-        //console.log(e.target.id);
+        console.log(e.target.id);
         const IDs = e.target.id.split('ID');
-        //console.log(IDs);
         const storyId= parseInt(IDs[1]);
         const sessionId= parseInt(IDs[2]);
 
@@ -53,26 +51,53 @@ window.onload = async function(){
         });
         const returnData = await res.json()
         if (returnData.message === "Success") {
-            // const userId = parseInt(e.target.id.split('followBtn')[1],10);
-            // const res2 = await fetch(`/api/users/${userId}`);
-            // const newFollowee = await res2.json();
-            // const userName = newFollowee.user.userName;
-            // makeProfile(top_wrapper, userId, userName);
         }
     };
 
+    
     //add bookmarks to the database
     const bbtns = document.getElementsByClassName('bookmarkBtn');
     const bboxes = document.getElementsByClassName('coinBox');
+    const sfooters = document.getElementsByClassName('storyBoxFooter');
+
     for(let i=0;i<bbtns.length;++i){
         const bbtn = bbtns[i];
         const bbox = bboxes[i];
 
         const addBookmarksWrapper = (e)=>{
+            console.log("bookmark img clicked");
             e.stopPropagation();
+            let img = bbtn.firstChild;
+            console.log(img);
+            if(img.src.includes('black')){
+                img.src = img.src.replace('black', 'white');
+            }
+            else if(img.src.includes){
+                img.src = img.src.replace('white', 'black');
+            }
             addBookmarks(bbox,e);
         }
 
         bbtn.addEventListener('click',addBookmarksWrapper);
     }
+
+
+    // const bbtns1 = document.getElementsByClassName('bookmarkBtn1');
+    // const sfooters = document.getElementsByClassName('storyBoxFooter');
+    
+    // for(let i=0;i<bbtns1.length;++i){
+    //     const bbox1 = sfooters[i];
+    //     const bbtn1 = bbtns1[i];
+    //     console.log(bbtn1);    
+    //     const addBookmarksWrapper = (e)=>{
+    //         console.log("bookmark img clicked");
+    //         e.stopPropagation();
+    //         changeImg(bbtn1,bbtn1.firstChild,'/img/bookmarks_black.png');
+    //         addBookmarks(bbox1,e);
+    //     }
+
+    //     bbtn1.addEventListener('click',addBookmarksWrapper);
+    // }
+
 }
+

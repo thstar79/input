@@ -19,11 +19,19 @@ block content
             label Select Topic
               select(name="topicType")
                 each item in list
-                  option(value=`${item}`) #{item}
+                  if item === story.topicType
+                    option(value=`${item}` selected) #{item}
+                  else 
+                    option(value=`${item}`) #{item}
+                  end
               label Select Game
                 select(name="gameId")
                   each game in games
+                    if game.id === story.Game.id
+                      option(value=`${game.id}` selected) #{game.title}
+                    else
                       option(value=`${game.id}`) #{game.title}
+                    end
             #writeStoryButtonBox
               button#newStoryButton(type='submit') Edit Story
               a(id="newStoryCancel" href=`/stories/${story.id}` class="nes-btn is-error") Cancel
