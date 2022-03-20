@@ -1,7 +1,8 @@
 import {makeDiv, commentFn, commentListener} from './utils.js';
 
-window.addEventListener("DOMContentLoaded", async (event) => {
-    
+//window.addEventListener("DOMContentLoaded", async (event) => {
+window.onload = async function (){
+
     const extraside = document.getElementById('extraside');
     extraside.classList.add('hidden');
     const strcomments = document.getElementsByClassName('strcomment');
@@ -146,4 +147,5 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         }
     });
     commentListener(editBtns,deleteBtns,coinBtns,sessionId);
-});
+//});
+};

@@ -7,9 +7,8 @@ const { csrfProtection, asyncHandler } = require("./utils");
 
 const { loginUser, logoutUser, restoreUser, requireAuth, setUserId } = require("../auth");
 const user = require("../db/models/user");
-const follow = require("../db/models/follow");
 
-router.get('/api/follows', asyncHandler(async (req,res)=>{
+router.get('/api/bookmarks', asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
     // const follows = await db.Follow.findAll({
     //     where: {

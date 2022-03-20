@@ -170,10 +170,10 @@
 }
 
 #noButton {
-    position: absolute;
-    top:380px;
-    left: 450px;
     z-index: 1;
+    position: relative;
+    left: 400px;
+    top: -5px;
 }
 #topicBox {
     border-radius: 10px;
@@ -194,6 +194,12 @@
     color: white;
     font-weight: bolder;
     margin: 0 0 0 0;
+}
+
+#superButton {
+    position: relative;
+    left:-140px;
+    top: -5px;
 }
 
 #topicButtonBox {
@@ -279,5 +285,50 @@
 }
 
 .comment-box-sub2 {
-    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    height:90px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.comment-box-sub2 > button > i{
+    font-size: 25px;
+    font-weight: bold;
+    position: relative;
+    left: 90px;
+}
+
+.comment-box-sub3 {
+    position: relative;
+    left: 20px;
+    font-family: 'Press start 2P', cursive;
+    color: #e4000f;
+}
+
+.comment-box-sub3 > div> div {
+    display: flex;
+}
+
+.comment-box-sub3 > div> div > div {
+    margin-right:5px;
+}
+
+#comment-top-main {
+    height: 100px;
+    margin: 0 0 0 0;
+    display: flex; 
+}
+
+#userProfileContentBox > label {
+    visibility: hidden;
+}
+
+#comment {
+    border:none;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(216, 216, 216);
+
 }
