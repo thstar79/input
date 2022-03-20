@@ -6,7 +6,7 @@ const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 const salt = "!@#";
 
-router.get(  
+router.get(
     "/comments",
     asyncHandler(async (req, res) => {
         const comments = await db.Follow.findAll({
@@ -108,7 +108,6 @@ router.post(
 );
 
 router.delete('/comments/:id(\\d+)', async(req, res) => {
-    console.log('you have arrived at the route handler');
     const id = parseInt(req.params.id,10);
     const coin = await db.CommentCoin.findOne({
         where: {
@@ -172,7 +171,7 @@ router.patch('/comments/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
             commentId: id,
         }
     });
-    
+
     for(let i=0;i<coins.length;++i) coin_sum += coins[i].count;
 
     switch(flag) {
@@ -185,7 +184,7 @@ router.patch('/comments/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
         case 3:
             res.json({message:"Shame on You" });
             break;
-        default: 
+        default:
             res.json({message: "Could not find coin please try again"});
             break;
     }
@@ -195,7 +194,7 @@ router.patch('/comments/:id(\\d+)', async(req, res) => {
     const { userId } = req.session.auth;
     const id = parseInt(req.params.id,10);
     const comment = await db.Comment.findByPk(id);
-    
+
     if (comment) {
         comment.comment = `${salt}${userId}${salt}${req.body.comment}`;
         await comment.save();
@@ -217,7 +216,7 @@ router.get(
         else{
             userId = '-1';
         }
-        
+
         const storyId = parseInt(req.params.id, 10);
         const story = await db.Story.findByPk(storyId, {
             include: [db.User, db.Game],
@@ -259,7 +258,7 @@ router.get(
                     },
                 ],
             });
-            
+
             for(let i=0;i<coins.length;++i){
                 let count = coins[i].count;
                 if(count === undefined) count = 0;
