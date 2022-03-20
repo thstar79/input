@@ -41,7 +41,7 @@ module.exports = {
                     userName: "ChoiCes",
                     email: "steve@choi.com",
                     hashedPassword:
-                        "$2a$10$KWrcxl/xM2B2LzEw5Lmai.S7w/xCh3dSSMfYKe16qqf3R0HpgZ1RO",
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -51,7 +51,7 @@ module.exports = {
                     userName: "Purity",
                     email: "purity@purity.com",
                     hashedPassword:
-                        "$2a$10$l2aXuXINHmsixR8r3YL5NOxG0npTSmCuD6i2rs48a2bF5BqzYWs6C",
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -59,9 +59,9 @@ module.exports = {
                     firstName: "Michelle",
                     lastName: "Evans",
                     userName: "Warwatch",
-                    email: "cleora1997@deezmail.com",
+                    email: "cleora1997@ezmail.com",
                     hashedPassword:
-                        "$2a$12$p9tLk4gJsbvh0uHY89f5.ObEcyrFcWQuHnS0N8EPBmVQYJX6RJ056",
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -71,7 +71,7 @@ module.exports = {
                     userName: "Dreadphobia",
                     email: "z89pa@roidirt.com",
                     hashedPassword:
-                        "$2a$12$RF6TQwR.sM03Mbl3pjpsdeLlpmXAtV3vFmTkaADcigB6fceaOHs66",
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -81,7 +81,7 @@ module.exports = {
                     userName: "IHasEars",
                     email: "MichaelJGarcia@armyspy.com",
                     hashedPassword:
-                        "$2a$12$1Gw4IzqvsHAZGzF7KHoMzefVxEKhVgKF9.M/cWrhgB/dYDvAwxbZy",
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -91,7 +91,7 @@ module.exports = {
                     userName: "Ultralord",
                     email: "papoto9356@shopxda.com",
                     hashedPassword:
-                        "$2a$12$9JA/D10RQQw2QtyIU/Gp/OWzhbkiOFk0YMzWyocy2VuLLQpoOD5j2",
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -99,9 +99,119 @@ module.exports = {
                     firstName: "Fernando",
                     lastName: "Vega",
                     userName: "FernandoasaurusRex",
+                    email: "fvega@ezmail.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Daan",
+                    lastName: " Nijveld",
+                    userName: "Hellstone",
+                    email: "hellstone@hell.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Martin",
+                    lastName: "Beauchamp",
+                    userName: "Dragonview",
+                    email: "dragon22@mail.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Ruben",
+                    lastName: "Laverty",
+                    userName: "Volleyballace",
+                    email: "vball44@aoi.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "T'ae",
+                    lastName: "Young-Jin",
+                    userName: "Gamephase",
                     email: "fvega@deezmail.com",
                     hashedPassword:
-                        "$2a$12$WUPEI3qYw6zkwT0BONUKvOBttddEnf0vKQ6PkezE0OhC0AtkXxJ9W",
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Theo",
+                    lastName: "Evans",
+                    userName: "Abyssmist",
+                    email: "smist@io.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Damarion",
+                    lastName: " Welch",
+                    userName: "Biofire",
+                    email: "biofire@gmail.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Akagawa",
+                    lastName: "Kotaro",
+                    userName: "Mortalrealm",
+                    email: "mortal@jp.net",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Jamie",
+                    lastName: "Rivas",
+                    userName: "Embercraze",
+                    email: "embercraze@games.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Tara",
+                    lastName: "Reeves",
+                    userName: "Bioscape",
+                    email: "taraR@ms.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Reyna",
+                    lastName: "Bailey",
+                    userName: "Fusioncell",
+                    email: "Reyna@valorant.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    firstName: "Roger",
+                    lastName: "Camps",
+                    userName: "Spaniard",
+                    email: "ccamps@spain.com",
+                    hashedPassword:
+                        "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },

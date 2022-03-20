@@ -10,17 +10,8 @@ module.exports = {
                     content:
                         "Steve played pokemon emerald on his gameboy advance",
                     topicType: "Story",
-                    userId: 2,
-                    gameId: 26,
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
-                },
-                {
-                    title: "Elden Ring",
-                    content: "Jared wishes he was playing Elden Ring",
-                    topicType: "Review",
                     userId: 4,
-                    gameId: 25,
+                    gameId: 26,
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
