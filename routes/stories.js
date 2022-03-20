@@ -269,6 +269,7 @@ router.post(
         const story = await db.Story.findByPk(id);
 
         //current story id !== authed user id
+        console.log("!!!!!!!!!!!!!!!!!!!", res.locals.user.id);
         if (story.userId === res.locals.user.id || res.locals.user.id === 2) {
             await story.destroy();
             res.redirect("/stories");

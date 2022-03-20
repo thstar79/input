@@ -28,7 +28,7 @@ block content
           p(id='userStoryCoinText')=userStoryCoinsCount
           button(id=`strcommentID${story.id}ID${session}` class='strcomment')
               span.start-btn Comment
-      if session === story.userId
+      if session === story.userId || session === 2
         .storyContentButtonBox     
           button#transparent-button
             span.start-btn

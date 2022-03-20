@@ -10,103 +10,112 @@ const user = require("../db/models/user");
 
 router.get('/api/bookmarks', asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
-    // const follows = await db.Follow.findAll({
-    //     where: {
-    //         follower: userId,
-    //     },
-    // });
+    const Large = 10000000;
 
-    const followStories = await db.User.findByPk(userId, {
-        include: [{
-          model: db.User,
-          as: 'followings',
-          include: db.Story
-        }]
-      })
-      let follows = []
-      for(let i = 0; i < followStories.followings.length; i++) {
-            follows.push(followStories.followings[i]);
-    }
-
-    res.json({follows});
+    const bookMarks = await db.StoryCoin.findAll(userId, {
+        where: {
+            [db.sequelize.Op.and]: [
+                {count: {
+                    [db.Sequelize.Op.gte]: Large,
+                }},
+                { userId: userId }
+            ],
+        },
+        include: [db.User,db.Story],
+    });
+    res.json({bookMarks});
 }));
 
-router.post('/api/follows', asyncHandler(async (req,res)=>{
+router.patch('/api/bookmarks/:id(\\d+)', asyncHandler(async (req,res)=>{
     const userId = setUserId(req,res);
+    const storyId = parseInt(req.params.id,10);
+    const Large = 10000000;
+
     if(userId === 0){
 
     }
     else{
-        const { userId1 } = req.body;
-        const aFollow = await db.Follow.findOne({
+        //if bookmark exists unbookmark
+        let aBookmark = await db.StoryCoin.findOne({
             where: {
-                follower: userId,
-                followee: userId1
-            }
-        });
+                [db.sequelize.Op.and]: [
+                    // {count: {
+                    //     [db.Sequelize.Op.gte]: Large,
+                    // }},
+                    { userId: userId },
+                    { storyId: storyId },
+                ],
+            },
+            include: [db.User,db.Story],
+        })
+        
+        
+        if(aBookmark){
+            if(aBookmark.coin >= Large) aBookmark.coin -= Large;
+            else    aBookmark.coin += Large;
 
-        if(aFollow){
-            await aFollow.destroy();
+            await aBookmark.save();
         }
-        else{
-            const follow = db.Follow.build({
-                follower: userId,
-                followee: userId1
-            })
+        else{ //book mark not exist
 
-            await follow.save();
+            const bookmark = db.StoryCoin.build({
+                count: Large,
+                storyId: storyId,
+                userId: userId,
+            })
+            await bookmark.save();
         }
         res.json({message:"Success"});
     }
 }));
 
-router.get('/api/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
-    const { userId } = req.session.auth;
-    let stories = []
+// router.get('/api/bookmarks/feed',  requireAuth, asyncHandler(async (req,res)=>{
+//     const { userId } = req.session.auth;
+//     let stories = []
 
-    const followStories = await db.User.findByPk(userId, {
-        include: [{
-          model: db.User,
-          as: 'followings',
-          include: {
-          model: db.Story,
-          include: [db.Game]
-          }
-        }]
-      })
+//     const followStories = await db.User.findByPk(userId, {
+//         include: [{
+//           model: db.User,
+//           as: 'followings',
+//           include: {
+//           model: db.Story,
+//           include: [db.Game]
+//           }
+//         }]
+//       })
 
-    for(let i = 0; i < followStories.followings.length; i++) {
-        for(let j=0; j < followStories.followings[i].Stories.length; ++j){
-            followStories.followings[i].Stories[j].User = followStories.followings[i];
-            stories.push(followStories.followings[i].Stories[j]);
-        }
-    }
+//     for(let i = 0; i < followStories.followings.length; i++) {
+//         for(let j=0; j < followStories.followings[i].Stories.length; ++j){
+//             followStories.followings[i].Stories[j].User = followStories.followings[i];
+//             stories.push(followStories.followings[i].Stories[j]);
+//         }
+//     }
 
-    res.render('followfeed', {
-        title: 'Follower Feed',
-        stories,
-    })
-}));
+//     res.render('followfeed', {
+//         title: 'Follower Feed',
+//         stories,
+//     })
+// }));
 
-router.post('/api/follows/isfollow', asyncHandler(async (req,res)=>{
-    let userId;
-    if(req.session.auth){
-        userId = req.session.auth.userId;
-    }
-    else{
-        userId = '-1';
-    }
-    const {followee} = req.body;
-    const record = await db.Follow.findAll({
-        where: {
-            follower: userId,
-            followee: followee
-        }
-    });
-    let isfollow;
-    if(record.length === 1)  isfollow=1;
-    else    isfollow=0;
-    res.json({isfollow:isfollow});
-}));
+// router.post('/api/follows/isfollow', asyncHandler(async (req,res)=>{
+//     let userId;
+//     if(req.session.auth){
+//         userId = req.session.auth.userId;
+//     }
+//     else{
+//         userId = '-1';
+//     }
+//     const {followee} = req.body;
+//     const record = await db.Follow.findAll({
+//         where: {
+//             follower: userId,
+//             followee: followee
+//         }
+//     });
+//     let isfollow;
+//     if(record.length === 1)  isfollow=1;
+//     else    isfollow=0;
+//     res.json({isfollow:isfollow});
+// }));
 
-module.exports = router;
+// module.exports = router;

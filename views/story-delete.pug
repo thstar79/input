@@ -23,9 +23,9 @@ block content
     form(action=`/stories/delete/${story.id}` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         h2 Are you sure you want to delete #{story.title} ?
-    div
-        button#transparent-button
-            span.end-btn Confirm
-        button#transparent-button
-            span.start-btn
-                a(href=`/stories/${story.id}`) Cancel
+        div
+            button#transparent-button
+                span.end-btn Confirm
+            button#transparent-button
+                span.start-btn
+                    a(href=`/stories/${story.id}`) Cancel
