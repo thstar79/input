@@ -14,9 +14,9 @@ block content
             p(id='storyFilterLink' class="storyFilterLink clicked") Stories
             p(id='feedFilterLink' class="storyFilterLink") My Feed   
           else
-          //p(id='storyFilterLink' class="storyFilterLink clicked") Stories
-          - followFeeds = [];
-        end
+            //p(id='storyFilterLink' class="storyFilterLink clicked") Stories
+            - followFeeds = [];
+          end
         h1= title 
         .storiescontainer(id='storyFilterContainer')
           each story in stories
@@ -31,8 +31,7 @@ block content
                   .storyBoxHeaderMenu
                     .dropdown
                       i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
-                      .dropdown-content
-                          
+                      .dropdown-content             
                         if story.isbookmarked === 1
                           div(class='bookmarkBtn fab' id=`faID${story.id}ID${userId}`)
                             i(class="fa fa-bookmark" aria-hidden="true")

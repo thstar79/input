@@ -6,8 +6,8 @@ window.addEventListener("DOMContentLoaded", event => {
     const ffc = document.getElementById('feedFilterContainer');
     if(storyButton){
         storyButton.addEventListener('click', () => {
+            sfc.style.animation= "disappear 1s"
             sfc.classList.remove('hiddenF');
-            ffc.classList.add('hiddenF');
             ffc.classList.add('hiddenF');
             storyButton.classList.add('clicked');
             feedButton.classList.remove('clicked');
@@ -24,6 +24,7 @@ window.addEventListener("DOMContentLoaded", event => {
         
         
         feedButton.addEventListener('click', () => {
+            ffc.style.animation= "disappear 1s"
             ffc.classList.remove('hiddenF');
             sfc.classList.add('hiddenF');
 
