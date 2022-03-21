@@ -70,7 +70,7 @@ html
                         p 1 
                       #logUserProfileBoxHeader 
                         #logUserProfileBoxHeaderImgBox
-                          img(src=`/img/users/user${user.id}.png` width="50px")
+                          img(src=`/img/users/user${user.id%20}.png` width="50px")
                         #logUserProfileBoxHeaderNameBox 
                           p(id="")=user.userName
                       #logUserProfileBoxContent
