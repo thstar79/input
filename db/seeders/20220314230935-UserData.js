@@ -209,8 +209,8 @@ module.exports = {
                 {
                     firstName: "Roger",
                     lastName: "Camps",
-                    userName: "Spaniard",
-                    email: "ccamps@spain.com",
+                    userName: "Catalan",
+                    email: "ccamps@catalan.com",
                     hashedPassword:
                         "$2a$10$TCsMTRaBL7jRbUAT/Uyg5uUr3lZfl7afFTc0q.gzmTLq44BOXvcZu",
                     createdAt: new Date(),
