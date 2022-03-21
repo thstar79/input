@@ -244,10 +244,11 @@ const starFn = async (e) => {
     const commentId = parseInt(IDs[1],10);
     const userId = parseInt(IDs[2],10);
     const sessionId = parseInt(IDs[3],10);
+    console.log(IDs);
     if(userId === sessionId){
         window.alert("shame on you. Don't give self coins");
     }
-    else if( userId === undefined || userId === 0){
+    else if( sessionId === undefined || sessionId === 0){
         window.alert("Only logged in user can give coins wanna log in or sign up?");
     }
     else{
