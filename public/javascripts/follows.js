@@ -1,15 +1,11 @@
 import {makeProfile} from './utils.js';
 
-console.log("follow loading.....");
 window.onload = async function(){
 
-    console.log("follow loading.....");
     //for the right hand side follow recommendation
     const wrapper = document.getElementById('userProfileBoxWrapper');
     const numPeople = 5;
-    console.log("follow loading.....");
     const res = await fetch(`/api/users/random/${numPeople}`);
-    console.log("follow complete");
     const returnData = await res.json();
     const userId = returnData.session;
     const top_wrapper = document.getElementById('topBoxWrpper');
@@ -46,7 +42,6 @@ window.onload = async function(){
         });
 
         const returnDataFollow = await resfollow.json();
-        console.log(returnDataFollow.isfollow);
         if(returnDataFollow.isfollow === 0){
             btn.innerText = "Follow";
             btn.classList.add("unfollow");

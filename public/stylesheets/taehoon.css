@@ -177,7 +177,14 @@
 	  cursor: pointer;
 	  outline: inherit;
 }
-
+/* 
 .bookmarkBtn:hover {
     background-color:aqua;
+} */
+
+.dropdown-content  .fab{
+    width:100%;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
 }
