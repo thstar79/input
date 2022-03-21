@@ -1,44 +1,14 @@
 import {makeProfile} from './utils.js';
 
-window.addEventListener("DOMContentLoaded", event => {
+window.addEventListener("DOMContentLoaded", async (event) => {
 
     //for the right hand side follow recommendation
     const wrapper = document.getElementById('userProfileBoxWrapper');
     
-    //for the content-top
-    // const makeBookMark = async ()=>{
-
-    //     const res1 = await fetch(`/api/bookmarks`);
-    //     const returnData1 = await res1.json();
-    //     for(let i=0;i<returnData1.follows.length;++i){
-    //         const id = returnData1.follows[i].id;
-    //         const userName = returnData1.follows[i].userName;
-    //         console.log(id, userName);
-    //         makeProfile(top_wrapper, id, userName);
-    //     }
-    // };
-
-    //if(userId !== 0)    makeTopFollows();
-
-    const addBookmarks = async (fbox, e) => {
+    const addBookmarks = async (e,storyId,sessionId) => {
         e.preventDefault();
         e.stopPropagation();
-        // console.log(e.target.innerText);
-        // if(e.target.innerText === "Bookmark") {
-        //     e.target.innerText = "UnBook";
-        //     e.target.classList.remove("unbook");
-        //     fbox.classList.add("bookmarkclicked")
-        // } else if(e.target.innerText === "UnBook") {
-        //     e.target.innerText = "Bookmark";
-        //     e.target.classList.add("unbook");
-        //     fbox.classList.remove("bookmarkclicked")
-        // }
         
-        console.log(e.target.id);
-        const IDs = e.target.id.split('ID');
-        const storyId= parseInt(IDs[1]);
-        const sessionId= parseInt(IDs[2]);
-
         const res = await fetch(`/api/bookmarks/${storyId}`,{
             method: 'PATCH',
             headers: {
@@ -57,48 +27,45 @@ window.addEventListener("DOMContentLoaded", event => {
     
     //add bookmarks to the database
     const bbtns = document.getElementsByClassName('bookmarkBtn');
-    const bboxes = document.getElementsByClassName('coinBox');
-    const sfooters = document.getElementsByClassName('storyBoxFooter');
+
+    const toggleBM = (img, faimg)=>{
+        if(img.src.includes('black'))   img.src = img.src.replace('black', 'white');
+        else if(img.src.includes)   img.src = img.src.replace('white', 'black');
+        
+        if(faimg){
+            if(faimg.classList.contains('fa-bookmark-o')){
+                faimg.classList.add('fa-bookmark');
+                faimg.classList.remove('fa-bookmark-o');
+            }
+            else{
+                faimg.classList.add('fa-bookmark-o');
+                faimg.classList.remove('fa-bookmark');
+            }
+        }
+    }
 
     for(let i=0;i<bbtns.length;++i){
         const bbtn = bbtns[i];
-        const bbox = bboxes[i];
-
+        const IDs = bbtn.id.split('ID');
+        const storyId= parseInt(IDs[1]);
+        const sessionId= parseInt(IDs[2]);
         const addBookmarksWrapper = (e)=>{
-            console.log("bookmark img clicked");
             e.stopPropagation();
-            let img = bbtn.firstChild;
-            console.log(img);
-            if(img.src.includes('black')){
-                img.src = img.src.replace('black', 'white');
+            if(!bbtn.id.includes('fa')){
+                const img = bbtn.firstChild;
+                const faimg = document.getElementById(`faID${storyId}ID${sessionId}`);
+                if(faimg)   toggleBM(img,faimg.firstChild);
+                else    toggleBM(img,faimg);
             }
-            else if(img.src.includes){
-                img.src = img.src.replace('white', 'black');
+            else{
+                const img = document.getElementById(`bmrkimgID${storyId}ID${sessionId}`);
+                const faimg = bbtn.firstChild;
+                toggleBM(img,faimg);
             }
-            addBookmarks(bbox,e);
+            addBookmarks(e,storyId,sessionId);
         }
 
         bbtn.addEventListener('click',addBookmarksWrapper);
     }
-
-
-    // const bbtns1 = document.getElementsByClassName('bookmarkBtn1');
-    // const sfooters = document.getElementsByClassName('storyBoxFooter');
-    
-    // for(let i=0;i<bbtns1.length;++i){
-    //     const bbox1 = sfooters[i];
-    //     const bbtn1 = bbtns1[i];
-    //     console.log(bbtn1);    
-    //     const addBookmarksWrapper = (e)=>{
-    //         console.log("bookmark img clicked");
-    //         e.stopPropagation();
-    //         changeImg(bbtn1,bbtn1.firstChild,'/img/bookmarks_black.png');
-    //         addBookmarks(bbox1,e);
-    //     }
-
-    //     bbtn1.addEventListener('click',addBookmarksWrapper);
-    // }
-
-}
-)
+});
 

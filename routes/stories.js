@@ -56,7 +56,7 @@ router.get(
     //     const story = stories[i];
     //     if(userId === story.userId) story.isbookmarked = await chckbookmark(userId, story.userId);
     // }
-    res.render("index", { title: topicType, stories, userId });
+    res.render("index", { title: topicType, stories, followFeeds:[], userId });
 }));
 
 router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {
@@ -68,7 +68,7 @@ router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {
         limit: 5
     });
     await chckbookmark(stories,userId);
-    res.render("index", { title: "Recent stories", stories, userId });
+    res.render("index", { title: "Recent stories", stories, followFeeds:[], userId });
 }))
 
 router.get(
@@ -95,13 +95,12 @@ router.get(
             }]
         })
 
-    for(let i = 0; i < followStories.followings.length; i++) {
-        for(let j=0; j < followStories.followings[i].Stories.length; ++j){
-            followStories.followings[i].Stories[j].User = followStories.followings[i];
-            followFeeds.push(followStories.followings[i].Stories[j]);
+        for(let i = 0; i < followStories.followings.length; i++) {
+            for(let j=0; j < followStories.followings[i].Stories.length; ++j){
+                followStories.followings[i].Stories[j].User = followStories.followings[i];
+                followFeeds.push(followStories.followings[i].Stories[j]);
+            }
         }
-    }
-        console.log(followFeeds.length + '--------------------------------------------!!!!!!!!!!!!----------------------!!!!!!!!!!!!!!!!!---------')
         res.render("index", { title: "Stories List", stories, followFeeds, userId });
     })
 
@@ -120,7 +119,7 @@ router.get(
             }
         });
         await chckbookmark(stories,userId);
-        res.render("index", { title: "My Stories", stories });
+        res.render("index", { title: "My Stories", stories, followFeeds:[], userId});
     })
 
 );
@@ -326,7 +325,6 @@ router.post(
         const story = await db.Story.findByPk(id);
 
         //current story id !== authed user id
-        console.log("!!!!!!!!!!!!!!!!!!!", res.locals.user.id);
         if (story.userId === res.locals.user.id || res.locals.user.id === 2) {
             await story.destroy();
             res.redirect("/stories");
