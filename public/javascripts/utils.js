@@ -69,7 +69,7 @@ const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
     Mbtn.setAttribute('id',`edit-btn-${comment.id}`);
     Mbtn.classList.add('edit-submit-btn');
 
-    Mbtn.innerText= 'Submit Edit';
+    Mbtn.innerText= 'Edit';
 
     cMB3LcoinImg.setAttribute('id',`coinID${comment.id}ID${user.id}ID${sessionId}`);
     cMB3LcoinImg.classList.add('coin-btn');
