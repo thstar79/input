@@ -7,9 +7,13 @@ append head
  
 block content
     #centeringDiv
-      div 
-        h1= title 
       div
+        #topStoryFilterBar
+          p Filter Articles:
+          p(id='storyFilterLink' class="storyFilterLink clicked") Stories 
+          p(id='feedFilterLink' class="storyFilterLink") My Feed   
+        h1= title 
+        .storiescontainer
         each story in stories
           div(class="storyBoxWrapper" id=`storyId${story.id}`)
             .storyBox
@@ -47,3 +51,45 @@ block content
                     img(src='/img/bookmarks_white.png' id=`bmrkimgwID${story.id}ID${session}` height='20px')
                   end
                 end
+        .storiescontainer
+      if followFeeds.length !== 0
+        each feed in followFeeds
+          div(class="storyBoxWrapper hiddenProfile" id=`storyId${feed.id}`)
+            .storyBox
+              .storyBoxHeader(class="storyBoxClick" id=`SBHId${feed.id}`)
+                .storyBoxHeaderProfile
+                  img(src=`/img/users/user${feed.userId%20}.png` height='20px')
+                  p(id="userNameText")=`${feed.User.userName.toUpperCase()}`
+                  - let date = feed.createdAt.toString();
+                  p(id='storyWrittenDate')=`${date.slice(0,15)}`
+                .storyBoxHeaderMenu
+                if userId === feed.userId
+                  .dropdown
+                    i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
+                    .dropdown-content
+                      a(href=`/stories/edit/${feed.id}`)
+                        i(class="fa fa-pencil-square-o" aria-hidden="true")
+                      a(href=`/stories/delete/${feed.id}`)
+                        i(class="fa fa-trash-o" aria-hidden="true")
+                else
+              .storyBoxContent(class="storyBoxClick" id=`SBHId${feed.id}`)
+                .storyBoxContentTextBox
+                  h2=feed.title.toUpperCase()
+                  p(id='storyContentText') #{feed.content.slice(0,200)+'...'}
+                .storyBoxContentImgBox
+                  img(src=`/img/gameimg/game${feed.gameId}.png` height='120px')
+              .storyBoxFooter
+                #topicButton
+                  a(id='topiclink' href="")=feed.topicType
+                p(id='gameTitleText' href="")=feed.Game.title
+                if userId !== 0
+                .bookmarkImgBox(class='bookmarkBtn' id=`bkmimgCID${feed.id}`)
+                  if feed.isbookmarked === 1
+                    img(src='/img/bookmarks_black.png' id=`bmrkimgbID${feed.id}ID${session}` height='20px')
+                  else
+                    img(src='/img/bookmarks_white.png' id=`bmrkimgwID${feed.id}ID${session}` height='20px')
+                  end
+                end
+      else
+        div(class="storyBoxWrapper hiddenProfile")
+          p There are no feeds, follow people...   

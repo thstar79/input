@@ -82,10 +82,12 @@ router.get('/api/follows/feed',  requireAuth, asyncHandler(async (req,res)=>{
             stories.push(followStories.followings[i].Stories[j]);
         }
     }
+    let followFeeds = [];
 
     res.render('index', {
         title: 'Follower Feed',
         stories,
+        followFeeds,
         userId
     })
 }));
