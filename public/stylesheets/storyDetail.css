@@ -243,4 +243,25 @@ a {
     border-top: solid grey 0.5px;
 }
 
+.comment-box-sub2 > form {
+    position: relative;
+    left:-240px;
+    top: 50px;
+}
 
+
+.comment-box-sub2 > form > input{
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 2px 2px 1px grey;
+}
+
+
+.comment-box-sub2 > form > button{
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 2px 2px 1px grey;
+    position: relative;
+    left:200px;
+    top: -30px;
+}
