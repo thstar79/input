@@ -1,11 +1,16 @@
 window.addEventListener("DOMContentLoaded", event => {
-    let storyButton = document.getElementById('storyFilterLink')
+    const storyButton = document.getElementById('storyFilterLink')
+    const feedButton = document.getElementById('feedFilterLink')
+
     const sfc = document.getElementById('storyFilterContainer');
     const ffc = document.getElementById('feedFilterContainer');
     if(storyButton){
         storyButton.addEventListener('click', () => {
             sfc.classList.remove('hiddenF');
             ffc.classList.add('hiddenF');
+            ffc.classList.add('hiddenF');
+            storyButton.classList.add('clicked');
+            feedButton.classList.remove('clicked');
             // storyButton.classList.remove('clicked')
             // storyButton.classList.add('clicked')    
             // document.getElementById('feedFilterLink').classList.remove('clicked')
@@ -17,13 +22,13 @@ window.addEventListener("DOMContentLoaded", event => {
             // }
         })
         
-        let feedButton = document.getElementById('feedFilterLink')
+        
         feedButton.addEventListener('click', () => {
             ffc.classList.remove('hiddenF');
             sfc.classList.add('hiddenF');
 
-            // feedButton.classList.remove('clicked')
-            // feedButton.classList.add('clicked')    
+            feedButton.classList.add('clicked');    
+            storyButton.classList.remove('clicked');
             // document.getElementById('storyFilterLink').classList.remove('clicked')
 
             // let displayPages = document.querySelectorAll('.storiescontainer');
