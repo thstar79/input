@@ -9,9 +9,14 @@ block content
     #centeringDiv
       div
         #topStoryFilterBar
+        if followFeeds !== -1
           p Filter Articles:
-          p(id='storyFilterLink' class="storyFilterLink clicked") Stories 
+          p(id='storyFilterLink' class="storyFilterLink clicked") Stories
           p(id='feedFilterLink' class="storyFilterLink") My Feed   
+        else
+          //p(id='storyFilterLink' class="storyFilterLink clicked") Stories
+          - followFeeds = [];
+        end
         h1= title 
         .storiescontainer(id='storyFilterContainer')
           each story in stories
@@ -72,15 +77,22 @@ block content
                     - let date = feed.createdAt.toString();
                     p(id='storyWrittenDate')=`${date.slice(0,15)}`
                   .storyBoxHeaderMenu
-                  if userId === feed.userId
                     .dropdown
                       i(class="fa fa-bars" aria-hidden="true" id='dropbtn')
                       .dropdown-content
-                        a(href=`/stories/edit/${feed.id}`)
-                          i(class="fa fa-pencil-square-o" aria-hidden="true")
-                        a(href=`/stories/delete/${feed.id}`)
-                          i(class="fa fa-trash-o" aria-hidden="true")
-                  else
+                        if feed.isbookmarked === 1
+                          div(class='bookmarkBtn fab' id=`faID${feed.id}ID${userId}`)
+                            i(class="fa fa-bookmark" aria-hidden="true")
+                        else
+                          div(class='bookmarkBtn' id=`faID${feed.id}ID${userId}`)
+                            i(class="fa fa-bookmark-o" aria-hidden="true" class='bookmarkBtn' id=`faID${feed.id}ID${userId}`)
+                        end
+                        if userId === feed.userId
+                          a(href=`/stories/edit/${feed.id}`)
+                            i(class="fa fa-pencil-square-o" aria-hidden="true")
+                          a(href=`/stories/delete/${feed.id}`)
+                            i(class="fa fa-trash-o" aria-hidden="true")
+                        end
                 .storyBoxContent(class="storyBoxClick" id=`SBHId${feed.id}`)
                   .storyBoxContentTextBox
                     h2=feed.title.toUpperCase()
