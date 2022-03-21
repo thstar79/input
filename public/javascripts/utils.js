@@ -38,7 +38,7 @@ const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
     cMB1p.classList.add('cMB1p');
     cMB1c.classList.add('cMB1c');
 
-    cMB1pimg.setAttribute('src',`/img/users/user${user.id}.png`);
+    cMB1pimg.setAttribute('src',`/img/users/user${user.id%20}.png`);
     cMB1pimg.setAttribute('width','50px');
     cMB1pp.innerText = `${user.firstName} ${user.lastName}`;
     cMB1cp.setAttribute('id',`comment-content-${comment.id}`);
