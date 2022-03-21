@@ -390,7 +390,7 @@ body {
     display: flex;
     position: relative;
     left: -185px;
-    display: flex;
+    align-items: center;
 }
 
 #topStoryFilterBar > p {
@@ -402,7 +402,7 @@ body {
 .storyFilterLink {
     border: solid rgb(42, 52, 119) 0.5px;
     border-radius: 30px;
-    padding: 3px 8px 3px 8px;
+    padding: 5px 10px 5px 10px;
     display: inline-block;
     color: black;
     background-color: white;
