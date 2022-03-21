@@ -1,7 +1,7 @@
 import {makeProfile} from './utils.js';
 
 console.log("follow loading.....");
-window.onload = async function(){
+window.onload = async () => {
 
     console.log("follow loading.....");
     //for the right hand side follow recommendation
