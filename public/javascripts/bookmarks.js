@@ -49,23 +49,25 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         const IDs = bbtn.id.split('ID');
         const storyId= parseInt(IDs[1]);
         const sessionId= parseInt(IDs[2]);
-        const addBookmarksWrapper = (e)=>{
-            e.stopPropagation();
-            if(!bbtn.id.includes('fa')){
-                const img = bbtn.firstChild;
-                const faimg = document.getElementById(`faID${storyId}ID${sessionId}`);
-                if(faimg)   toggleBM(img,faimg.firstChild);
-                else    toggleBM(img,faimg);
+        if(sessionId!== 0){
+            const addBookmarksWrapper = (e)=>{
+                e.stopPropagation();
+                if(!bbtn.id.includes('fa')){
+                    const img = bbtn.firstChild;
+                    const faimg = document.getElementById(`faID${storyId}ID${sessionId}`);
+                    if(faimg)   toggleBM(img,faimg.firstChild);
+                    else    toggleBM(img,faimg);
+                }
+                else{
+                    const img = document.getElementById(`bmrkimgID${storyId}ID${sessionId}`);
+                    const faimg = bbtn.firstChild;
+                    toggleBM(img,faimg);
+                }
+                addBookmarks(e,storyId,sessionId);
             }
-            else{
-                const img = document.getElementById(`bmrkimgID${storyId}ID${sessionId}`);
-                const faimg = bbtn.firstChild;
-                toggleBM(img,faimg);
-            }
-            addBookmarks(e,storyId,sessionId);
-        }
 
-        bbtn.addEventListener('click',addBookmarksWrapper);
+            bbtn.addEventListener('click',addBookmarksWrapper);
+        }
     }
 });
 
