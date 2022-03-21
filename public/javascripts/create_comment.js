@@ -1,16 +1,14 @@
 //const createBtns = document.querySelectorAll('.comment-create-btn');
 const createBtn = document.getElementById('commentCreate');
-console.log("Create comment is here", createBtn);
 //for (let i = 0; i < createBtns.length; i++) {
-    console.log("Create comment is here");
-    
+
     createBtn.addEventListener('click', async(e) => {
         e.preventDefault();
         //const btn = createBtns[i];
         // const commentData = document.getElementById('comment').value;
         // const storyId = document.getElementById('storyCId').value;
-        
-        
+
+
         // const res = await fetch(`/api/comments`, {
         //     method: 'POST',
         //     headers: {

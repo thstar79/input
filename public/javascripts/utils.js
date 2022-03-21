@@ -153,7 +153,6 @@ const makeProfile = (wrapper1, id, userName)=>{
 }
 
 const commentFn = async (e)=>{
-    console.log("Here we are....");
     if (extraside.classList.contains('hidden')) {
         extraside.classList.remove('hidden');
     } else {
@@ -170,7 +169,6 @@ const commentFn = async (e)=>{
 }
 
 const editFn = async (e) => {
-    console.log('edit button clicked');
     e.preventDefault();
     e.stopPropagation();
     const IDs = e.target.id.split('ID');
@@ -188,7 +186,6 @@ const editFn = async (e) => {
         const submitBtn = document.getElementById(`edit-btn-${commentId}`)
         submitBtn.addEventListener('click', async(subEvent) => {
             subEvent.preventDefault();
-            console.log('submit', commentId);
 
             // query the dom for the input field's value
             const commentData = document.getElementById(`comment-field-${commentId}`).value
@@ -242,13 +239,11 @@ const delFn = async(e) => {
 }
 
 const starFn = async (e) => {
-    console.log('coin button clicked');
     e.stopPropagation();
     const IDs = e.target.id.split('ID');
     const commentId = parseInt(IDs[1],10);
     const userId = parseInt(IDs[2],10);
     const sessionId = parseInt(IDs[3],10);
-    console.log(commentId, userId, sessionId);
     if(userId === sessionId){
         window.alert("shame on you. Don't give self coins");
     }

@@ -18,8 +18,7 @@ storyCoinBtn.addEventListener('click', async (e) => {
         if(returnData.message === "failed") window.alert("Only logged in user can give coins wanna log in or sign up?");
         const resTotalStoryCoins = await fetch(`/stories/coins/${storyId}`);
         const dataTotalCount = await resTotalStoryCoins.json();
-        console.log(method, dataTotalCount.message, dataTotalCount.count);
-
+        //console.log(method, dataTotalCount.message, dataTotalCount.count);
         const coinText = document.getElementById(`storyCoinText`);
         coinText.innerHTML = dataTotalCount.count;
         const coinTextTwo = document.getElementById(`userStoryCoinText`);
