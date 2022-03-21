@@ -1,11 +1,6 @@
 import {makeProfile} from './utils.js';
 
-<<<<<<< HEAD
 window.onload = async function(){
-=======
-console.log("follow loading.....");
-window.onload = async () => {
->>>>>>> ca06e9c708eabe5a4508c8c774d4172cd9245d25
 
     //for the right hand side follow recommendation
     const wrapper = document.getElementById('userProfileBoxWrapper');
