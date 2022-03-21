@@ -244,7 +244,7 @@ const starFn = async (e) => {
     const commentId = parseInt(IDs[1],10);
     const userId = parseInt(IDs[2],10);
     const sessionId = parseInt(IDs[3],10);
-    console.log(IDs);
+    //console.log(IDs);
     if(userId === sessionId){
         window.alert("shame on you. Don't give self coins");
     }
