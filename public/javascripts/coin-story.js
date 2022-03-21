@@ -3,6 +3,7 @@ const storyCoinBtn = document.getElementsByClassName('storyCoinSpinImage')[0];
 storyCoinBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    storyCoinBtn.style.animation = "bounce 1s"
 
     const IDs = e.target.id.split('ID');
     const storyId = parseInt(IDs[1]);

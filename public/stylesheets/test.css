@@ -131,7 +131,9 @@
     to{left:70%;}
 }
 
-
+.coinBox {
+    margin-left: 15px;
+}
 
 #storyCoinSpinImage {
 	/* transform: rotateY(45deg);
