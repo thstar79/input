@@ -4,7 +4,6 @@ window.addEventListener("DOMContentLoaded", event => {
     for(let i=0;i<refresh_buttons.length;++i){
         refresh_buttons[i].addEventListener('click', async (e) => {
             e.stopPropagation();
-            console.log("clicked");
             await setTimeout(()=>{
                 $("#comment-main-wrapper").load(window.location.href + " #comment-main-wrapper>*");
             },500);
@@ -19,4 +18,3 @@ window.addEventListener("DOMContentLoaded", event => {
     //     },100);
     // });
 });
-    

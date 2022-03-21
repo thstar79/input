@@ -10,8 +10,8 @@ const Op = Sequelize.Op;
 router.get('/stories/coins/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const Large = 10000000;
     let count = await db.StoryCoin.sum('count',{
-        where: 
-         { storyId: req.params.id } 
+        where:
+         { storyId: req.params.id }
     });
     if(!count){
         count = 0;
@@ -30,14 +30,13 @@ router.get('/stories/coins/user/:id(\\d+)', csrfProtection, asyncHandler(async (
                 // [Op.and]: [
                 //     { storyId: req.params.id },
                 //     { userId: userId }
-                // ] 
+                // ]
                 storyId: req.params.id,
                 userId: userId,
-            } 
+            }
         })
     }
     count = count%Large;
-    console.log('+++++++++++++++++++++++++++++++', count, Large);
     res.json({count: count%Large});
 }));
 
@@ -49,7 +48,7 @@ router.post('/stories/coins/:id(\\d+)', asyncHandler(async (req, res) => {
             count:1,
             storyId: req.params.id,
             userId: res.locals.user.id
-        })   
+        })
         await coin.save();
         res.json({message: "Success", count: 1});
     }
@@ -68,7 +67,7 @@ router.patch('/stories/coins/:id(\\d+)',asyncHandler(async (req,res)=>{
             [Op.and]: [
                 { storyId: req.params.id },
                 { userId: res.locals.user.id }
-            ] 
+            ]
         }
     });
     const coin_limit = 50;

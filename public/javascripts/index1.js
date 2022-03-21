@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", event => {
 });
 
 window.addEventListener("DOMContentLoaded", event => {
-    
+
     const extraside = document.getElementById('extraside');
     extraside.classList.add('hidden');
     const strcomments = document.getElementsByClassName('strcomment');
@@ -67,9 +67,9 @@ window.addEventListener("DOMContentLoaded", event => {
 
     input1.setAttribute('type','hidden');
     input1.setAttribute('name','_csrf');
-    input1.setAttribute('value','csrfToken'); 
+    input1.setAttribute('value','csrfToken');
 
-    
+
     input3.setAttribute('type','text');
     input3.setAttribute('id',`comment`);
     input3.setAttribute('name','comment');
@@ -86,7 +86,7 @@ window.addEventListener("DOMContentLoaded", event => {
     btn.classList.add('pushable');
     btn.innerText= "Comment";
     //btn.innerHTML = `<span class="shadow"></span><span class="edge"></span><span class="front"></span>Comment`;
-    
+
     ///////////////////////////////////////////////////////////
     extraside.appendChild(cW);
     cW.appendChild(cTopW);
@@ -105,9 +105,9 @@ window.addEventListener("DOMContentLoaded", event => {
     cForm.appendChild(input3);
     //cForm.appendChild(btnDiv);
     cForm.appendChild(btn);
-    
+
     const makeDiv = (cMainW, comment, user, session, sum={})=>{
-        
+
         const cMBox = document.createElement('div');
 
         const cMB1 = document.createElement('div');
@@ -151,7 +151,7 @@ window.addEventListener("DOMContentLoaded", event => {
         cMB1pp.innerText = `${user.firstName} ${user.lastName}`;
         cMB1cp.setAttribute('id',`comment-content-${comment.id}`);
         cMB1cp.innerText = comment.comment;
-        
+
         cMB2btn1.setAttribute('id',`editID${comment.id}ID${user.id}ID${session.id}`);
         cMB2btn1.innerText = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
         cMB2btn1.classList.add('pushable');
@@ -161,7 +161,7 @@ window.addEventListener("DOMContentLoaded", event => {
         cMB2btn2.innerText = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         cMB2btn2.classList.add('pushable');
         cMB2btn2.classList.add('comment-delete-btn');
-        
+
         //Edit Form
         cMB2form.setAttribute('id',`edit-form-${comment.id}`);
         cMB2form.classList.add('hidden');
@@ -173,7 +173,7 @@ window.addEventListener("DOMContentLoaded", event => {
         Minput3.setAttribute('rows','5');
         Minput3.setAttribute('value','');
         Mlabel_input3.setAttribute('for','content');
-        
+
         Mbtn.setAttribute('id',`edit-btn-${comment.id}`);
         Mbtn.classList.add('edit-submit-btn');
 
@@ -187,7 +187,7 @@ window.addEventListener("DOMContentLoaded", event => {
         cMB3LcoinImg_img.classList.add('coinimg');
         cMB3LcoinImg_img.classList.add('animated');
         cMB3LcoinImg_img.classList.add('bounce');
-        
+
         cMB3LcoinCnt.setAttribute('id',`cntID${comment.id}ID${user.id}ID${session.id}`);
         let coinSum = `${sum[`${comment.id}`]}`;
         if(Object.keys(sum).length === 0)   coinSum = 0;
@@ -199,9 +199,9 @@ window.addEventListener("DOMContentLoaded", event => {
 
         input1.setAttribute('type','hidden');
         input1.setAttribute('name','_csrf');
-        input1.setAttribute('value','csrfToken'); 
+        input1.setAttribute('value','csrfToken');
 
-        
+
         input3.setAttribute('type','text');
         input3.setAttribute('id',`comment`);
         input3.setAttribute('name','comment');
@@ -234,10 +234,10 @@ window.addEventListener("DOMContentLoaded", event => {
         cMBox.appendChild(cMB1);
         cMBox.appendChild(cMB2);
         cMBox.appendChild(cMB3);
-        
+
         cMB1.appendChild(cMB1p);
         cMB1.appendChild(cMB1c);
-        
+
         cMB2.appendChild(cMB2btn1);
         cMB2.appendChild(cMB2form);
         cMB2.appendChild(cMB2btn2);
@@ -291,17 +291,16 @@ window.addEventListener("DOMContentLoaded", event => {
             makeDiv(cMainW,comments[i],users[i],session,sum);
             //dropDiv()
         }
-        
+
         const createBtn = document.getElementById('commentCreate');
-        
+
         createBtn.addEventListener('click', async(e) => {
             e.preventDefault();
             e.stopPropagation();
             const commentData = document.getElementById('comment').value;
             const storyId = document.getElementById('storyCId').value;
-            
-            console.log("story Id : ", storyId);
-            console.log("comment Data : ", commentData);
+
+
             const res = await fetch(`/api/comments`, {
                 method: 'POST',
                 headers: {
@@ -313,13 +312,10 @@ window.addEventListener("DOMContentLoaded", event => {
                 }),
             });
             const returnData = await res.json();
-            console.log(returnData.message);
             // if we get a Success response, the original post element should be updated
             if (returnData.message === "Success") {
                 const res1 = await fetch('/comments/last');
                 const returnData1 = await res1.json();
-                
-                console.log(returnData1, "!!!!!!!!!!!");
 
                 const session = returnData1.session;
                 let comment = returnData1.comment;
@@ -332,7 +328,6 @@ window.addEventListener("DOMContentLoaded", event => {
         for (let i = 0; i < editBtns.length; i++) {
             const btn = editBtns[i];
             btn.addEventListener('click', async (e) => {
-                console.log('edit button clicked');
                 e.preventDefault();
                 e.stopPropagation();
                 const IDs = e.target.id.split('ID');
@@ -346,15 +341,14 @@ window.addEventListener("DOMContentLoaded", event => {
                     } else {
                         form.classList.add('hidden')
                     }
-    
+
                     const submitBtn = document.getElementById(`edit-btn-${commentId}`)
                     submitBtn.addEventListener('click', async(subEvent) => {
                         subEvent.preventDefault();
-                        console.log('submit', commentId);
-    
+
                         // query the dom for the input field's value
                         const commentData = document.getElementById(`comment-field-${commentId}`).value
-    
+
                         // send a PATCH fetch request with the content in the body
                         const res = await fetch(`/comments/${commentId}`, {
                             method: 'PATCH',
@@ -377,24 +371,22 @@ window.addEventListener("DOMContentLoaded", event => {
                 }
             })
         }
-    
+
         const deleteBtns = document.querySelectorAll('.comment-delete-btn');
         for (let i = 0; i < deleteBtns.length; i++) {
             const btn = deleteBtns[i];
             btn.addEventListener('click', async(e) => {
-                console.log('del button clicked');
                 e.stopPropagation();
-                console.log("delete btn clicked");
                 const IDs = e.target.id.split('ID');
                 const commentId = IDs[1];
                 const userId = IDs[2];
                 const sessionId = IDs[3];
                 if((userId === sessionId) && userId !== undefined){
-    
+
                     const res = await fetch(`/comments/${commentId}`, {
                         method: 'DELETE'
                     })
-    
+
                     const data = await res.json()
                     if (data.message === "Success") {
                         const container = document.getElementById(`comment-box-${commentId}`);
@@ -414,7 +406,6 @@ window.addEventListener("DOMContentLoaded", event => {
         for (let i = 0; i < coinBtns.length; i++) {
             const btn = coinBtns[i];
             btn.addEventListener('click', async (e) => {
-                console.log('coin button clicked');
                 e.stopPropagation();
                 const IDs = e.target.id.split('ID');
                 const commentId = IDs[1];
@@ -442,7 +433,7 @@ window.addEventListener("DOMContentLoaded", event => {
         }
 
         const exit = document.getElementById('comment-top-top-exit-btn');
-        
+
         exit.addEventListener('click', (e)=>{
             e.stopPropagation();
             if (!extraside.classList.contains('hidden')) {
@@ -456,9 +447,7 @@ window.addEventListener("DOMContentLoaded", event => {
         e.stopPropagation();
         const commentData = document.getElementById('comment').value;
         const storyId = document.getElementById('storyCId').value;
-        
-        console.log("story Id : ", storyId);
-        console.log("comment Data : ", commentData);
+
         const res = await fetch(`/api/comments`, {
             method: 'POST',
             headers: {
@@ -470,13 +459,11 @@ window.addEventListener("DOMContentLoaded", event => {
             }),
         });
         const returnData = await res.json();
-        console.log(returnData.message);
         // if we get a Success response, the original post element should be updated
         if (returnData.message === "Success") {
             const res1 = await fetch('/comments/last');
             const returnData1 = await res1.json();
-            
-            console.log(returnData1, "!!!!!!!!!!!");
+
 
             const session = returnData1.session;
             let comment = returnData1.comment;
@@ -489,7 +476,6 @@ window.addEventListener("DOMContentLoaded", event => {
     for (let i = 0; i < editBtns.length; i++) {
         const btn = editBtns[i];
         btn.addEventListener('click', async (e) => {
-            console.log('edit button clicked');
             e.preventDefault();
             e.stopPropagation();
             const IDs = e.target.id.split('ID');
@@ -539,9 +525,7 @@ window.addEventListener("DOMContentLoaded", event => {
     for (let i = 0; i < deleteBtns.length; i++) {
         const btn = deleteBtns[i];
         btn.addEventListener('click', async(e) => {
-            console.log('del button clicked');
             e.stopPropagation();
-            console.log("delete btn clicked");
             const IDs = e.target.id.split('ID');
             const commentId = IDs[1];
             const userId = IDs[2];
@@ -571,7 +555,6 @@ window.addEventListener("DOMContentLoaded", event => {
     for (let i = 0; i < coinBtns.length; i++) {
         const btn = coinBtns[i];
         btn.addEventListener('click', async (e) => {
-            console.log('coin button clicked');
             e.stopPropagation();
             const IDs = e.target.id.split('ID');
             const commentId = IDs[1];
