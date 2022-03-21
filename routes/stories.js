@@ -56,7 +56,7 @@ router.get(
     //     const story = stories[i];
     //     if(userId === story.userId) story.isbookmarked = await chckbookmark(userId, story.userId);
     // }
-    res.render("index", { title: topicType, stories, followFeeds:[], userId });
+    res.render("index", { title: topicType, stories, followFeeds:-1, userId });
 }));
 
 router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {
@@ -68,7 +68,7 @@ router.get('/stories/recent', csrfProtection, asyncHandler(async(req, res) => {
         limit: 5
     });
     await chckbookmark(stories,userId);
-    res.render("index", { title: "Recent stories", stories, followFeeds:[], userId });
+    res.render("index", { title: "Recent stories", stories, followFeeds:-1, userId });
 }))
 
 router.get(
@@ -101,6 +101,7 @@ router.get(
                 followFeeds.push(followStories.followings[i].Stories[j]);
             }
         }
+        await chckbookmark(followFeeds,userId);
         res.render("index", { title: "Stories List", stories, followFeeds, userId });
     })
 
@@ -119,7 +120,7 @@ router.get(
             }
         });
         await chckbookmark(stories,userId);
-        res.render("index", { title: "My Stories", stories, followFeeds:[], userId});
+        res.render("index", { title: "My Stories", stories, followFeeds:-1, userId});
     })
 
 );

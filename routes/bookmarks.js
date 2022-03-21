@@ -27,7 +27,7 @@ router.get('/bookmarks', asyncHandler(async (req,res)=>{
     //res.render({bookMarks});
     let stories = [];
     if(bookmarks.length !== 0)  stories = bookmarks.map(ele=>ele.Story) ;
-    res.render("index", { title: "Book Marks", stories: stories, followFeeds:[], userId });
+    res.render("index", { title: "Book Marks", stories: stories, followFeeds:-1, userId });
 }));
 
 router.patch('/api/bookmarks/:id(\\d+)', asyncHandler(async (req,res)=>{

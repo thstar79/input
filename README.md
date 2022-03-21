@@ -90,15 +90,14 @@ Below is the step-by-step to install and initiate the program.
 
   
 ## Stories
- This application allows for any client to read the stories posted by registered users. Registered users can also write, edit and delete the story they create. The story can have 3 topic types to differentiate each stories in assorted categories. Story will also record the video game of their choosing from our extensive library of video games.
+ This application allows for any client to read the stories posted by registered users. Registered users can also write, edit and delete the story they create. The story can have 3 topic types of Reviews, Stories, Walkthroughs to differentiate each stories in assorted categories. Story will also record the video game of their choosing from our library of video games.
 
 ## Comments
-Description about comments
-- Create Comments
-<<<<<<< HEAD
+Leave comments about your favorite stories, reviews, walkthroughs.
+- Dynamically Created Comments
 - Read Comments
-- Update Comments
-- Delete Comments
+- Dynamically Update Comments
+- Dynamically Delete Comments
 =======
     *Login required
     *
@@ -108,10 +107,14 @@ Description about comments
     *Only the user who wrote comment can update.
 - Delete Comments
     *Only the user who wrote comment can update.
->>>>>>> main
 
 ## Coins
-Description about coins
+Coins follows the same system and logic as a like, except you can give as many as you want (up to a maximum of 50). You can't give any coins to yourself in a story or comment though !
+   - Add a coin to story
+   Give a ton of coins to stories you think deserves them ! 
+   Not only does the story keep track of how many coins you give, it keeps track of how many coins each user gives, dynamically updating and fetching the count for each story.
+   - Add a coin to comments 
+   Not only does the story keep track of how many coins you give, it keeps track of how many coins each user gives, dynamically updating and fetching the count for each comment.
 
 ## Conclusion
-Conclusion here
+Input was an amazing collaborative effort to make. Not only did we love the theme, we got along great, put in a ton of work into something we really enjoyed making and it shows ! 
