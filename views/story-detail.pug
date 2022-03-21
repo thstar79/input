@@ -26,7 +26,7 @@ block content
 
       .storyContentFooter
         .coinBox
-          img(id=`storyCoinID${story.id}ID${session}` class="storyCoinSpinImage coinSound" src='/img/coin.png' width='60px')
+          img(id=`storyCoinID${story.id}ID${session}` class="storyCoinSpinImage coinSound" src='/img/coin.png' width='20px')
           p(id='storyCoinText')=storyCoinsCount % 10000000
           p(id='userStoryCoinText')=userStoryCoinsCount % 10000000
         if session !== 0
