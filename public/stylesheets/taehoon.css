@@ -53,19 +53,22 @@
 }
 
 .animated { 
-    animation-duration: 2s; 
+    animation-name: bounce;
+    animation-duration: 1s; 
     animation-fill-mode: both; 
-    animation-iteration-count:infinite; 
+    animation-iteration-count:1; 
+    animation-timing-function: ease-in-out;
 }
 
 @keyframes bounce { 
     0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
-    40% {transform: translateY(-40px);} 
+    40% {transform: translateY(-30px);} 
     60% {transform: translateY(-15px);} 
 } 
   
 .bounce { 
     animation-name: bounce; 
+    animation-fill-mode: forwards;
 }
 
 @keyframes pulse { 
@@ -78,18 +81,18 @@
 }
 
 @keyframes fromRight {
-    0% {transform: translateX(500px);} 
-    20% {transform: translateX(400px);} 
-    40% {transform: translateX(300px);} 
-    60% {transform: translateX(200px);} 
-    80% {transform: translateX(100px);} 
-    100% {ransform: translateX(0);}
+    0% {transform: translateX(100%);} 
+    20% {transform: translateX(80%);} 
+    40% {transform: translateX(60%);} 
+    60% {transform: translateX(40%);} 
+    80% {transform: translateX(20%);} 
+    100% {ransform: translateX(0%);}
 }
 
 .hiddenC{
     position: absolute;
     right: 0px;
-    width: 500px;
+    width: 25%;
     height: 100%;
     background-color: white;
     animation-name: fromRight;

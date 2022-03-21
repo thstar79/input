@@ -144,4 +144,13 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         }
     });
     commentListener(editBtns,deleteBtns,coinBtns,sessionId);
+
+    let audio = new Audio("/assets/smb_coin.wav");
+    const coins = document.getElementsByClassName('coinSound');
+    for(let i=0;i<coins.length;++i){
+        coins[i].addEventListener('click',  () =>  {
+            audio.volume = 0.1;
+            audio.play();
+        })
+    }
 });
