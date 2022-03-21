@@ -152,10 +152,10 @@ router.post(
 );
 
 router.get("/users/login", csrfProtection, (req, res) => {
-    const user = db.User.build();
+    //const user = db.User.build();
     res.render("user-login", {
         title: "Login",
-        email: user.email,
+        email: '',
         csrfToken: req.csrfToken(),
     });
 });
@@ -163,7 +163,11 @@ router.get("/users/login", csrfProtection, (req, res) => {
 const loginValidators = [
     check("email")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide a value for Email Address"),
+    .withMessage("Please provide a value for Email Address")
+    .isLength({ max: 255 })
+    .withMessage("Email Address must not be more than 255 characters long")
+    .isEmail()
+    .withMessage("Email Address is not a valid email"),
     check("password")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a value for Password"),
@@ -171,14 +175,13 @@ const loginValidators = [
 
 router.post(
     "/users/login",
-    csrfProtection,
     loginValidators,
+    csrfProtection,
     asyncHandler(async(req, res) => {
         const { email, password } = req.body;
         let errors = [];
-
+        
         const validatorErrors = validationResult(req);
-
         if (validatorErrors.isEmpty()) {
             const user = await db.User.findOne({ where: { email } });
             console.log(user)
