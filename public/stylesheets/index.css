@@ -391,7 +391,6 @@ body {
     position: relative;
     left: -185px;
     display: flex;
-    align-items: center;
 }
 
 #topStoryFilterBar > p {
@@ -412,4 +411,14 @@ body {
 .clicked {
     color: white;
     background-color: rgb(42, 52, 119);
+}
+
+#centeringDiv > div > h1 {
+    text-align: center;
+}
+
+#centeringDiv > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -9,11 +9,11 @@ block content
     #centeringDiv
       div
         #topStoryFilterBar
-        if followFeeds !== -1
-          p Filter Articles:
-          p(id='storyFilterLink' class="storyFilterLink clicked") Stories
-          p(id='feedFilterLink' class="storyFilterLink") My Feed   
-        else
+          if followFeeds !== -1
+            p(id="filterlabel") Filter Articles:
+            p(id='storyFilterLink' class="storyFilterLink clicked") Stories
+            p(id='feedFilterLink' class="storyFilterLink") My Feed   
+          else
           //p(id='storyFilterLink' class="storyFilterLink clicked") Stories
           - followFeeds = [];
         end
