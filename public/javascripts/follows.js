@@ -65,7 +65,6 @@ window.onload = async function(){
         for(let i=0;i<returnData1.follows.length;++i){
             const id = returnData1.follows[i].id;
             const userName = returnData1.follows[i].userName;
-            console.log(id, userName);
             makeProfile(top_wrapper, id, userName);
         }
     };
@@ -76,7 +75,6 @@ window.onload = async function(){
         e.preventDefault();
         e.stopPropagation();
 
-          console.log(e.target.innerText);
           if(e.target.innerText === "Follow") {
             e.target.innerText = "Unfollow";
             e.target.classList.remove("unfollow");
@@ -87,7 +85,6 @@ window.onload = async function(){
             e.target.classList.add("unfollow");
             fbox.classList.remove("followclicked")
           }
-          console.log(e.target.innerText);
         const id=e.target.id.split('followBtn')[1];//follower = current user, followee= this id
         const res = await fetch('/api/follows',{
             method: 'POST',

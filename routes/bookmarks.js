@@ -29,7 +29,7 @@ router.get('/bookmarks', asyncHandler(async (req,res)=>{
     if(bookmarks.length !== 0)  stories = bookmarks.map(ele=>ele.Story) ;
     await chckbookmark(stories,userId);
 
-    res.render("index", { title: "Book Marks", stories: stories, followFeeds:-1, userId });
+    res.render("index", { title: "Bookmarks", stories: stories, followFeeds:-1, userId });
 }));
 
 router.patch('/api/bookmarks/:id(\\d+)', asyncHandler(async (req,res)=>{
@@ -49,7 +49,7 @@ router.patch('/api/bookmarks/:id(\\d+)', asyncHandler(async (req,res)=>{
             },
             include: [db.User,db.Story],
         });
-        
+
         if(aBookmark){ //if bookmark exists unbookmark
             if(aBookmark.count >= Large) aBookmark.count = aBookmark.count%Large;
             else    aBookmark.count += Large;
@@ -65,7 +65,7 @@ router.patch('/api/bookmarks/:id(\\d+)', asyncHandler(async (req,res)=>{
             await bookmark.save();
             bookmarked = 1;
         }
-        
+
         res.json({message:"Success", bookmarked: bookmarked});
     }
 }));

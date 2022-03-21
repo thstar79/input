@@ -17,7 +17,6 @@ storyCoinBtn.addEventListener('click', async (e) => {
 
     const resTotalStoryCoins = await fetch(`/stories/coins/${storyId}`);
     const dataTotalCount = await resTotalStoryCoins.json();
-    console.log(method, dataTotalCount.message, dataTotalCount.count);
 
     const coinText = document.getElementById(`storyCoinText`);
     coinText.innerHTML = dataTotalCount.count;

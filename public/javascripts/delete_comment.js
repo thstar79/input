@@ -3,7 +3,6 @@ for (let i = 0; i < deleteBtns.length; i++) {
     const btn = deleteBtns[i];
     btn.addEventListener('click', async(e) => {
         e.stopPropagation();
-        console.log("delete btn clicked");
         const IDs = e.target.id.split('ID');
         const commentId = IDs[1];
         const userId = IDs[2];

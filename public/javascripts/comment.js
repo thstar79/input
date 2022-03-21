@@ -9,8 +9,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     const storyId = parseInt(IDs[1],10);
     const sessionId = parseInt(IDs[2],10);
 
-    console.log("!!!!!!!!!!", storyId,"~~~~~~~~~~~~~~~~~");
-    console.log("!!!!!!!!!!", sessionId,"!!!!!!!!!!!!!");    
     //////////////////////////////////////////////////////////
     const cW = document.createElement('div');
     const cTopW = document.createElement('div');
@@ -50,7 +48,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
     input1.setAttribute('type','hidden');
     input1.setAttribute('name','_csrf');
-    input1.setAttribute('value','csrfToken'); 
+    input1.setAttribute('value','csrfToken');
     input2.setAttribute('id',`storyCId`);
     input2.setAttribute('type','hidden');
     input2.setAttribute('name','storyId');
@@ -71,7 +69,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     btn.classList.add('pushable');
     btn.innerText= "Comment";
     //btn.innerHTML = `<span class="shadow"></span><span class="edge"></span><span class="front"></span>Comment`;
-    
+
     ///////////////////////////////////////////////////////////
     extraside.appendChild(cW);
     cW.appendChild(cTopW);
@@ -100,19 +98,19 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     for(let i=0;i<comments.length;++i){
         makeDiv(cMainW,comments[i],users[i],sum,sessionId);
     }
-    
+
     strcomments[0].addEventListener('click', commentFn);
 
     const createBtn = document.getElementById('commentCreate');
     let editBtns = document.getElementsByClassName('comment-edit-btn');
     let deleteBtns = document.querySelectorAll('.comment-delete-btn');
     let coinBtns = document.querySelectorAll('.coin-btn');
-    
+
 
     createBtn.addEventListener('click', async(e) => {
         e.preventDefault();
         e.stopPropagation();
-        
+
         if(sessionId !== 0) {
             const commentData = document.getElementById('comment').value;
             const res = await fetch(`/api/comments`, {

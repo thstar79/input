@@ -74,16 +74,15 @@ router.post(
             comment:`${salt}${userId}${salt}${comment}`,
             storyId,
         });
-        console.log(comment1.comment, storyId);
-        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-1");
+
         const validatorErrors = validationResult(req);
         if (validatorErrors.isEmpty()) {
             await comment1.save();
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~0");
+
             const comment = await db.Comment.findOne({
                 order: [['id','desc']],
             });
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~1");
+
             //const response = await res.json();
             const coin = await db.CommentCoin.create({
                 count: 0,
@@ -91,12 +90,10 @@ router.post(
                 commentId: comment.id,
             });
 
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2");
+
             res.json({message: "Success", comment});
         } else {
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3");
             const errors = validatorErrors.array().map((error) => error.msg);
-            console.log(errors);
             res.render("comment-form", {
                 title: "Write a Comment",
                 comment: comment1,
@@ -229,12 +226,7 @@ router.get(
         });
 
         const sum = {};
-        console.log('***********************************************************************');
-        console.log('***********************************************************************');
-        console.log('***********************************************************************');
-        console.log('***********************************************************************');
         if(comments.length === 0){
-            console.log('***********************************************************************1111');
             res.json({
                 story: "norecord",
                 comments: [],
@@ -244,8 +236,6 @@ router.get(
             });
         }
         else{
-            console.log(comments[0], comments.length);
-            console.log('***********************************************************************222222222');
             const coins = await db.CommentCoin.findAll({
                 include: [{
                         model: db.Comment,
@@ -278,7 +268,7 @@ router.get(
                 comments[i].comment = split[2];
             }
 
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!", comments[0].User,"~~~~~~~~~~~~~~~~~~~~~~");
+
             res.json({
                 story: story,
                 comments: comments,
