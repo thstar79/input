@@ -2,36 +2,14 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const router = express.Router();
 const db = require("../db/models");
-const { csrfProtection, asyncHandler } = require("./utils");
+const { csrfProtection, asyncHandler, chckbookmark } = require("./utils");
 
 const { requireAuth , setUserId} = require("../auth");
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-const chckbookmark = async (stories, userId)=>{
- 
-    for(let i=0;i<stories.length;++i){
-        const story = stories[i];
-        const storyId = story.id;
-        
-        let userStoryCoinsCount = await db.StoryCoin.sum('count', {
-            where: {
-                storyId: storyId,
-                userId: userId,
-            }
-        });
-        
-        if(!userStoryCoinsCount)   userStoryCoinsCount = 0;
-        if(userStoryCoinsCount >= 10000000){
-            story.isbookmarked = 1;
-        }  
-        else{
-            story.isbookmarked = 0;
-        }    
-    }
-}
- 
+
     
 
 router.get('/test', (req,res) => {

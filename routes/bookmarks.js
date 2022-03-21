@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const db = require("../db/models");
-const { csrfProtection, asyncHandler } = require("./utils");
+const { csrfProtection, asyncHandler, chckbookmark } = require("./utils");
 
 const { loginUser, logoutUser, restoreUser, requireAuth, setUserId } = require("../auth");
 const user = require("../db/models/user");
@@ -27,6 +27,8 @@ router.get('/bookmarks', asyncHandler(async (req,res)=>{
     //res.render({bookMarks});
     let stories = [];
     if(bookmarks.length !== 0)  stories = bookmarks.map(ele=>ele.Story) ;
+    await chckbookmark(stories,userId);
+
     res.render("index", { title: "Book Marks", stories: stories, followFeeds:-1, userId });
 }));
 
