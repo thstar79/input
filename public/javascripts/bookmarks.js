@@ -1,6 +1,6 @@
 import {makeProfile} from './utils.js';
 
-window.onload = async function(){
+window.addEventListener("DOMContentLoaded", event => {
 
     //for the right hand side follow recommendation
     const wrapper = document.getElementById('userProfileBoxWrapper');
@@ -100,4 +100,5 @@ window.onload = async function(){
     // }
 
 }
+)
 

@@ -137,7 +137,8 @@ input[type=text], textarea, select {
     }
 
     #writeStoryFormBox {
-        padding: 10px 0 10px 0;
+        padding: 10px 10px 10px 10px;
+        background-color: white;
     }
 
     #writeStoryButtonBox {
