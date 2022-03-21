@@ -81,7 +81,28 @@ router.get(
             order: [['createdAt', 'DESC']]
         });
         await chckbookmark(stories,userId);
-        res.render("index", { title: "Stories List", stories, userId });
+
+        let followFeeds = []
+
+        const followStories = await db.User.findByPk(userId, {
+            include: [{
+            model: db.User,
+            as: 'followings',
+            include: {
+            model: db.Story,
+            include: [db.Game]
+            }
+            }]
+        })
+
+    for(let i = 0; i < followStories.followings.length; i++) {
+        for(let j=0; j < followStories.followings[i].Stories.length; ++j){
+            followStories.followings[i].Stories[j].User = followStories.followings[i];
+            followFeeds.push(followStories.followings[i].Stories[j]);
+        }
+    }
+        console.log(followFeeds.length + '--------------------------------------------!!!!!!!!!!!!----------------------!!!!!!!!!!!!!!!!!---------')
+        res.render("index", { title: "Stories List", stories, followFeeds, userId });
     })
 
 );

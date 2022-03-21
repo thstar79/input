@@ -22,7 +22,10 @@ html
         script(src="/javascripts/bookmarks.js" type="module")
         script(src="/javascripts/themeselect.js" type="module")
         script(src="/javascripts/coinSound.js" type="module")
+        script(src="/javascripts/devProfile.js" type="module")
+        script(src="/javascripts/stories-feeds-switch.js" type="module")
         
+
         //- script(src="/javascripts/create_comment.js" type="module")
         //- script(src="/javascripts/edit_comment.js" type="module")
         //- script(src="/javascripts/delete_comment.js" type="module")
@@ -38,7 +41,7 @@ html
                 #menu-link-box
                     a(href="/stories" id="menu-link"): img(id="menu-icon1" src='/img/home.png' alt="Home" title="Home")
                     a(href="/stories/recent" id="menu-link"): img(id="menu-icon2" src='/img/bell.png' alt="Recent Stories" title="Recent Stories")
-                    a(href="/api/follows/feed" id="menu-link"): img(id="menu-icon3" src='/img/bookmark.png' alt="Follower Feed" title="Follower Feed")
+                    a(href="/bookmarks" id="menu-link"): img(id="menu-icon3" src='/img/bookmark.png' alt="Follower Feed" title="Follower Feed")
                     a(href="/stories/user" id="menu-link"): img(id="menu-icon4" src='/img/stories.png' alt="My Stories" title="My Stories")
                     a(href="/stories/new"  id="menu-link"): img(id="menu-icon4" src='/img/write.png' alt="Write a new Story" title="Write a new Story")
                 #login-status-box
@@ -62,6 +65,9 @@ html
                   p#welcomMessage Welcome #{user.userName} !
                   #logUserProfileBoxWrapper
                     #logUserProfileBox
+                      #logUserProfileBoxHeadMessage
+                        p P 
+                        p 1 
                       #logUserProfileBoxHeader 
                         #logUserProfileBoxHeaderImgBox
                           img(src=`/img/users/user${user.id}.png` width="50px")
@@ -72,7 +78,6 @@ html
                           p=user.email
                           p=user.createdAt.toString().slice(4,15)
                       #logUserProfileBoxFooter
-                          i    
               else
                   a(id="loginLink" href='/users/login')
                    p#welcomMessage Not Logged In ?
@@ -88,6 +93,67 @@ html
                     a(id="topiclink" href='/stories/types/Walkthrough') Walk-through
               #userProfileBox
                 #userProfileBoxWrapper
+              #devProfileBoxWrapper
+                #leftbuttonBox
+                  i(class="fa fa-arrow-left" aria-hidden="true")
+                #devProfileBox
+                  #devProfileBoxHeadMessage
+                    p#devProfileHeadText Developer
+                  #devProfileBoxHeadImgBox.devProfileImgOne
+                  #devProfileBoxContentWrapper 
+                    #devProfileBoxContentMain
+                      #devNameBox
+                        p Haywood Johnson
+                      #devLinkBox
+                        a(href="https://github.com/haywood-d-johnson")
+                          i(class="fa fa-github" aria-hidden="true")
+                  #devProfileBoxFooterWrapper 
+                    #devProfileBoxFooter  
+
+                #devProfileBox
+                  #devProfileBoxHeadMessage
+                    p#devProfileHeadText Developer
+                  #devProfileBoxHeadImgBox.devProfileImgTwo
+                  #devProfileBoxContentWrapper 
+                    #devProfileBoxContentMain
+                      #devNameBox
+                        p Jared Kunhart
+                      #devLinkBox
+                        a(href="https://github.com/Jared-Kunhart")
+                          i(class="fa fa-github" aria-hidden="true")
+                  #devProfileBoxFooterWrapper 
+                    #devProfileBoxFooter  
+
+                #devProfileBox.hiddenProfile
+                  #devProfileBoxHeadMessage
+                    p#devProfileHeadText Developer
+                  #devProfileBoxHeadImgBox.devProfileImgThree 
+                  #devProfileBoxContentWrapper 
+                    #devProfileBoxContentMain
+                      #devNameBox
+                        p Taehoon Kim
+                      #devLinkBox
+
+                        a(href="https://github.com/thstar79")
+                          i(class="fa fa-github" aria-hidden="true")
+                  #devProfileBoxFooterWrapper 
+                    #devProfileBoxFooter  
+
+                #devProfileBox.hiddenProfile
+                  #devProfileBoxHeadMessage
+                    p#devProfileHeadText Developer
+                  #devProfileBoxHeadImgBox.devProfileImgFour 
+                  #devProfileBoxContentWrapper 
+                    #devProfileBoxContentMain
+                      #devNameBox
+                        p Steve Choi
+                      #devLinkBox
+                        a(href="https://github.com/Fiasco071")
+                          i(class="fa fa-github" aria-hidden="true")
+                  #devProfileBoxFooterWrapper 
+                    #devProfileBoxFooter    
+                #rightbuttonBox
+                  i(class="fa fa-arrow-right" aria-hidden="true")          
         #extraside
           //- #comment-wrapper.hiddenC
           //-   #comment-top-wrapper

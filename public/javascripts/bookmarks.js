@@ -67,5 +67,29 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         bbtn.addEventListener('click',addBookmarksWrapper);
     }
+<<<<<<< HEAD
 });
+=======
+
+
+    // const bbtns1 = document.getElementsByClassName('bookmarkBtn1');
+    // const sfooters = document.getElementsByClassName('storyBoxFooter');
+    
+    // for(let i=0;i<bbtns1.length;++i){
+    //     const bbox1 = sfooters[i];
+    //     const bbtn1 = bbtns1[i];
+    //     console.log(bbtn1);    
+    //     const addBookmarksWrapper = (e)=>{
+    //         console.log("bookmark img clicked");
+    //         e.stopPropagation();
+    //         changeImg(bbtn1,bbtn1.firstChild,'/img/bookmarks_black.png');
+    //         addBookmarks(bbox1,e);
+    //     }
+
+    //     bbtn1.addEventListener('click',addBookmarksWrapper);
+    // }
+
+}
+)
+>>>>>>> ca06e9c708eabe5a4508c8c774d4172cd9245d25
 
