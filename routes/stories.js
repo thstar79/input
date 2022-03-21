@@ -73,14 +73,18 @@ router.get(
             }]
         })
 
-        for(let i = 0; i < followStories.followings.length; i++) {
-            for(let j=0; j < followStories.followings[i].Stories.length; ++j){
-                followStories.followings[i].Stories[j].User = followStories.followings[i];
-                followFeeds.push(followStories.followings[i].Stories[j]);
+        if(userId !== 0){
+            for(let i = 0; i < followStories.followings.length; i++) {
+                for(let j=0; j < followStories.followings[i].Stories.length; ++j){
+                    followStories.followings[i].Stories[j].User = followStories.followings[i];
+                    followFeeds.push(followStories.followings[i].Stories[j]);
+                }
             }
+            await chckbookmark(followFeeds,userId);
+            res.render("index", { title: "Stories List", stories, followFeeds, userId });
+        }else{
+            res.render("index", { title: "Stories List", stories, followFeeds:-1, userId });
         }
-        await chckbookmark(followFeeds,userId);
-        res.render("index", { title: "Stories List", stories, followFeeds, userId });
     })
 
 );
