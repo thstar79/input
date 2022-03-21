@@ -78,8 +78,8 @@ const makeDiv = (cMainW, comment, user, sum={}, sessionId, flag = 1)=>{
     cMB3LcoinImg_img.setAttribute('src','/img/coin.png');
     cMB3LcoinImg_img.setAttribute('width','20px');
     cMB3LcoinImg_img.classList.add('coinimg');
-    cMB3LcoinImg_img.classList.add('animated');
-    cMB3LcoinImg_img.classList.add('bounce');
+    //cMB3LcoinImg_img.classList.add('animated');
+    //cMB3LcoinImg_img.classList.add('bounce');
     cMB3LcoinImg_img.classList.add('coin-btn');
     cMB3LcoinImg_img.classList.add('coinSound');
 
@@ -245,6 +245,11 @@ const starFn = async (e) => {
     const userId = parseInt(IDs[2],10);
     const sessionId = parseInt(IDs[3],10);
     //console.log(IDs);
+
+    e.target.classList.remove('animated');
+    void e.target.offsetWidth;
+    e.target.classList.add('animated');
+
     if(userId === sessionId){
         window.alert("shame on you. Don't give self coins");
     }

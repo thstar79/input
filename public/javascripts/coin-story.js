@@ -3,6 +3,14 @@ const storyCoinBtn = document.getElementsByClassName('storyCoinSpinImage')[0];
 storyCoinBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    
+    // storyCoinBtn.classList.remove('animated');
+    // void storyCoinBtn.offsetWidth;
+    // storyCoinBtn.classList.add('animated');
+    e.target.classList.remove('animated');
+    void e.target.offsetWidth;
+    e.target.classList.add('animated');
+    //storyCoinBtn.style.animation = "bounce 1s backwards"
 
     const IDs = e.target.id.split('ID');
     const storyId = parseInt(IDs[1]);
