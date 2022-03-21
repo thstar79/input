@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", event => {
-    let audio = new Audio("../assets/smb_coin.wav");
+    let audio = new Audio("/assets/smb_coin.wav");
 
     const coins = document.getElementsByClassName('coinSound');
     for(let i=0;i<coins.length;++i){
